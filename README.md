@@ -1,0 +1,1 @@
+"# Zastosowanie-informatyki-w-gospodarstwie" 

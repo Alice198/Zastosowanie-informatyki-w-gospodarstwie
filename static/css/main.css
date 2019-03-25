@@ -1,0 +1,42 @@
+
+/*główny wygląd strony*/
+html,body{
+    margin:0;
+    padding:0;
+    background-image: url("candles.jpg");
+    height:100%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
+}
+
+
+/*menu*/
+main{
+    height:100%;
+    width: 100%;
+}
+
+/*styl do karty menu*/
+.container-fluid {
+    position:relative;
+    min-height:91%;
+    text-align: center;
+    max-height:150%;
+    overflow:hidden;
+}
+
+.jumbotron.box
+{
+    position: absolute;
+    top: 30%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    margin-bottom:0;
+    padding: 1rem 2rem;
+    background: linear-gradient(to bottom, #ff6600 0%, #ffff00 100%);
+    opacity:0.5;
+    max-height:90%;
+}

@@ -19,7 +19,7 @@ main{
     width: 100%;
 }
 
-/*styl do karty menu*/
+/*styl do karty menu i logowania*/
 .container-fluid {
     position:relative;
     min-height:91%;
@@ -39,4 +39,12 @@ main{
     background: linear-gradient(to bottom, #ff6600 0%, #ffff00 100%);
     opacity:0.5;
     max-height:90%;
+
+}
+
+#login {
+    top:50%;
+    background: #ffdc45;
+    opacity: 0.8;
+    width:25%
 }

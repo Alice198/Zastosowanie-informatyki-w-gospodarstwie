@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="container-fluid">
+   <div class="jumbotron box" id="login">
+       <div class="row">
+            <div class="col-md-12">
+            <form method="post">
+                <h2>Rejestracja</h2>
+                {% csrf_token %}
+                <h3 style="color:red; font-size:105%;"> {{ message }}</h3>
+                <div class="input mb-3">
+                <label for="id_username"></label>
+                <input type="text" name="username" placeholder="Nazwa użytkownika" class="form-control" required="" id="id_username" autofocus="" maxlength="150">
+                    <small class="form-text text-muted">
+                        <strong>Może zawierać: </strong>
+                    </small>
+
+
+                <label for="id_email"></label>
+                <input type="email" name="email" placeholder="E-mail" class="form-control" id="id_email" maxlength="254">
+                    <small class="form-text text-muted">
+                        <strong>Powinien mieć format </strong>
+                    </small>
+
+                <label for="id_password1"></label>
+                <input type="password" name="password1" minlength="8" placeholder="Hasło" class="form-control" id="id_password1" required="">
+                    <small class="form-text text-muted">
+                        <strong>Musi zawierać </strong>
+                    </small>
+
+                <label for="id_password2"></label>
+                <input type="password" name="password2" minlength="8" placeholder="Powtórz hasło" class="form-control" class="form-control" id="id_password2" required="">
+
+                </div>
+                <button class="btn btn-outline-dark" type="submit">Zaloguj się</button>
+            </form>
+            </div>
+    </div>
+   </div>
+</div>
+
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+
+{% endif %}
+
+{% endblock %}

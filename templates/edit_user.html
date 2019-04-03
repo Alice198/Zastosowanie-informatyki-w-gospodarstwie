@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Edytuj dane{% endblock %}
 
 {% block content %}
 
@@ -10,9 +10,9 @@
         <div class="row">
             <div class="col-md-3 ">
                  <div class="list-group ">
-                  <a href="/user_account" class="list-group-item list-group-item-action">Dane użytkownika</a>
-                  <a href="/edit_user" class="list-group-item list-group-item-action active">Edytuj dane</a>
-                  <a href="/change_password" class="list-group-item list-group-item-action">Zmień hasło</a>
+                  <a href="{% url 'User account' %}" class="list-group-item list-group-item-action">Twoje dane</a>
+                  <a href="{% url 'User edit' %}" class="list-group-item list-group-item-action active">Edytuj dane</a>
+                  <a href="{% url 'Change password' %}" class="list-group-item list-group-item-action">Zmień hasło</a>
                 </div>
             </div>
             <div class="col-md-6">

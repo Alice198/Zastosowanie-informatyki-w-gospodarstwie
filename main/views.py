@@ -18,3 +18,14 @@ def login(request):
 def registration(request):
     return render (request, 'registration.html')
 
+
+def user_account(request):
+    return render (request, 'user_account.html')
+
+
+def edit_user(request):
+    return render (request, 'edit_user.html')
+
+
+def change_password(request):
+    return render (request, 'change_password.html')

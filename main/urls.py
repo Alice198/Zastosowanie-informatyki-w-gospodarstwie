@@ -10,5 +10,6 @@ urlpatterns = [
     path('moje_konto/', views.user_account, name='User account'),
     path('edytuj_dane/', views.edit_user, name='User edit'),
     path('zmien_haslo/', views.change_password, name='Change password'),
-
+    path('zloz_zamownie/', views.submit_order, name='Submit order'),
+    path('twoje_zamowienia/', views.your_order, name='Your order'),
 ]

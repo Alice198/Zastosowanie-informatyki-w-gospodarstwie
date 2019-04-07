@@ -19,6 +19,15 @@ def registration(request):
     return render (request, 'registration.html')
 
 
+def submit_order(request):
+    return render (request, 'submit_order.html')
+
+
+def your_order(request):
+    return render (request, 'your_order.html')
+
+
+
 def user_account(request):
     return render (request, 'user_account.html')
 

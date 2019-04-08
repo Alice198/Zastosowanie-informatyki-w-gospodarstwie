@@ -13,6 +13,7 @@
                   <a href="{% url 'User account' %}" class="list-group-item list-group-item-action active">Twoje dane</a>
                   <a href="{% url 'User edit' %}" class="list-group-item list-group-item-action">Edytuj dane</a>
                   <a href="{% url 'Change password' %}" class="list-group-item list-group-item-action">Zmień hasło</a>
+                     <a href="{% url 'User delete' %}" class="list-group-item list-group-item-action">Usuń konto</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -25,7 +26,7 @@
                             </div>
                         </div>
                         <div class="row-md-6">
-                                <form>
+                                <form method="get">
                                   <div class="form-group row">
                                     <label for="username" class="col-4 col-form-label">Nazwa użykownika</label>
                                     <div class="col-8">
@@ -53,7 +54,7 @@
                                   <div class="form-group row phone-number">
                                     <label for="tel" class="col-4 col-form-label">Numer telefonu</label>
                                       <div class="col-8">
-                                          <span class="custom-control-description">123-456-789</span>
+                                          <span class="custom-control-description"><b>123-456-789</b></span>
                                       </div>
                                   </div>
                                 </form>

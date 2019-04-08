@@ -27,7 +27,6 @@ def your_order(request):
     return render (request, 'your_order.html')
 
 
-
 def user_account(request):
     return render (request, 'user_account.html')
 
@@ -38,3 +37,7 @@ def edit_user(request):
 
 def change_password(request):
     return render (request, 'change_password.html')
+
+
+def delete_user(request):
+    return render (request, 'delete_user.html')

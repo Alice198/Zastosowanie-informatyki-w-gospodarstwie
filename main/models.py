@@ -1,32 +1,19 @@
 from django.db import models
-
-
-# Create your models here.
+from .utils import *
 
 
 class User(models.Model):
-    GENDER_CHOICES = (
-        ('F', _('Female')),
-        ('M', _('Man')),
-    )
 
     login = models.TextField()
     password = models.TextField()
     name = models.TextField()
     surname = models.TextField()
-    telephone_num = models.IntegerField(max_length=9)
+    telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
     email = models.EmailField()
 
 
 class Reviews(models.Model):
     """Reviews about the company"""
-    REVIEW_CHOICES = (
-        (1, _('One star')),
-        (2, _('Two stars')),
-        (3, _('Three stars')),
-        (4, _('Four stars')),
-        (5, _('Five stars')),
-    )
 
     description = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -35,6 +22,7 @@ class Reviews(models.Model):
 
 
 class Died(models.Model):
+
     name = models.TextField()
     surname = models.TextField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
@@ -46,15 +34,6 @@ class Died(models.Model):
 
 
 class Coffin(models.Model):
-    TYPE_WOOD = (
-        ('O', _('Oak')),
-        ('B', _('Beech')),
-        ('P', _('Pine'))
-    )
-    COFFIN_SIZE = (
-        ('A', _('Adult')),
-        ('C', _('Chd')),
-    )
 
     wood = models.CharField(max_length=1, choices=TYPE_WOOD)
     size = models.CharField(max_length=1, choices=COFFIN_SIZE)
@@ -62,41 +41,27 @@ class Coffin(models.Model):
 
 
 class Order(models.Model):
+
     order_date = models.DateField(auto_now_add=True)
-    costs = models.DecimalField(decimal_places=2)
+    costs = models.DecimalField(decimal_places=2, max_digits=6)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     died = models.OneToOneField(Died, on_delete=models.PROTECT)
     coffin = models.OneToOneField(Coffin, on_delete=models.PROTECT)
 
 
 class Flowers(models.Model):
-    FLOWERS_COLOR = (
-        ('Wh', _('White flowers')),
-        ('Bl', _('Blue flowers')),
-        ('Pi', _('Pink flowers')),
-        ('Ot', _('Other color flowers')),
-    )
-    FLOWERS_SIZE = (
-        ('S', _('Small')),
-        ('M', _('Medium')),
-        ('B', _('Big')),
-    )
 
     size = models.CharField(max_length=1, choices=FLOWERS_SIZE)
     color = models.CharField(max_length=2, choices=FLOWERS_COLOR)
     count = models.IntegerField()
     description = models.CharField(max_length=200)
-    price = models.DecimalField(decimal_places=2)
+    price = models.DecimalField(decimal_places=2, max_digits=4)
     order = models.ForeignKey(Order, on_delete=models.PROTECT)
 
 
 class Music(models.Model):
-    MUSIC_TYPE = (
-        ('T', _('Trumpet')),
-        ('O', _('Organ')),
-    )
 
     msc_type = models.CharField(max_length=1, choices=MUSIC_TYPE)
-    telephone_num = models.IntegerField(max_length=9)
-    price = models.DecimalField(decimal_places=2)
+    telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
+    price = models.DecimalField(decimal_places=2, max_digits=4)
     order = models.OneToOneField(Order, on_delete=models.PROTECT)

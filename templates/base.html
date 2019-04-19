@@ -26,13 +26,13 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="{% url 'User account' %}">Moje konto <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="">Złóż zamówienie</a>
+      <a class="nav-item nav-link" href="{% url 'Submit order' %}">Złóż zamówienie</a>
+      <a class="nav-item nav-link" href="{% url 'Your order' %}">Twoje zamówienia</a>
       <a class="nav-item nav-link" href="">Wylogowanie</a>
 
     </div>
   </div>
 </nav>
-
 
 
 {% else %}
@@ -57,6 +57,10 @@
 
 {% block content %}
 {% endblock %}
-      </main>
+<div class="footer text-center py-3">
+         © 2019 Copyright:
+          Alicja Tomczak & Sebastian Ryś
+</div>
+
 </body>
 </html>

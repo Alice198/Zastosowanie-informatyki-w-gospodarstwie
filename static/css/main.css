@@ -28,6 +28,7 @@ main{
     overflow:hidden;
 }
 
+
 .jumbotron.box
 {
     position: absolute;
@@ -52,4 +53,18 @@ main{
 
 .jumbotron{
     background:transparent !important;
+}
+
+.main{
+
+}
+
+/*stopka*/
+ .footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+background-color: #0d0d0d;
+color:#8c8c8c;
+opacity:0.8;
 }

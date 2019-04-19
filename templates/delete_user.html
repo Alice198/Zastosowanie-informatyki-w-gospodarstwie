@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Edytuj dane{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="jumbotron d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 ">
+                 <div class="list-group ">
+                  <a href="{% url 'User account' %}" class="list-group-item list-group-item-action">Twoje dane</a>
+                  <a href="{% url 'User edit' %}" class="list-group-item list-group-item-action">Edytuj dane</a>
+                  <a href="{% url 'Change password' %}" class="list-group-item list-group-item-action">Zmień hasło</a>
+                     <a href="{% url 'User delete' %}" class="list-group-item list-group-item-action active">Usuń konto</a>
+                </div>
+            </div>
+             <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Usuń konto</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row-md-6">
+                            <div class="col-md-12">
+                                <form>
+                                  <div class="form-group row">
+                                    <label for="id_password" class="col-4 col-form-label">Hasło</label>
+                                    <div class="col-8">
+                                      <input id="id_password" name="id_password" placeholder="Hasło" class="form-control here" required="required" type="password">
+                                    </div>
+                                  </div>
+
+                                    <div class="offset-4 col-8">
+                                      <button name="submit" type="submit" class="btn btn-primary">Usuń</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+
+{% endif %}
+
+{% endblock %}

@@ -13,7 +13,6 @@
             <form method="post">
                 <h2>Rejestracja</h2>
                 {% csrf_token %}
-                <h3 style="color:red; font-size:105%;"> {{ message }}</h3>
                 <div class="input mb-3">
                 <label for="id_username"></label>
                 <input type="text" name="username" placeholder="Nazwa użytkownika" class="form-control" required="" id="id_username" autofocus="" maxlength="150">

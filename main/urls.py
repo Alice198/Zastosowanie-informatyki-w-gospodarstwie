@@ -1,12 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path
 from . import views
 
 urlpatterns = [
     path('', views.base, name='base'),
     path('strona_glowna/', views.home, name='Home'),
-    path('logowanie/', views.login, name='Login'),
-    path('rejesracja/', views.registration, name='Registration'),
+    path('logowanie/', LoginView.as_view(), {'template_name': 'templates/login.html'}, name='Login'),
+    path('rejestracja/', views.registration, name='Registration'),
+    path('wylogowywanie/', views.logout_view, name='Logout'),
     path('moje_konto/', views.user_account, name='User account'),
     path('edytuj_dane/', views.edit_user, name='User edit'),
     path('zmien_haslo/', views.change_password, name='Change password'),

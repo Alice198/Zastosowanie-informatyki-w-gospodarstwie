@@ -4,11 +4,11 @@ from .utils import *
 
 class User(models.Model):
 
-    login = models.TextField()
-    password = models.TextField()
+    username = models.TextField()
+    password1 = models.TextField()
     name = models.TextField()
     surname = models.TextField()
-    telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
+    telephone_num = models.IntegerField()
     email = models.EmailField()
 
 

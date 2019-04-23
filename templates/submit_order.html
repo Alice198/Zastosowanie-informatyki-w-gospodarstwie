@@ -5,6 +5,86 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+<div class="jumbotron d-flex align-items-center justify-content-center">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Dane zmarłego</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row-md-6">
+
+                                <form>
+                                  <div class="form-group row">
+                                    <label for="id_name_death">Imie</label>
+                                    <div class="col-8">
+                                       <input type="text" name="name" placeholder="Imię" class="form-control" required="" id="id_name_death" autofocus="" maxlength="150">
+                                    </div>
+                                  </div>
+
+
+                                  <div class="form-group row">
+                                    <label for="id_surname_death">Nazwisko</label>
+                                    <div class="col-8">
+                                      <input type="text" name="surname" placeholder="Nazwisko" class="form-control" required="" id="id_surname_death" autofocus="" maxlength="150">
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label for="">Płeć</label>
+                                    <div class="col-8">
+                                      <form action="" autocomplete="off">
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Kobieta</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
+                                          </div>
+                                      </form>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label for="id_date_birth">Data urodzenia</label>
+                                    <div class="col-8">
+                                      <input type="date" name="date_birth" placeholder="Data urodzenia" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label for="id_date_birth">Data śmierci</label>
+                                    <div class="col-8">
+                                      <input type="date" name="date_death" placeholder="Data śmierci" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                    <label for="id_transcription">Transkrypcja</label>
+                                    <div class="col-8">
+                                      <input type="text" name="transcription" placeholder="Transrypcja" class="form-control" required="" id="id_transcription" autofocus="" maxlength="150">
+                                    </div>
+                                  </div>
+                                </form>
+                          <div class="offset-4 col-8">
+                                      <button name="submit" type="submit" class="btn btn-outline-dark">Dalej</button>
+                                    </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
 
 
 {% else %}

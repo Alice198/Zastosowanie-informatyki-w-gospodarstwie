@@ -71,6 +71,11 @@ opacity:0.8;
 }
 
 
+.list-group-item {
+background-color: black;
+}
+
 .card {
-color: #191919;
+background-color: black;
+opacity:0.9;
 }

@@ -16,6 +16,7 @@ urlpatterns = [
     path('zloz_zamownie_trumna/', views.submit_order_coffin, name='Submit order coffin'),
     path('zloz_zamownie_kwiaty/', views.submit_order_flower, name='Submit order flowers'),
     path('zloz_zamownie_muzyk/', views.submit_order_music, name='Submit order music'),
+    path('podumowanie_zamówienia/', views.submit_order_summary, name='Summary submit order'),
     path('twoje_zamowienia/', views.your_order, name='Your order'),
     path('usun_konto/', views.delete_user, name='User delete'),
 ]

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Podsumowanie zamówienia{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="jumbotron d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="offset-3 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Podsumowanie zamówienia </h4>
+                                <hr>
+                            </div>
+                      </div>
+                        <div class="row-md-6">
+                            <form>
+                                <div class="form-group row">
+                                </div>
+                            </form>
+                          <div class="offset-2 col-8">
+                              <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Wróć do zamówienia</a>
+                              <a href="{% url 'Home' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Potwierdź</a>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+
+{% endif %}
+
+{% endblock %}

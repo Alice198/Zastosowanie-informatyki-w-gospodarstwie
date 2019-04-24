@@ -55,6 +55,10 @@ def submit_order_music(request):
     return render(request, 'submit_order_music.html')
 
 
+def submit_order_summary(request):
+    return render(request, 'submit_order_summary.html')
+
+
 def your_order(request):
     return render(request, 'your_order.html')
 

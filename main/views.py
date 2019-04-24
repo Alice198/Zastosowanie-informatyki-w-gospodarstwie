@@ -51,6 +51,10 @@ def submit_order_flower(request):
     return render(request, 'submit_order_flower.html')
 
 
+def submit_order_music(request):
+    return render(request, 'submit_order_music.html')
+
+
 def your_order(request):
     return render(request, 'your_order.html')
 

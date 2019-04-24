@@ -13,7 +13,7 @@
                     <div class="card-body">
                       <div class="row">
                             <div class="col-md-12">
-                                <h4>Dane zmarłego</h4>
+                                <h4>Zmarły</h4>
                                 <hr>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                                             <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
                                           </div>
-                                      </form>
+
                                     </div>
                                   </div>
 
@@ -71,11 +71,40 @@
                                       <input type="text" name="transcription" placeholder="Transrypcja" class="form-control" required="" id="id_transcription" autofocus="" maxlength="150">
                                     </div>
                                   </div>
+
+                                    <div class="form-group row">
+                                      <label for="">Makijaż</label>
+                                    <div class="col-8">
+                                      <form action="" autocomplete="off">
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                            <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                          </div>
+                                      </form>
+                                    </div>
+                                  </div>
+
+                                    <div class="form-group row">
+                                    <label for="id_outfiy">Ubranie</label>
+                                    <div class="col-8">
+                                        <textarea type="text" name="outfit" placeholder="Co będzie miał na sobie zmarły w dniu pogrzebu?" class="form-control" required="" id="id_transcription" autofocus="" maxlength="150"></textarea>
+                                    </div>
+                                  </div>
                                 </form>
                           <div class="offset-4 col-8">
-                                      <button name="submit" type="submit" class="btn btn-outline-dark">Dalej</button>
+                            <button name="submit" type="submit" class="btn btn-outline-dark">Zapisz</button>
+                            <button name="submit" type="submit" class="btn btn-outline-dark">Dalej</button>
                                     </div>
                             </div>
+
                         </div>
 
 

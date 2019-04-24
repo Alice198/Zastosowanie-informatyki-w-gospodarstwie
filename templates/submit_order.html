@@ -6,9 +6,9 @@
 
 {% if user.is_authenticated %}
 <div class="jumbotron d-flex align-items-center justify-content-center">
-    <div class="container-fluid ">
+    <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="offset-3 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -18,25 +18,29 @@
                             </div>
                         </div>
                         <div class="row-md-6">
-
-                                <form>
-                                  <div class="form-group row">
-                                    <label for="id_name_death">Imie</label>
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_name_death">Imie</label>
+                                    </div>
                                     <div class="col-8">
                                        <input type="text" name="name" placeholder="Imię" class="form-control" required="" id="id_name_death" autofocus="" maxlength="150">
                                     </div>
-                                  </div>
+                                </div>
 
-
-                                  <div class="form-group row">
-                                    <label for="id_surname_death">Nazwisko</label>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_surname_death">Nazwisko</label>
+                                    </div>
                                     <div class="col-8">
                                       <input type="text" name="surname" placeholder="Nazwisko" class="form-control" required="" id="id_surname_death" autofocus="" maxlength="150">
                                     </div>
-                                  </div>
+                                </div>
 
-                                  <div class="form-group row">
-                                      <label for="">Płeć</label>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Płeć</label>
+                                    </div>
                                     <div class="col-8">
                                       <form action="" autocomplete="off">
                                           <div class="form-check form-check-inline">
@@ -47,33 +51,40 @@
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
                                             <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
                                           </div>
-
                                     </div>
-                                  </div>
+                                </div>
 
-                                  <div class="form-group row">
-                                    <label for="id_date_birth">Data urodzenia</label>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_date_birth">Data urodzenia</label>
+                                    </div>
                                     <div class="col-8">
-                                      <input type="date" name="date_birth" placeholder="Data urodzenia" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
+                                        <input type="date" name="date_birth" placeholder="Data urodzenia" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
                                     </div>
-                                  </div>
+                                </div>
 
-                                  <div class="form-group row">
-                                    <label for="id_date_birth">Data śmierci</label>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_date_birth">Data śmierci</label>
+                                    </div>
                                     <div class="col-8">
-                                      <input type="date" name="date_death" placeholder="Data śmierci" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
+                                        <input type="date" name="date_death" placeholder="Data śmierci" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
                                     </div>
-                                  </div>
+                                </div>
 
-                                  <div class="form-group row">
-                                    <label for="id_transcription">Transkrypcja</label>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_transcription">Transkrypcja</label>
+                                    </div>
                                     <div class="col-8">
-                                      <input type="text" name="transcription" placeholder="Transrypcja" class="form-control" required="" id="id_transcription" autofocus="" maxlength="150">
+                                        <input type="text" name="transcription" placeholder="Transrypcja" class="form-control" required="" id="id_transcription" autofocus="" maxlength="150">
                                     </div>
-                                  </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                      <label for="">Makijaż</label>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Makijaż</label>
+                                    </div>
                                     <div class="col-8">
                                       <form action="" autocomplete="off">
                                           <div class="form-check form-check-inline">
@@ -92,17 +103,19 @@
                                     </div>
                                   </div>
 
-                                    <div class="form-group row">
-                                    <label for="id_outfiy">Ubranie</label>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_outfiy">Ubranie</label>
+                                    </div>
                                     <div class="col-8">
                                         <textarea type="text" name="outfit" placeholder="Co będzie miał na sobie zmarły w dniu pogrzebu?" class="form-control" required="" id="id_transcription" autofocus="" maxlength="150"></textarea>
                                     </div>
-                                  </div>
-                                </form>
-                          <div class="offset-4 col-8">
-                            <button name="submit" type="submit" class="btn btn-outline-dark">Zapisz</button>
-                            <button name="submit" type="submit" class="btn btn-outline-dark">Dalej</button>
-                                    </div>
+                                </div>
+                            </form>
+                            <div class="offset-4 col-8">
+                                <button class="btn btn-outline-dark">Zapisz</button>
+                                <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
+                            </div>
                             </div>
 
                         </div>

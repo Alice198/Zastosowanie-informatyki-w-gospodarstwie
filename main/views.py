@@ -43,6 +43,14 @@ def submit_order(request):
     return render(request, 'submit_order.html')
 
 
+def submit_order_coffin(request):
+    return render(request, 'submit_order_coffin.html')
+
+
+def submit_order_flower(request):
+    return render(request, 'submit_order_flower.html')
+
+
 def your_order(request):
     return render(request, 'your_order.html')
 

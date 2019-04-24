@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}Złóż zamówienie{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="jumbotron d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="offset-3 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Trumna</h4>
+                                <hr>
+                            </div>
+                      </div>
+                        <div class="row-md-6">
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Wielkość</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <form action="" autocomplete="off">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                                <label class="form-check-label" for="inlineRadio3">3</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Kolory</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <form action="" autocomplete="off">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                                <label class="form-check-label" for="inlineRadio3">3</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Ilość wiązanek</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <form action="" autocomplete="off">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                                <label class="form-check-label" for="inlineRadio3">3</label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_description_flowers">Opis</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <textarea type="text" name="descripton_flowerz" placeholder="" class="form-control" required="" id="id_description_flowers" autofocus=""></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                          <div class="offset-2 col-8">
+                              <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
+                              <button class="btn btn-outline-dark">Zapisz</button>
+                              <button class="btn btn-outline-dark">Złóż zamówienie</button>
+                          </div>
+                        </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+
+{% endif %}
+
+{% endblock %}

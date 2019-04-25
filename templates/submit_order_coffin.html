@@ -11,6 +11,7 @@
             <div class="col-md-3 ">
                  <div class="list-group ">
                   <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action">Zmarły</a>
+                     <a href="{% url 'Submit order appearance' %}" class="list-group-item list-group-item-action">Wygląd zmarłego</a>
                   <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action active">Trumna</a>
                   <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action">Kwiaty</a>
                      <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa muzyczna</a>
@@ -81,7 +82,7 @@
                                 </div>
                             </form>
                           <div class="offset-3 col-8">
-                              <a href="{% url 'Submit order' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
+                              <a href="{% url 'Submit order appearance' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
                               <button class="btn btn-outline-dark">Zapisz</button>
                               <a href="{% url 'Submit order flowers' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
                           </div>

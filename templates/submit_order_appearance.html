@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Złóż zamówienie{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="jumbotron d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 ">
+                 <div class="list-group ">
+                  <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action">Zmarły</a>
+                     <a href="{% url 'Submit order appearance' %}" class="list-group-item list-group-item-action active">Wygląd zmarłego</a>
+                  <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action ">Trumna</a>
+                  <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action">Kwiaty</a>
+                     <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa muzyczna</a>
+                </div>
+            </div>
+            <div class="offset-1 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Wygląd zmarłego</h4>
+                                <hr>
+                            </div>
+                      </div>
+                        <div class="row-md-6">
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Makijaż</label>
+                                    </div>
+                                    <div class="col-8">
+                                      <form action="" autocomplete="off">
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                            <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                          </div>
+                                      </form>
+                                    </div>
+                                  </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_outfiy">Ubranie</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <textarea type="text" name="outfit" placeholder="Ubiór zmarłego w dniu pogrzebu" class="form-control" required="" id="id_transcription" autofocus=""></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                          <div class="offset-2 col-8">
+                              <a href="{% url 'Submit order' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
+                              <button class="btn btn-outline-dark">Zapisz</button>
+                              <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+
+{% endif %}
+
+{% endblock %}

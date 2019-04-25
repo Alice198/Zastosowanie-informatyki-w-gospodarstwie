@@ -8,7 +8,15 @@
 <div class="jumbotron d-flex align-items-center justify-content-center">
     <div class="container">
         <div class="row">
-            <div class="offset-3 col-6">
+            <div class="col-md-3 ">
+                 <div class="list-group ">
+                  <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action active">Zmarły</a>
+                  <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action">Trumna</a>
+                  <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action">Kwiaty</a>
+                     <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa muzyczna</a>
+                </div>
+            </div>
+            <div class="offset-1 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">

@@ -8,7 +8,15 @@
 <div class="jumbotron d-flex align-items-center justify-content-center">
     <div class="container">
         <div class="row">
-            <div class="offset-3 col-6">
+            <div class="col-md-3 ">
+                 <div class="list-group ">
+                  <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action ">Zmarły</a>
+                  <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action">Trumna</a>
+                  <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action active">Kwiaty</a>
+                     <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa muzyczna</a>
+                </div>
+            </div>
+            <div class="offset-1 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -78,6 +86,15 @@
                                     </div>
                                     <div class="col-8">
                                         <textarea type="text" name="descripton_flowerz" placeholder="Dodatkowy opis kwiatów" class="form-control" required="" id="id_description_flowers" autofocus=""></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Cena za zamówione kwiaty</label>
+                                    </div>
+                                    <div class="col-8">
+                                      <span class="custom-control-description"><b>22</b></span>
                                     </div>
                                 </div>
                             </form>

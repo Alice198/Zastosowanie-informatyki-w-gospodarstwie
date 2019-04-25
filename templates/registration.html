@@ -5,62 +5,82 @@
 {% block content %}
 
 
+<div class="jumbotron d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="offset-3 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
 
-<div class="container-fluid">
-   <div class="jumbotron box" id="login">
-       <div class="row">
-            <div class="col-md-12">
-            <form method="post">
-                <h2>Rejestracja</h2>
-                {% csrf_token %}
-                <div class="input mb-3">
-                <label for="id_username"></label>
-                <input type="text" name="username" placeholder="Nazwa użytkownika" class="form-control" required="" id="id_username" autofocus="" maxlength="150">
-                    <small class="form-text text-muted">
-                        <strong>Może zawierać: </strong>
-                    </small>
+                    <form method="post">
+                        <h2>Rejestracja</h2>
+                        {% csrf_token %}
+                <div class=" offset-1 row-md-6">
 
-                    <label for="id_password1"></label>
-                <input type="password" name="password1" minlength="8" placeholder="Hasło" class="form-control" id="id_password1" required="">
-                    <small class="form-text text-muted">
-                        <strong>Musi zawierać </strong>
-                    </small>
+                    <div class="form-row ">
+                        <div class=" col-md-6">
+                            <label for="id_username"></label>
+                            <input type="text" name="username" placeholder="Nazwa użytkownika" class="form-control" required="" id="id_username" autofocus="" maxlength="150">
+                            <small class="form-text text-muted">
+                                <strong>Może zawierać: </strong>
+                            </small>
+                        </div>
+                        <div class=" col-md-6">
+                            <label for="id_email"></label>
+                            <input type="email" name="email" placeholder="E-mail" class="form-control" id="id_email" maxlength="254">
+                            <small class="form-text text-muted">
+                                <strong>Powinien mieć format: xxx@domena.pl</strong>
+                            </small>
+                        </div>
+                    </div>
 
-                <label for="id_password2"></label>
-                <input type="password" name="password2" minlength="8" placeholder="Powtórz hasło" class="form-control" class="form-control" id="id_password2" required="">
+                    <div class="form-row ">
+                        <div class="col-md-6">
+                            <label for="id_password1"></label>
+                            <input type="password" name="password1" minlength="8" placeholder="Hasło" class="form-control" id="id_password1" required="">
+                            <small class="form-text text-muted">
+                                <strong>Musi zawierać </strong>
+                            </small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_password2"></label>
+                            <input type="password" name="password2" minlength="8" placeholder="Powtórz hasło" class="form-control" class="form-control" id="id_password2" required="">
+                        </div>
+                    </div>
 
+                    <div class="form-row ">
+                        <div class="col-md-6">
+                            <label for="id_name"></label>
+                            <input type="text" name="name" placeholder="Imię" class="form-control" required="" id="id_name" autofocus="" maxlength="150">
+                            <small class="form-text text-muted">
+                                <strong>Może zawierać: </strong>
+                            </small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_surname"></label>
+                            <input type="text" name="surname" placeholder="Nazwisko" class="form-control" required="" id="id_surname" autofocus="" maxlength="150">
+                            <small class="form-text text-muted">
+                                <strong>Może zawierać: </strong>
+                            </small>
+                        </div>
+                    </div>
 
-                    <label for="id_name"></label>
-                <input type="text" name="name" placeholder="Imię" class="form-control" required="" id="id_name" autofocus="" maxlength="150">
-                    <small class="form-text text-muted">
-                        <strong>Może zawierać: </strong>
-                    </small>
+                         <label for="id_tel_num"></label>
+                            <input type="tel" name="tel_num" placeholder="Numer telefonu" class="form-control" id="id_tel_num" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
+                        <small class="form-text text-muted">
+                            <strong>Powinien mieć format xxx-xxx-xxx</strong>
+                        </small>
 
+                    </br>
 
-                    <label for="id_surname"></label>
-                <input type="text" name="surname" placeholder="Nazwisko" class="form-control" required="" id="id_surname" autofocus="" maxlength="150">
-                    <small class="form-text text-muted">
-                        <strong>Może zawierać: </strong>
-                    </small>
-
-                <label for="id_tel_num"></label>
-                <input type="tel" name="tel_num" placeholder="Numer telefonu" class="form-control" id="id_tel_num" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required>
-                    <small class="form-text text-muted">
-                        <strong>Powinien mieć format xxx-xxx-xxx</strong>
-                    </small>
-
-                    <label for="id_email"></label>
-                <input type="email" name="email" placeholder="E-mail" class="form-control" id="id_email" maxlength="254">
-                    <small class="form-text text-muted">
-                        <strong>Powinien mieć format </strong>
-                    </small>
-
-
-                </div>
-                <button class="btn btn-outline-dark" type="submit">Zarejestruj się</button>
-                <input type="hidden" name="next" value="{% url 'Home' %}" >
+                    <div class="offset-4 col-8">
+                        <button class="btn btn-outline-dark" type="submit">Zarejestruj się</button>
+                        <input type="hidden" name="next" value="{% url 'Home' %}" >
+                    </div>
             </form>
             </div>
+                    </div></div></div>
     </div>
    </div>
 </div>

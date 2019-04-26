@@ -3,6 +3,7 @@ from .utils import *
 
 
 class User(models.Model):
+    """User data"""
 
     username = models.TextField()
     password1 = models.TextField()
@@ -22,6 +23,7 @@ class Reviews(models.Model):
 
 
 class Died(models.Model):
+    """Information about died"""
 
     name = models.TextField()
     surname = models.TextField()
@@ -30,17 +32,27 @@ class Died(models.Model):
     date_died = models.DateField()
     transcription = models.CharField(max_length=50)
     outfit = models.CharField(max_length=200)
-    makeup = models.CharField(max_length=100)
+    makeup = models.CharField(max_length=1, choices=MAKEUP_CHOICES)
+
+    def __str__(self):
+        """Returns model as string"""
+        return self.surname
 
 
 class Coffin(models.Model):
+    """Information about coffin"""
 
     wood = models.CharField(max_length=1, choices=TYPE_WOOD)
     size = models.CharField(max_length=1, choices=COFFIN_SIZE)
     description = models.CharField(max_length=200)
 
+    def __str__(self):
+        """Returns model as string"""
+        return self.description
+
 
 class Order(models.Model):
+    """Full order information"""
 
     order_date = models.DateField(auto_now_add=True)
     costs = models.DecimalField(decimal_places=2, max_digits=6)
@@ -50,6 +62,7 @@ class Order(models.Model):
 
 
 class Flowers(models.Model):
+    """Information about flowers"""
 
     size = models.CharField(max_length=1, choices=FLOWERS_SIZE)
     color = models.CharField(max_length=2, choices=FLOWERS_COLOR)
@@ -58,10 +71,19 @@ class Flowers(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=4)
     order = models.ForeignKey(Order, on_delete=models.PROTECT)
 
+    def __str__(self):
+        """Returns model as string"""
+        return self.description
+
 
 class Music(models.Model):
+    """Information about music"""
 
     msc_type = models.CharField(max_length=1, choices=MUSIC_TYPE)
     telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
     price = models.DecimalField(decimal_places=2, max_digits=4)
     order = models.OneToOneField(Order, on_delete=models.PROTECT)
+
+    def __str__(self):
+        """Returns model as string"""
+        return self.telephone_num

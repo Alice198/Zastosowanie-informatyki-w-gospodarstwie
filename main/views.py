@@ -1,9 +1,13 @@
 # Create your views here.
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+
+from .models import Order
+from .forms import DiedForm, DiedLookForm, CoffinForm, FlowerForm
 
 
 def base(request):
@@ -39,32 +43,96 @@ def logout_view(request):
     return render(request, 'home.html')
 
 
+@login_required
 def submit_order(request):
-    return render(request, 'submit_order.html')
+    """Add information about died"""
+    if request.method != 'POST:':
+        form = DiedForm()
+    else:
+        form = DiedForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.owner = request.user
+            new_form.save()
+            return render(request, 'home.html')
+    context = {'form': form}
+    return render(request, 'submit_order.html', context)
 
 
+@login_required
 def submit_order_appearance(request):
-    return render(request, 'submit_order_appearance.html')
+    """Add information about died appearance"""
+    if request.method != 'POST:':
+        form = DiedLookForm()
+    else:
+        form = DiedLookForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.owner = request.user
+            new_form.save()
+            return render(request, 'home.html')
+    context = {'form': form}
+    return render(request, 'submit_order_appearance.html', context)
 
 
+@login_required
 def submit_order_coffin(request):
-    return render(request, 'submit_order_coffin.html')
+    """Add information about coffin"""
+    if request.method != 'POST:':
+        form = CoffinForm()
+    else:
+        form = CoffinForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.owner = request.user
+            new_form.save()
+            return render(request, 'home.html')
+    context = {'form': form}
+    return render(request, 'submit_order_coffin.html', context)
 
 
+@login_required
 def submit_order_flower(request):
-    return render(request, 'submit_order_flower.html')
+    """Add information about flowers"""
+    if request.method != 'POST:':
+        form = FlowerForm()
+    else:
+        form = FlowerForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.owner = request.user
+            new_form.save()
+            return render(request, 'home.html')
+    context = {'form': form}
+    return render(request, 'submit_order_flower.html', context)
 
 
+@login_required
 def submit_order_music(request):
-    return render(request, 'submit_order_music.html')
+    """Add information about music"""
+    if request.method != 'POST:':
+        form = FlowerForm()
+    else:
+        form = FlowerForm(request.POST)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.owner = request.user
+            new_form.save()
+            return render(request, 'home.html')
+    context = {'form': form}
+    return render(request, 'submit_order_music.html', context)
 
 
+@login_required
 def submit_order_summary(request):
     return render(request, 'submit_order_summary.html')
 
 
+@login_required
 def your_order(request):
-    return render(request, 'your_order.html')
+    order = Order.objects.filter(owner=request.user).order_by('order_date')
+    context = {'order': order}
+    return render(request, 'your_order.html', context)
 
 
 def user_account(request):

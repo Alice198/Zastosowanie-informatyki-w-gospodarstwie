@@ -3,6 +3,12 @@ GENDER_CHOICES = (
     ('M', 'Man'),
 )
 
+MAKEUP_CHOICES = (
+    ('Y', 'Yes'),
+    ('L', 'Light'),
+    ('N', 'No'),
+)
+
 REVIEW_CHOICES = (
     (1, 'One star'),
     (2, 'Two stars'),

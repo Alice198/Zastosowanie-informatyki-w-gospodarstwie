@@ -9,66 +9,72 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
-                 <div class="list-group ">
-                  <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action">Zmarły</a>
-                     <a href="{% url 'Submit order appearance' %}" class="list-group-item list-group-item-action">Wygląd zmarłego</a>
-                  <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action active">Trumna</a>
-                  <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action">Kwiaty</a>
-                     <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa muzyczna</a>
+                <div class="list-group ">
+                    <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action">Zmarły</a>
+                    <!--<a href="{% url 'Submit order appearance' %}" class="list-group-item list-group-item-action">Wygląd-->
+                        <!--zmarłego</a>-->
+                    <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action active">Trumna</a>
+                    <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action">Kwiaty</a>
+                    <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa
+                        muzyczna</a>
                 </div>
             </div>
             <div class="offset-1 col-6">
                 <div class="card">
                     <div class="card-body">
-                      <div class="row">
+                        <div class="row">
                             <div class="col-md-12">
                                 <h4>Trumna</h4>
                                 <hr>
                             </div>
-                      </div>
+                        </div>
                         <div class="row-md-6">
-                            <form>
+                            <form action="{% url 'Submit order coffin' %}" method="post">
+                                {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Rozmiar</label>
+                                        <label for="size">Rozmiar</label>
                                     </div>
-                                    <div class="col-8">
-                                        <form action="" autocomplete="off">
+                                    <div class="col-8" id="size">
+                                        <!--<form action="" autocomplete="off">-->
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                                <input class="form-check-input" type="radio" name="size"
+                                                       id="size-adult" value="A">
+                                                <label class="form-check-label" for="size-adult">Dorosły</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                                <input class="form-check-input" type="radio" name="size"
+                                                       id="size-child" value="C">
+                                                <label class="form-check-label" for="size-child">Dziecko</label>
                                             </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                                <label class="form-check-label" for="inlineRadio3">3</label>
-                                            </div>
-                                        </form>
+                                            {{ formErrors.size }}
+                                        <!--</form>-->
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Rodzaj drewna</label>
+                                        <label for="wood">Rodzaj drewna</label>
                                     </div>
-                                    <div class="col-8">
-                                        <form action="" autocomplete="off">
+                                    <div class="col-8" id="wood">
+                                        <!--<form action="" autocomplete="off">-->
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                                <input class="form-check-input" type="radio" name="wood"
+                                                       id="inlineRadio1" value="O">
+                                                <label class="form-check-label" for="inlineRadio1">Dąb</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                                <input class="form-check-input" type="radio" name="wood"
+                                                       id="inlineRadio2" value="B">
+                                                <label class="form-check-label" for="inlineRadio2">Buk</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                                <label class="form-check-label" for="inlineRadio3">3</label>
+                                                <input class="form-check-input" type="radio" name="wood"
+                                                       id="inlineRadio3" value="P">
+                                                <label class="form-check-label" for="inlineRadio3">Sosna</label>
                                             </div>
-                                        </form>
+                                        <!--</form>-->
+                                        {{ formErrors.wood }}
                                     </div>
                                 </div>
 
@@ -77,31 +83,37 @@
                                         <label for="id_description_coffin">Opis</label>
                                     </div>
                                     <div class="col-8">
-                                        <textarea type="text" name="descripton_coffin" placeholder="Dodakowy opis trumny" class="form-control" required="" id="id_description_coffin" autofocus=""></textarea>
+                                        <textarea name="description"
+                                                  placeholder="Dodakowy opis trumny" class="form-control" required=""
+                                                  id="id_description_coffin" autofocus=""></textarea>
+                                        {{ formErrors.description }}
                                     </div>
                                 </div>
+
+                                <div class="offset-3 col-8">
+                                    <a href="{% url 'Submit order appearance' %}" class="btn btn-outline-dark"
+                                       role="button" aria-disabled="true">Powrót</a>
+                                    <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
+                                    <a href="{% url 'Submit order flowers' %}" class="btn btn-outline-dark"
+                                       role="button" aria-disabled="true">Dalej</a>
+                                </div>
                             </form>
-                          <div class="offset-3 col-8">
-                              <a href="{% url 'Submit order appearance' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
-                              <button class="btn btn-outline-dark">Zapisz</button>
-                              <a href="{% url 'Submit order flowers' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
-                          </div>
                         </div>
-
-                        </div>
-
 
                     </div>
+
+
                 </div>
             </div>
         </div>
+    </div>
 </div>
 </div>
 
 
 {% else %}
 
-  <p>You are not logged in</p>
+<p>You are not logged in</p>
 
 
 {% endif %}

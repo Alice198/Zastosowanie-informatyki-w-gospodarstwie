@@ -1,16 +1,17 @@
+from django.contrib.auth.models import User
 from django.db import models
 from .utils import *
 
 
-class User(models.Model):
-    """User data"""
-
-    username = models.TextField()
-    password1 = models.TextField()
-    name = models.TextField()
-    surname = models.TextField()
-    telephone_num = models.IntegerField()
-    email = models.EmailField()
+# class User(models.Model):
+#     """User data"""
+#
+#     username = models.TextField()
+#     password1 = models.TextField()
+#     name = models.TextField()
+#     surname = models.TextField()
+#     telephone_num = models.IntegerField()
+#     email = models.EmailField()
 
 
 class Reviews(models.Model):
@@ -33,6 +34,7 @@ class Died(models.Model):
     transcription = models.CharField(max_length=50)
     outfit = models.CharField(max_length=200)
     makeup = models.CharField(max_length=1, choices=MAKEUP_CHOICES)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
@@ -45,20 +47,11 @@ class Coffin(models.Model):
     wood = models.CharField(max_length=1, choices=TYPE_WOOD)
     size = models.CharField(max_length=1, choices=COFFIN_SIZE)
     description = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
         return self.description
-
-
-class Order(models.Model):
-    """Full order information"""
-
-    order_date = models.DateField(auto_now_add=True)
-    costs = models.DecimalField(decimal_places=2, max_digits=6)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
-    died = models.OneToOneField(Died, on_delete=models.PROTECT)
-    coffin = models.OneToOneField(Coffin, on_delete=models.PROTECT)
 
 
 class Flowers(models.Model):
@@ -69,7 +62,7 @@ class Flowers(models.Model):
     count = models.IntegerField()
     description = models.CharField(max_length=200)
     price = models.DecimalField(decimal_places=2, max_digits=4)
-    order = models.ForeignKey(Order, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
@@ -82,8 +75,24 @@ class Music(models.Model):
     msc_type = models.CharField(max_length=1, choices=MUSIC_TYPE)
     telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
     price = models.DecimalField(decimal_places=2, max_digits=4)
-    order = models.OneToOneField(Order, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
         return self.telephone_num
+
+
+class Order(models.Model):
+    """Full order information"""
+
+    order_date = models.DateField(auto_now_add=True)
+    costs = models.DecimalField(decimal_places=2, max_digits=6)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    died = models.OneToOneField(Died, on_delete=models.CASCADE)
+    coffin = models.OneToOneField(Coffin, on_delete=models.CASCADE)
+    music = models.ForeignKey(Music, on_delete=models.CASCADE, null=True, blank=True)
+    flowers = models.ForeignKey(Flowers, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        """Returns model as string"""
+        return self.order_date

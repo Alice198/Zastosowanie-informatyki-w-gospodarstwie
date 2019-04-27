@@ -9,31 +9,34 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
-                 <div class="list-group ">
-                  <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action active">Zmarły</a>
-                     <a href="{% url 'Submit order appearance' %}" class="list-group-item list-group-item-action">Wygląd zmarłego</a>
-                  <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action">Trumna</a>
-                  <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action">Kwiaty</a>
-                     <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa muzyczna</a>
+                <div class="list-group ">
+                    <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action active">Zmarły</a>
+                    <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action">Trumna</a>
+                    <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action">Kwiaty</a>
+                    <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action">Oprawa
+                        muzyczna</a>
                 </div>
             </div>
             <div class="offset-1 col-6">
                 <div class="card">
                     <div class="card-body">
-                      <div class="row">
+                        <div class="row">
                             <div class="col-md-12">
                                 <h4>Zmarły</h4>
                                 <hr>
                             </div>
                         </div>
                         <div class="row-md-6">
-                            <form>
+                            <form action="{% url 'Submit order' %}" method="post">
+                                {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-4">
                                         <label for="id_name_death">Imie</label>
                                     </div>
                                     <div class="col-8">
-                                       <input type="text" name="name" placeholder="Imię" class="form-control" required="" id="id_name_death" autofocus="" maxlength="150">
+                                        <input type="text" name="name" placeholder="Imię" class="form-control"
+                                               id="id_name_death" autofocus="" maxlength="150">
+                                        {{ formErrors.name }}
                                     </div>
                                 </div>
 
@@ -42,25 +45,31 @@
                                         <label for="id_surname_death">Nazwisko</label>
                                     </div>
                                     <div class="col-8">
-                                      <input type="text" name="surname" placeholder="Nazwisko" class="form-control" required="" id="id_surname_death" autofocus="" maxlength="150">
+                                        <input type="text" name="surname" placeholder="Nazwisko" class="form-control"
+                                               id="id_surname_death" autofocus="" maxlength="150">
+                                        {{ formErrors.surname }}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Płeć</label>
+                                        <label for="gender">Płeć</label>
                                     </div>
-                                    <div class="col-8">
-                                      <form action="" autocomplete="off">
-                                          <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <div id="gender" class="col-8">
+                                        <!--<form action="" autocomplete="off">-->
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="inlineRadio1" value="F">
                                             <label class="form-check-label" for="inlineRadio1">Kobieta</label>
-                                          </div>
-                                          <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender"
+                                                   id="inlineRadio2" value="M">
                                             <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
-                                          </div>
+                                        </div>
+                                        {{ formErrors.gender }}
                                     </div>
+
                                 </div>
 
                                 <div class="form-group row">
@@ -68,7 +77,9 @@
                                         <label for="id_date_birth">Data urodzenia</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="date" name="date_birth" placeholder="Data urodzenia" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
+                                        <input type="date" name="date_birthday" placeholder="Data urodzenia"
+                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150">
+                                        {{ formErrors.date_birthday }}
                                     </div>
                                 </div>
 
@@ -77,7 +88,9 @@
                                         <label for="id_date_birth">Data śmierci</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="date" name="date_death" placeholder="Data śmierci" class="form-control" required="" id="id_date_birth" autofocus="" maxlength="150">
+                                        <input type="date" name="date_died" placeholder="Data śmierci"
+                                               class="form-control" id="id_date_death" autofocus="" maxlength="150">
+                                        {{ formErrors.date_died }}
                                     </div>
                                 </div>
 
@@ -86,30 +99,62 @@
                                         <label for="id_transcription">Transkrypcja</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" name="transcription" placeholder="Transrypcja" class="form-control" required="" id="id_transcription" autofocus="" maxlength="150">
+                                        <input type="text" name="transcription" placeholder="Transkrypcja"
+                                               class="form-control" id="id_transcription" autofocus="" maxlength="150">
+                                        {{ formErrors.transcription }}
                                     </div>
                                 </div>
-                            </form>
-                            <div class="offset-4 col-8">
-                                <button class="btn btn-outline-dark">Zapisz</button>
-                                <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
-                            </div>
-                            </div>
 
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="makeup">Makijaż</label>
+                                    </div>
+                                    <div class="col-8" id="makeup">
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y">
+                                            <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L">
+                                            <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
+                                            <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                          </div>
+                                    </div>
+                                  </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_outfit">Ubranie</label>
+                                    </div>
+                                    <div class="col-8" id="id_outfit">
+                                        <textarea type="text" name="outfit" placeholder="Ubiór zmarłego w dniu pogrzebu" class="form-control" required="" id="id_transcription" autofocus=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="offset-4 col-8">
+                                    <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
+                                    <a href="{% url 'Submit order coffin' %}" class="btn btn-outline-dark" role="button"
+                                       aria-disabled="true">Dalej</a>
+                                </div>
+                            </form>
                         </div>
 
-
                     </div>
+
+
                 </div>
             </div>
         </div>
+    </div>
 </div>
 </div>
 
 
 {% else %}
 
-  <p>You are not logged in</p>
+<p>You are not logged in</p>
 
 
 {% endif %}

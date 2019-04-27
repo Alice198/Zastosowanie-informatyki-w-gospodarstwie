@@ -1,5 +1,11 @@
 from django import forms
-from .models import Died, Coffin, Flowers, Music, Order
+from .models import Died, Coffin, Flowers, Music, Order, User
+
+
+# class UserCreationForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['username', 'password1', 'name', 'surname', 'telephone_num', 'email']
 
 
 class DiedForm(forms.ModelForm):
@@ -41,4 +47,4 @@ class MusicForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = []
+        fields = '__all__'

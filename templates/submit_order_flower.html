@@ -27,48 +27,49 @@
                             </div>
                       </div>
                         <div class="row-md-6">
-                            <form>
+                            <form action="{% url 'Submit order flowers'%}" method="post">
+                                {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Wielkość</label>
+                                        <label for="size">Wielkość wiązanki</label>
                                     </div>
-                                    <div class="col-8">
-                                        <form action="" autocomplete="off">
+                                    <div class="col-8" id="size">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S">
+                                                <label class="form-check-label" for="inlineRadio1">Mała</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M">
+                                                <label class="form-check-label" for="inlineRadio2">Średnia</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                                <label class="form-check-label" for="inlineRadio3">3</label>
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B">
+                                                <label class="form-check-label" for="inlineRadio3">Duża</label>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Kolory</label>
+                                        <label for="color">Kolory</label>
                                     </div>
-                                    <div class="col-8">
-                                        <form action="" autocomplete="off">
+                                    <div class="col-8" id="color">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">1</label>
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh">
+                                                <label class="form-check-label" for="inlineRadio1">Biała</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                                <label class="form-check-label" for="inlineRadio2">2</label>
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl">
+                                                <label class="form-check-label" for="inlineRadio2">Niebieska</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                                                <label class="form-check-label" for="inlineRadio3">3</label>
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi">
+                                                <label class="form-check-label" for="inlineRadio3">Różowa</label>
                                             </div>
-                                        </form>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi">
+                                                <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
+                                            </div>
                                     </div>
                                 </div>
 
@@ -77,7 +78,7 @@
                                         <label for="example-number-input">Ilość wiązanek</label>
                                     </div>
                                     <div class="col-8">
-                                        <input class="form-control" type="number" value="42" id="example-number-input">
+                                        <input class="form-control" type="number" name="count" value="" id="example-number-input">
                                     </div>
                                 </div>
 
@@ -86,24 +87,24 @@
                                         <label for="id_description_flowers">Opis</label>
                                     </div>
                                     <div class="col-8">
-                                        <textarea type="text" name="descripton_flowerz" placeholder="Dodatkowy opis kwiatów" class="form-control" required="" id="id_description_flowers" autofocus=""></textarea>
+                                        <textarea type="text" name="description" placeholder="Dodatkowy opis kwiatów" class="form-control" required="" id="id_description_flowers" autofocus=""></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Cena za zamówione kwiaty</label>
+                                        <label for="price">Cena za zamówione kwiaty</label>
                                     </div>
-                                    <div class="col-8">
-                                      <span class="custom-control-description"><b>22</b></span>
+                                    <div class="col-8" id="price">
+                                      <span data-model-name="price" class="custom-control-description"><b>trzeba jakos wyliczac</b></span>
                                     </div>
                                 </div>
-                            </form>
                           <div class="offset-3 col-8">
                               <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
-                              <button class="btn btn-outline-dark">Zapisz</button>
+                              <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
                               <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
                           </div>
+                            </form>
                         </div>
                         </div>
                     </div>

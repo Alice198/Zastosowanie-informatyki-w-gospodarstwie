@@ -106,10 +106,10 @@ def submit_order_flower(request):
         form = FlowerForm(request.POST)
         if form.is_valid():
             new_form = form.save(commit=False)
-            new_form.owner = request.user
+            new_form.user = User.objects.get(id=request.user.id)
             new_form.save()
-            return render(request, 'home.html')
-    context = {'form': form}
+            return render(request, 'submit_order_music.html')
+    context = {'formErrors': form.errors}
     return render(request, 'submit_order_flower.html', context)
 
 # TODO: naprawic formularz jw

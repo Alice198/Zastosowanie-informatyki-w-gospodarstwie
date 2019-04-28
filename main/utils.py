@@ -32,7 +32,7 @@ FLOWERS_COLOR = (
     ('Wh', 'White flowers'),
     ('Bl', 'Blue flowers'),
     ('Pi', 'Pink flowers'),
-    ('Ot', 'Other color flowers'),
+    ('Mi', 'Mix color flowers'),
 )
 
 FLOWERS_SIZE = (

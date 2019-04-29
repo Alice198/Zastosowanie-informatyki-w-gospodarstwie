@@ -20,15 +20,48 @@
                         <div class="row-md-6">
                             <form>
                                 <div class="form-group row">
-                                    <ul>
-                                        <li>Zmarly: {{ died.name }}</li>
-                                        <li>Trumna: {{ coffin.description }} </li>
-                                        <li>Kwiaty {{ flowers.description }}</li>
-                                        <li>muzyce {{ music.msc_type }}</li>
-                                    </ul>
+                                    <div class="col-4">
+                                        <label for="">Zmarły</label>
+                                    </div>
+                                    <div class="col-8">
+                                      <span class="died"><li>{{ died.name }}</li></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Trumna</label>
+                                    </div>
+                                    <div class="col-8">
+                                      <span class="coffin"><li>{{ coffin.description }}</li></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Kwiaty</label>
+                                    </div>
+                                    <div class="col-8">
+                                      <span class="flowers"><li>{{ flowers.description }}</li></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Muzyka</label>
+                                    </div>
+                                    <div class="col-8">
+                                      <span class="flowers"><li>{{ music.msc_type }}</li></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="">Całkowita cena:</label>
+                                    </div>
+                                    <div class="col-8">
+                                      <span class="all_price"><li></li></span>
+                                    </div>
                                 </div>
                             </form>
-                          <div class="offset-2 col-8">
+                          <div class="form- row offset-2 col-8">
                               <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Wróć do zamówienia</a>
                               <form action="{% url 'Summary submit order' %}" method="post">
                                   {% csrf_token %}

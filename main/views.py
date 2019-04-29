@@ -13,8 +13,8 @@ from .models import Order, Died, Coffin, Flowers, Music
 from .forms import DiedForm, DiedLookForm, CoffinForm, FlowerForm
 
 
-def base(request):
-    return render(request, 'base.html')
+#def base(request):
+#    return render(request, 'base.html')
 
 
 def home(request):

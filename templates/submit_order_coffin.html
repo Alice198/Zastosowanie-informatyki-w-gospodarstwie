@@ -47,7 +47,11 @@
                                                        id="size-child" value="C">
                                                 <label class="form-check-label" for="size-child">Dziecko</label>
                                             </div>
-                                            {{ formErrors.size }}
+                                            {% if formErrors.size %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                         <!--</form>-->
                                     </div>
                                 </div>
@@ -74,7 +78,11 @@
                                                 <label class="form-check-label" for="inlineRadio3">Sosna</label>
                                             </div>
                                         <!--</form>-->
-                                        {{ formErrors.wood }}
+                                        {% if formErrors.wood %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 
@@ -86,7 +94,11 @@
                                         <textarea name="description"
                                                   placeholder="Dodakowy opis trumny" class="form-control" required=""
                                                   id="id_description_coffin" autofocus=""></textarea>
-                                        {{ formErrors.description }}
+                                        {% if formErrors.description %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 

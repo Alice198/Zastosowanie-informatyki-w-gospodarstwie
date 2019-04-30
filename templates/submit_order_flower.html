@@ -46,6 +46,12 @@
                                                 <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B">
                                                 <label class="form-check-label" for="inlineRadio3">Duża</label>
                                             </div>
+
+                                            {% if formErrors.size %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
                                     </div>
                                 </div>
 
@@ -70,6 +76,12 @@
                                                 <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi">
                                                 <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
                                             </div>
+
+                                            {% if formErrors.color %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
                                     </div>
                                 </div>
 
@@ -79,6 +91,12 @@
                                     </div>
                                     <div class="col-8">
                                         <input class="form-control" type="number" name="count" value="" id="example-number-input">
+
+                                        {% if formErrors.count %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 
@@ -97,7 +115,15 @@
                                     </div>
                                     <div class="col-8" id="price">
                                       <span data-model-name="price" class="custom-control-description"><b>trzeba jakos wyliczac</b></span>
+
+                                        {% if formErrors.price %}
+                                        <p style="color: red;">
+                                            To pole jest wymagane
+                                        </p>
+                                        {% endif %}
                                     </div>
+
+
                                 </div>
                           <div class="offset-3 col-8">
                               <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>

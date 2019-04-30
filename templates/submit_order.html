@@ -36,7 +36,11 @@
                                     <div class="col-8">
                                         <input type="text" name="name" placeholder="Imię" class="form-control"
                                                id="id_name_death" autofocus="" maxlength="150">
-                                        {{ formErrors.name }}
+                                        {% if formErrors.name  %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 
@@ -47,7 +51,11 @@
                                     <div class="col-8">
                                         <input type="text" name="surname" placeholder="Nazwisko" class="form-control"
                                                id="id_surname_death" autofocus="" maxlength="150">
-                                        {{ formErrors.surname }}
+                                        {% if formErrors.surname  %}
+                                            <p style="color: red;">
+                                                 To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 
@@ -67,7 +75,11 @@
                                                    id="inlineRadio2" value="M">
                                             <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
                                         </div>
-                                        {{ formErrors.gender }}
+                                        {% if formErrors.gender  %}
+                                            <p style="color: red;">
+                                                 To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
 
                                 </div>
@@ -79,7 +91,11 @@
                                     <div class="col-8">
                                         <input type="date" name="date_birthday" placeholder="Data urodzenia"
                                                class="form-control" id="id_date_birth" autofocus="" maxlength="150">
-                                        {{ formErrors.date_birthday }}
+                                        {% if formErrors.date_birthday  %}
+                                            <p style="color: red;">
+                                                  To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 
@@ -90,7 +106,11 @@
                                     <div class="col-8">
                                         <input type="date" name="date_died" placeholder="Data śmierci"
                                                class="form-control" id="id_date_death" autofocus="" maxlength="150">
-                                        {{ formErrors.date_died }}
+                                        {% if formErrors.date_died %}
+                                            <p style="color: red;">
+                                               To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 
@@ -101,7 +121,12 @@
                                     <div class="col-8">
                                         <input type="text" name="transcription" placeholder="Transkrypcja"
                                                class="form-control" id="id_transcription" autofocus="" maxlength="150">
-                                        {{ formErrors.transcription }}
+                                        {% if formErrors.transcription %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+
                                     </div>
                                 </div>
 
@@ -122,6 +147,12 @@
                                             <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
                                             <label class="form-check-label" for="inlineRadio3">Nie</label>
                                           </div>
+                                    <!--NIE DZIALA TEN ERROR-->
+                                        {% if formErrors.makeup %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                   </div>
 

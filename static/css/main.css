@@ -78,3 +78,12 @@ background-color: black;
 background-color: black;
 opacity:0.9;
 }
+
+.carousel-caption {
+ top:25%;
+ left:40%;
+ margin: 1rem;
+ margin bottom:0;
+ padding: 2rem;
+}
+

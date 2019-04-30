@@ -19,4 +19,5 @@ urlpatterns = [
     path('podumowanie_zamówienia/', views.submit_order_summary, name='Summary submit order'),
     path('twoje_zamowienia/', views.your_order, name='Your order'),
     path('usun_konto/', views.delete_user, name='User delete'),
+    path('opinie/', views.opinion, name='Opinion'),
 ]

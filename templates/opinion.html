@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Opinie{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="jumbotron d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="row">
+
+            <div class="offset-3 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Dodaj opinie</h4>
+                                <hr>
+                            </div>
+                      </div>
+                        <div class="row-md-6">
+                            <form>
+                               <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_opinion">Opinia</label>
+                                    </div>
+                                    <div class="col-8" id="id_opinion">
+                                        <textarea type="text" name="opinion" placeholder="Dodaj swoją opinie" class="form-control" required="" id="id_opinion" autofocus=""></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                          <div class="offset-4 col-8">
+                              <button class="btn btn-outline-dark">Dodaj komentarz</button>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+
+{% endif %}
+
+{% endblock %}

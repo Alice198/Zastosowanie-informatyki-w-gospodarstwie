@@ -204,3 +204,7 @@ def change_password(request):
 
 def delete_user(request):
     return render(request, 'delete_user.html')
+
+
+def opinion(request):
+    return render(request, 'opinion.html')

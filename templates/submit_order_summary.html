@@ -24,7 +24,16 @@
                                         <label for="">Zmarły</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="died"><li>{{ died.name }}</li></span>
+                                      <span class="died">
+                                          <li>Imie: {{ died.name }}</li>
+                                          <li>Nazwisko: {{ died.surname }}</li>
+                                          <li>Płeć: {{ died.gender }}</li>
+                                          <li>Data urodzenia: {{ died.data_birthday}}</li>
+                                          <li>Data śmierci:{{ died.data_died }}</li>
+                                          <li>Transkrypcja: {{ died.transcription }}</li>
+                                          <li>Makijaż: {{ died.makeup }}</li>
+                                          <li>Ubranie: {{ died.outfit }}</li>
+                                      </span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -32,7 +41,11 @@
                                         <label for="">Trumna</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="coffin"><li>{{ coffin.description }}</li></span>
+                                      <span class="coffin">
+                                          <li>Rozmiar: {{ coffin.size }}</li>
+                                          <li>Rodzaj drewna: {{ coffin.wood }}</li>
+                                          <li>Opis: {{ coffin.description }}</li>
+                                      </span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -40,7 +53,13 @@
                                         <label for="">Kwiaty</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="flowers"><li>{{ flowers.description }}</li></span>
+                                      <span class="flowers">
+                                          <li>Wielkość wiązanki: {{ flowers.size }}</li>
+                                          <li>Kolor: {{ flowers.color }}</li>
+                                          <li>Ilość wiązanek: {{ flowers.count }}</li>
+                                          <li>Opis: {{ flowers.description }}</li>
+                                          <li>Cena: {{ flowers.price }}</li>
+                                      </span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -48,7 +67,11 @@
                                         <label for="">Muzyka</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="flowers"><li>{{ music.msc_type }}</li></span>
+                                      <span class="music">
+                                          <li>Muzyk: {{ music.msc_type }}</li>
+                                          <li>Numer: {{ music.telephone_num }}</li>
+                                          <li>Cena: {{ music.price }}</li>
+                                      </span>
                                     </div>
                                 </div>
 
@@ -57,7 +80,8 @@
                                         <label for="">Całkowita cena:</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="all_price"><li></li></span>
+                                      <span class="all_price">
+                                          <li>Cena: </li></span>
                                     </div>
                                 </div>
                             </form>

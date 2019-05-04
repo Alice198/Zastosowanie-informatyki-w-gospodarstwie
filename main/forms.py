@@ -1,25 +1,20 @@
 from django import forms
+from django.contrib.auth import forms as form
 from .models import Died, Coffin, Flowers, Music, Order, User
 
 
-# class UserCreationForm(forms.ModelForm):
-#     class Meta:
-#         model = User
-#         fields = ['username', 'password1', 'name', 'surname', 'telephone_num', 'email']
+class UserCreationForm(form.UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
 
 
 class DiedForm(forms.ModelForm):
     class Meta:
         model = Died
-        fields = ['surname', 'name', 'gender', 'date_birthday', 'date_died', 'transcription']
-        labels = {'surname': '', 'name': '', 'gender': '', 'date_birthday': '', 'date_died': '', 'transcription': ''}
-
-
-class DiedLookForm(forms.ModelForm):
-    class Meta:
-        model = Died
-        fields = ['outfit', 'makeup']
-        labels = {'outfit': '', 'makeup': ''}
+        fields = ['surname', 'name', 'gender', 'date_birthday', 'date_died', 'transcription', 'outfit', 'makeup']
+        labels = {'surname': '', 'name': '', 'gender': '', 'date_birthday': '', 'date_died': '', 'transcription': '', \
+                  'outfit': '', 'makeup': ''}
 
 
 class CoffinForm(forms.ModelForm):

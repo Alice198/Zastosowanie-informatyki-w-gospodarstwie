@@ -1,7 +1,7 @@
 # Create your views here.
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate, update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.models import User
 from django.contrib.auth.models import User
@@ -10,19 +10,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import Order, Died, Coffin, Flowers, Music
-from .forms import DiedForm, DiedLookForm, CoffinForm, FlowerForm
-
-
-#def base(request):
-#    return render(request, 'base.html')
+from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm
 
 
 def home(request):
     return render(request, 'home.html')
-
-
-# def login(request):
-#     return render(request, 'login.html')
 
 
 def registration(request):

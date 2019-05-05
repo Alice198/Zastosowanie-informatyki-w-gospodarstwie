@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from .models import Order, Died, Coffin, Flowers, Music
-from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm
+from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, MusicForm
 
 
 def home(request):
@@ -50,7 +50,7 @@ def submit_order(request):
             new_form = form.save(commit=False)
             new_form.user = User.objects.get(id=request.user.id)
             new_form.save()
-            return render(request, 'submit_order_appearance.html')
+            return render(request, 'submit_order_coffin.html')
 
     context = {'formErrors': form.errors}
     return render(request, 'submit_order.html', context)
@@ -88,7 +88,6 @@ def submit_order_coffin(request):
     return render(request, 'submit_order_coffin.html', context)
 
 
-# TODO: naprawic formularz jw
 @login_required
 def submit_order_flower(request):
     """Add information about flowers"""
@@ -104,20 +103,20 @@ def submit_order_flower(request):
     context = {'formErrors': form.errors}
     return render(request, 'submit_order_flower.html', context)
 
-# TODO: naprawic formularz jw
+
 @login_required
 def submit_order_music(request):
     """Add information about music"""
     if request.method != 'POST':
-        form = FlowerForm()
+        form = MusicForm()
     else:
-        form = FlowerForm(request.POST)
+        form = MusicForm(request.POST)
         if form.is_valid():
             new_form = form.save(commit=False)
-            new_form.owner = request.user
+            new_form.user = User.objects.get(id=request.user.id)
             new_form.save()
-            return render(request, 'home.html')
-    context = {'form': form}
+            return render(request, 'submit_order_summary.html')
+    context = {'formErrors': form.errors}
     return render(request, 'submit_order_music.html', context)
 
 
@@ -146,12 +145,12 @@ def submit_order_summary(request):
         pass
         # TODO: tworzenie obiektu order, to jest akcja klikniecia przycusku Potwierdź w podsumowaniu zamówienia
         # Obiekt order ma zawierać wszystkie wyżej pola
-        # Order.objects.create(
-        #     died=died_query,
-        #     coffin=coffin_query,
-        #     music=music_query,
-        #     flowers=flowers_query,
-        #     user=User.objects.get(id=request.user.id),
+        Order.objects.create(
+            died=died_query,
+            coffin=coffin_query,
+            music=music_query,
+            flowers=flowers_query,
+            user=User.objects.get(id=request.user.id),)
         #     # costs=total_price
         # )
     context = {

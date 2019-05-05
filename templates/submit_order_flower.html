@@ -105,33 +105,32 @@
                                         <label for="id_description_flowers">Opis</label>
                                     </div>
                                     <div class="col-8">
-                                        <textarea type="text" name="description" placeholder="Dodatkowy opis kwiatów" class="form-control" required="" id="id_description_flowers" autofocus=""></textarea>
+                                        <textarea type="text" name="description" placeholder="Dodatkowy opis kwiatów" class="form-control"  id="id_description_flowers" autofocus=""></textarea>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-4">
-                                        <label for="price">Cena za zamówione kwiaty</label>
-                                    </div>
-                                    <div class="col-8" id="price">
-                                      <span data-model-name="price" class="custom-control-description"><b>trzeba jakos wyliczac</b></span>
+                                    <!--<div class="form-group row">-->
+                                        <!--<div class="col-4">-->
+                                            <!--<label for="price">Cena za zamówione kwiaty</label>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-8" id="price">-->
+                                          <!--<span data-model-name="price" class="custom-control-description"><b>trzeba jakos wyliczac</b></span>-->
 
-                                        {% if formErrors.price %}
-                                        <p style="color: red;">
-                                            To pole jest wymagane
-                                        </p>
-                                        {% endif %}
-                                    </div>
+                                            <!--{% if formErrors.price %}-->
+                                            <!--<p style="color: red;">-->
+                                            <!--</p>-->
+                                            <!--{% endif %}-->
+                                        <!--</div>-->
 
 
-                                </div>
+                                    <!--</div>-->
                           <div class="offset-3 col-8">
                               <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
                               <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
                               <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
-                          </div>
-                            </form>
+                          </div></form>
                         </div>
+
                         </div>
                     </div>
                 </div>

@@ -26,48 +26,68 @@
                             </div>
                       </div>
                         <div class="row-md-6">
-                            <form>
+                            <form action="{% url 'Submit order music' %}" method="post">
+                                {% csrf_token %}
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Wielkość</label>
+                                        <label for="id_msc_type">Wybór instrumentu</label>
                                     </div>
-                                    <div class="col-8">
-                                        <form action="" autocomplete="off">
+                                    <div class="col-8" id="id_msc_type">
+                                        <!--<form action="" autocomplete="off">-->
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                                <label class="form-check-label" for="inlineRadio1">organista</label>
+                                                <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
+                                                <label class="form-check-label" for="inlineRadio1">organy</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                                <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
                                                 <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                             </div>
-                                        </form>
+                                        <!--</form>-->
+                                        {% if formErrors.msc_type %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Numer telefonu</label>
+                                        <label for="id_songs">Lista utworów</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="custom-control-description"><b>127-222-222</b></span>
+                                        <textarea type="text" name="songs" placeholder="Proszę podać parę tytułów wybranych utworów" class="form-control"
+                                                  id="id_songs" autofocus=""></textarea>
+                                        {% if formErrors.songs %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
+                                <!--<div class="form-group row">-->
+                                    <!--<div class="col-4">-->
+                                        <!--<label for="">Numer telefonu</label>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-8">-->
+                                      <!--<span class="custom-control-description"><b>127-222-222</b></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
 
-                                <div class="form-group row">
-                                    <div class="col-4">
-                                        <label for="">Cena za oprawe muzyczna</label>
-                                    </div>
-                                    <div class="col-8">
-                                      <span class="custom-control-description"><b>22</b></span>
-                                    </div>
-                                </div>
-                            </form>
+                                <!--<div class="form-group row">-->
+                                    <!--<div class="col-4">-->
+                                        <!--<label for="">Cena za oprawe muzyczna</label>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-8">-->
+                                      <!--<span class="custom-control-description"><b>22</b></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
                           <div class="offset-2 col-8">
                               <a href="{% url 'Submit order flowers' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
-                              <button class="btn btn-outline-dark">Zapisz</button>
+                              <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
                               <a href="{% url 'Summary submit order' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Złóż zamówienie</a>
-                          </div>
+                          </div></form>
                         </div>
                         </div>
                     </div>

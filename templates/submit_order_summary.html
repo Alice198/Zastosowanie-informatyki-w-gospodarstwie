@@ -21,10 +21,10 @@
                             <form>
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Zmarły</label>
+                                        <label for="id_died">Zmarły</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="died">
+                                      <span class="died" id="id_died">
                                           <li>Imie: {{ died.name }}</li>
                                           <li>Nazwisko: {{ died.surname }}</li>
                                           <li>Płeć: {{ died.gender }}</li>
@@ -38,10 +38,10 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="">Trumna</label>
+                                        <label for="coffin">Trumna</label>
                                     </div>
                                     <div class="col-8">
-                                      <span class="coffin">
+                                      <span class="coffin" id="coffin">
                                           <li>Rozmiar: {{ coffin.size }}</li>
                                           <li>Rodzaj drewna: {{ coffin.wood }}</li>
                                           <li>Opis: {{ coffin.description }}</li>
@@ -68,22 +68,23 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="music">
-                                          <li>Muzyk: {{ music.msc_type }}</li>
-                                          <li>Numer: {{ music.telephone_num }}</li>
-                                          <li>Cena: {{ music.price }}</li>
+                                          <li>Typ instrumentu: {{ music.msc_type }}</li>
+                                          <li>Utwory: {{ music.songs }}</li>
+                                          <!--<li>Numer: {{ music.telephone_num }}</li>-->
+                                          <!--<li>Cena: {{ music.price }}</li>-->
                                       </span>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-4">
-                                        <label for="">Całkowita cena:</label>
-                                    </div>
-                                    <div class="col-8">
-                                      <span class="all_price">
-                                          <li>Cena: </li></span>
-                                    </div>
-                                </div>
+                                <!--<div class="form-group row">-->
+                                    <!--<div class="col-4">-->
+                                        <!--<label for="">Całkowita cena:</label>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-8">-->
+                                      <!--<span class="all_price">-->
+                                          <!--<li>Cena: </li></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </form>
                           <div class="form- row offset-2 col-8">
                               <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Wróć do zamówienia</a>

@@ -61,7 +61,7 @@ class Flowers(models.Model):
     color = models.CharField(max_length=2, choices=FLOWERS_COLOR)
     count = models.IntegerField()
     description = models.CharField(max_length=200)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
+    # price = models.DecimalField(decimal_places=2, max_digits=4)
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
@@ -73,13 +73,14 @@ class Music(models.Model):
     """Information about music"""
 
     msc_type = models.CharField(max_length=1, choices=MUSIC_TYPE)
-    telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
-    price = models.DecimalField(decimal_places=2, max_digits=4)
+    songs = models.TextField()
+    # telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
+    # price = models.DecimalField(decimal_places=2, max_digits=4)
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
-        return self.telephone_num
+        return self.songs
 
 
 class Order(models.Model):

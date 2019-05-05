@@ -27,15 +27,15 @@ class CoffinForm(forms.ModelForm):
 class FlowerForm(forms.ModelForm):
     class Meta:
         model = Flowers
-        fields = ['description', 'size', 'color', 'count', 'price']
-        labels = {'description': '', 'size': '', 'color': '', 'count': '', 'price': ''}
+        fields = ['description', 'size', 'color', 'count']
+        labels = {'description': '', 'size': '', 'color': '', 'count': '', }
 
 
 class MusicForm(forms.ModelForm):
     class Meta:
         model = Music
-        fields = ['msc_type', 'telephone_num', 'price']
-        labels = {'msc_type': '', 'telephone_num': '', 'price': ''}
+        fields = ['msc_type', 'songs']
+        labels = {'msc_type': '', 'songs': ''}
 
 
 # TODO: how to make order form

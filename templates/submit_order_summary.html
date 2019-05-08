@@ -25,9 +25,9 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="died" id="id_died">
-                                          <li>Imie: {{ died.name }}</li>
-                                          <li>Nazwisko: {{ died.surname }}</li>
-                                          <li>Płeć:
+                                          <p>Imie: {{ died.name }}</p>
+                                          <p>Nazwisko: {{ died.surname }}</p>
+                                          <p>Płeć:
                                               {% if died.gender == "M" %}
                                                 Mężczyzna
                                               {% elif died.gender == "F" %}
@@ -35,11 +35,11 @@
                                               {% else %}
                                               Brak danych
                                               {% endif %}
-                                          </li>
-                                          <li>Data urodzenia: {{ died.date_birthday}}</li>
-                                          <li>Data śmierci: {{ died.date_died }}</li>
-                                          <li>Transkrypcja: {{ died.transcription }}</li>
-                                          <li>Makijaż:
+                                          </p>
+                                          <p>Data urodzenia: {{ died.date_birthday}}</p>
+                                          <p>Data śmierci: {{ died.date_died }}</p>
+                                          <p>Transkrypcja: {{ died.transcription }}</p>
+                                          <p>Makijaż:
                                               {% if died.makeup == "Y" %}
                                                 Tak
                                               {% elif died.makeup == "L" %}
@@ -48,8 +48,8 @@
                                                 Nie
                                               {% else %}
                                               Brak danych
-                                              {% endif %}</li>
-                                          <li>Ubranie: {{ died.outfit }}</li>
+                                              {% endif %}</p>
+                                          <p>Ubranie: {{ died.outfit }}</p>
                                       </span>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="coffin" id="coffin">
-                                          <li>Rozmiar:
+                                          <p>Rozmiar:
                                               {% if coffin.size == "A" %}
                                                 Dorosły
                                               {% elif coffin.size == "C" %}
@@ -67,8 +67,8 @@
                                               {% else %}
                                               Brak danych
                                               {% endif %}
-                                          </li>
-                                          <li>Rodzaj drewna:
+                                          </p>
+                                          <p>Rodzaj drewna:
                                               {% if coffin.wood == "O" %}
                                                 Dąb
                                               {% elif coffin.wood == "B" %}
@@ -78,8 +78,8 @@
                                               {% else %}
                                               Brak danych
                                               {% endif %}
-                                          </li>
-                                          <li>Opis: {{ coffin.description }}</li>
+                                          </p>
+                                          <p>Opis: {{ coffin.description }}</p>
                                       </span>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="flowers">
-                                          <li>Wielkość wiązanki: {{ flowers.size }}
+                                          <p>Wielkość wiązanki: {{ flowers.size }}
                                               {% if flowers.size == "S" %}
                                                 Mała
                                               {% elif flowers.color == "M" %}
@@ -99,8 +99,8 @@
                                               {% else %}
                                               Brak danych
                                               {% endif %}
-                                          </li>
-                                          <li>Kolor:
+                                          </p>
+                                          <p>Kolor:
                                               {% if flowers.color == "Wh" %}
                                                 Biała
                                               {% elif flowers.color == "Bl" %}
@@ -112,10 +112,10 @@
                                               {% else %}
                                               Brak danych
                                               {% endif %}
-                                          </li>
-                                          <li>Ilość wiązanek: {{ flowers.count }}</li>
-                                          <li>Opis: {{ flowers.description }}</li>
-                                          <li>Cena: {{ flowers.price }}</li>
+                                          </p>
+                                          <p>Ilość wiązanek: {{ flowers.count }}</p>
+                                          <p>Opis: {{ flowers.description }}</p>
+                                          <p>Cena: {{ flowers.price }}</p>
                                       </span>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="music">
-                                          <li>Typ instrumentu: {{ music.msc_type }}
+                                          <p>Typ instrumentu: {{ music.msc_type }}
                                               {% if music.msc_type == "T" %}
                                                 Trąbka
                                               {% elif music.msc_type == "M" %}
@@ -133,8 +133,8 @@
                                               {% else %}
                                               Brak danych
                                               {% endif %}
-                                          </li>
-                                          <li>Utwory: {{ music.songs }}</li>
+                                          </p>
+                                          <p>Utwory: {{ music.songs }}</p>
                                           <!--<li>Numer: {{ music.telephone_num }}</li>-->
                                           <!--<li>Cena: {{ music.price }}</li>-->
                                       </span>
@@ -162,6 +162,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

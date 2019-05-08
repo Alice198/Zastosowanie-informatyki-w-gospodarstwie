@@ -4,13 +4,16 @@ html,body{
     color: whitesmoke;
     margin: 0;
     padding: 0;
-    background-image: url("candles.jpg");
+    background-image: url("candles.jpg") ;
     height: 100%;
     width: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     background-size: cover;
     background-size: 100% 100%;
+    background-attachment: fixed;
+    top:0;
+
 }
 
 
@@ -61,7 +64,6 @@ main{
 
 /*stopka*/
  .footer {
-position: absolute;
 bottom: 0;
 width: 100%;
 background-color: #0d0d0d;
@@ -88,7 +90,7 @@ opacity:0.9;
 }
 
 
-
+/*opinion*/
 .starrating > input {display: none;}  /* Remove radio buttons */
 
 .fa-star:before {

@@ -32,7 +32,13 @@
                                       <span class="died">
                                           <li>Imie: {{ died.name }}</li>
                                           <li>Nazwisko: {{ died.surname }}</li>
-                                          <li>Płeć: {{ died.gender }}</li>
+                                          <li>Płeć:
+                                              {% if died.gender == "Female" %}
+                                              <p>Kobieta</p>
+                                              {% elif died.gender =="Man"%}
+                                              <p>Mężczyzna</p>
+                                              {% endif %}
+                                              </li>
                                           <li>Data urodzenia: {{ died.data_birthday}}</li>
                                           <li>Data śmierci:{{ died.data_died }}</li>
                                           <li>Transkrypcja: {{ died.transcription }}</li>

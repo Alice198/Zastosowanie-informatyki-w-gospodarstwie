@@ -27,11 +27,28 @@
                                       <span class="died" id="id_died">
                                           <li>Imie: {{ died.name }}</li>
                                           <li>Nazwisko: {{ died.surname }}</li>
-                                          <li>Płeć: {{ died.gender }}</li>
-                                          <li>Data urodzenia: {{ died.data_birthday}}</li>
-                                          <li>Data śmierci:{{ died.data_died }}</li>
+                                          <li>Płeć:
+                                              {% if died.gender == "M" %}
+                                                Mężczyzna
+                                              {% elif died.gender == "F" %}
+                                                Kobieta
+                                              {% else %}
+                                              Brak danych
+                                              {% endif %}
+                                          </li>
+                                          <li>Data urodzenia: {{ died.date_birthday}}</li>
+                                          <li>Data śmierci: {{ died.date_died }}</li>
                                           <li>Transkrypcja: {{ died.transcription }}</li>
-                                          <li>Makijaż: {{ died.makeup }}</li>
+                                          <li>Makijaż:
+                                              {% if died.makeup == "Y" %}
+                                                Tak
+                                              {% elif died.makeup == "L" %}
+                                                Lekki
+                                              {% elif died.makeup == "N" %}
+                                                Nie
+                                              {% else %}
+                                              Brak danych
+                                              {% endif %}</li>
                                           <li>Ubranie: {{ died.outfit }}</li>
                                       </span>
                                     </div>
@@ -42,8 +59,26 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="coffin" id="coffin">
-                                          <li>Rozmiar: {{ coffin.size }}</li>
-                                          <li>Rodzaj drewna: {{ coffin.wood }}</li>
+                                          <li>Rozmiar:
+                                              {% if coffin.size == "A" %}
+                                                Dorosły
+                                              {% elif coffin.size == "C" %}
+                                                Dziecko
+                                              {% else %}
+                                              Brak danych
+                                              {% endif %}
+                                          </li>
+                                          <li>Rodzaj drewna:
+                                              {% if coffin.wood == "O" %}
+                                                Dąb
+                                              {% elif coffin.wood == "B" %}
+                                                Buk
+                                              {% elif coffin.wood == "P" %}
+                                                Sosna
+                                              {% else %}
+                                              Brak danych
+                                              {% endif %}
+                                          </li>
                                           <li>Opis: {{ coffin.description }}</li>
                                       </span>
                                     </div>
@@ -54,8 +89,30 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="flowers">
-                                          <li>Wielkość wiązanki: {{ flowers.size }}</li>
-                                          <li>Kolor: {{ flowers.color }}</li>
+                                          <li>Wielkość wiązanki: {{ flowers.size }}
+                                              {% if flowers.size == "S" %}
+                                                Mała
+                                              {% elif flowers.color == "M" %}
+                                                Średnia
+                                              {% elif flowers.color == "B" %}
+                                                Duża
+                                              {% else %}
+                                              Brak danych
+                                              {% endif %}
+                                          </li>
+                                          <li>Kolor:
+                                              {% if flowers.color == "Wh" %}
+                                                Biała
+                                              {% elif flowers.color == "Bl" %}
+                                                Niebieska
+                                              {% elif flowers.color == "Pi" %}
+                                                Różowa
+                                              {% elif flowers.color == "Mi" %}
+                                                Wymieszane wszystkie powyższe kolory
+                                              {% else %}
+                                              Brak danych
+                                              {% endif %}
+                                          </li>
                                           <li>Ilość wiązanek: {{ flowers.count }}</li>
                                           <li>Opis: {{ flowers.description }}</li>
                                           <li>Cena: {{ flowers.price }}</li>
@@ -68,7 +125,15 @@
                                     </div>
                                     <div class="col-8">
                                       <span class="music">
-                                          <li>Typ instrumentu: {{ music.msc_type }}</li>
+                                          <li>Typ instrumentu: {{ music.msc_type }}
+                                              {% if music.msc_type == "T" %}
+                                                Trąbka
+                                              {% elif music.msc_type == "M" %}
+                                                Organista
+                                              {% else %}
+                                              Brak danych
+                                              {% endif %}
+                                          </li>
                                           <li>Utwory: {{ music.songs }}</li>
                                           <!--<li>Numer: {{ music.telephone_num }}</li>-->
                                           <!--<li>Cena: {{ music.price }}</li>-->

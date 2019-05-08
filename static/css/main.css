@@ -89,58 +89,28 @@ opacity:0.9;
 
 
 
+.starrating > input {display: none;}  /* Remove radio buttons */
 
-.rating {
-      float:left;
-    }
+.fa-star:before {
+    content: "";
+}
 
-    /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
-      follow these rules. Every browser that supports :checked also supports :not(), so
-      it doesn’t make the test unnecessarily selective */
-    .rating:not(:checked) > input {
-        position:absolute;
-        top:-9999px;
-        clip:rect(0,0,0,0);
-    }
+.starrating > label:before {
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-size: 1.8em;
+  display: inline-block;
+}
 
-    .rating:not(:checked) > label {
-        float:right;
-        width:1em;
-        /* padding:0 .1em; */
-        overflow:hidden;
-        white-space:nowrap;
-        cursor:pointer;
-        font-size:300%;
-        /* line-height:1.2; */
-        color:#ddd;
-    }
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
+}
 
-    .rating:not(:checked) > label:before {
-        content: '★ ';
-    }
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
 
-    .rating > input:checked ~ label {
-        color: dodgerblue;
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
 
-    }
 
-    .rating:not(:checked) > label:hover,
-    .rating:not(:checked) > label:hover ~ label {
-        color: dodgerblue;
-
-    }
-
-    .rating > input:checked + label:hover,
-    .rating > input:checked + label:hover ~ label,
-    .rating > input:checked ~ label:hover,
-    .rating > input:checked ~ label:hover ~ label,
-    .rating > label:hover ~ input:checked ~ label {
-        color: dodgerblue;
-
-    }
-
-    .rating > label:active {
-        position:relative;
-        top:2px;
-        left:2px;
-    }

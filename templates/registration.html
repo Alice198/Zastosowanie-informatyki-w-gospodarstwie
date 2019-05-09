@@ -4,74 +4,77 @@
 
 {% block content %}
 
-
-<div class="jumbotron d-flex align-items-center justify-content-center">
+<div class="jumbotron d-flex align-items-center">
     <div class="container">
         <div class="row">
-            <div class="offset-4 col-4">
+             <div class="offset-4 col-md-4">
                 <div class="card">
                     <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-12">
-                                <h3>Rejestracja</h3>
-
+                        <div class="row">
+                            <div class="offset-3 col-md-8">
+                                <h4>Rejestracja</h4>
                             </div>
-                    <form method="post">
+                        </div>
+                        <div class="row-md-6">
+                            <div class="col-md-12">
+                                <form method="post">
+                                {% csrf_token %}
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label for="id_username"></label>
+                                            <input type="text" name="username" placeholder="Nazwa użytkownika" class="user form-control here" required="" id="id_username" autofocus="" maxlength="150">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="email"></label>
+                                            <input type="email" name="email" placeholder="E-mail" class="user form-control here" id="email" maxlength="254">
+                                            <small class="form-text text-muted">
+                                                <strong>Powinien mieć format: xxx@domena.pl</strong>
+                                            </small>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="id_password1"></label>
+                                            <input type="password" name="password1" minlength="8" placeholder="Hasło" class="user form-control here" id="id_password1" required="">
+                                            <small class="form-text text-muted">
+                                                <strong>Musi zawierać min. 8 znaków, nie może być podobne do nazwy użytkownika </strong>
+                                            </small>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="id_password2"></label>
+                                            <input type="password" name="password2" minlength="8" placeholder="Powtórz hasło" class="user form-control here" class="form-control" id="id_password2" required="">
+                                        </div>
+                                        <div class="col-12">
+                                             <label for="first_name"></label>
+                                            <input type="text" name="first_name" placeholder="Imię" class="user form-control here" required="" id="first_name" autofocus="" maxlength="150">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="last_name"></label>
+                                            <input type="text" name="last_name" placeholder="Nazwisko" class="user form-control here" required="" id="last_name" autofocus="" maxlength="150">
+                                        </div>
 
-                        {% csrf_token %}
-                <div class="row">
-                    <div class="offset-3 col-md-8">
-                        <div class="form-group row col-md-6">
-                            <label for="id_username"></label>
-                            <input type="text" name="username" placeholder="Nazwa użytkownika" class="user" required="" id="id_username" autofocus="" maxlength="150">
-                        </div>
-                        <div class="form-group row col-md-6">
-                            <label for="email"></label>
-                            <input type="email" name="email" placeholder="E-mail" class="user" id="email" maxlength="254">
-                            <small class="form-text text-muted">
-                                <strong>Powinien mieć format: xxx@domena.pl</strong>
-                            </small>
-                        </div>
-                        <div class="form-group row col-md-6">
-                            <label for="id_password1"></label>
-                            <input type="password" name="password1" minlength="8" placeholder="Hasło" class="user" id="id_password1" required="">
-                            <small class="form-text text-muted">
-                                <strong>Musi zawierać min. 8 znaków, nie może być podobne do nazwy użytkownika </strong>
-                            </small>
-                        </div>
-                        <div class="form-group row col-md-6">
-                            <label for="id_password2"></label>
-                            <input type="password" name="password2" minlength="8" placeholder="Powtórz hasło" class="user" class="form-control" id="id_password2" required="">
-                        </div>
-                        <div class="form-group row col-md-6">
-                            <label for="first_name"></label>
-                            <input type="text" name="first_name" placeholder="Imię" class="user" required="" id="first_name" autofocus="" maxlength="150">
-                        </div>
-                        <div class="form-group row col-md-6">
-                            <label for="last_name"></label>
-                            <input type="text" name="last_name" placeholder="Nazwisko" class="user" required="" id="last_name" autofocus="" maxlength="150">
-                        </div>
-                    </div>
-                </div>
+                                  </div>
 
-                         <!--<label for="tel_num"></label>-->
+                                     <!--<label for="tel_num"></label>-->
                             <!--<input type="tel" name="tel_num" placeholder="Numer telefonu" class="user" id="tel_num" pattern="[0-9]{3}[0-9]{3}[0-9]{3}">-->
                         <!--<small class="form-text text-muted">-->
                             <!--<strong>Powinien mieć format xxx-xxx-xxx</strong>-->
                         <!--</small>-->
 
-                    </br>
+                        </br>
 
-                    <div class="offset-4 col-8">
-                        <button class="btn btn-outline-dark" type="submit">Zarejestruj się</button>
-                        <input type="hidden" name="next" value="{% url 'Home' %}" >
+                        <div class="offset-3 col-6">
+                            <button class="btn btn-outline-dark" type="submit">Zarejestruj się</button>
+                            <input type="hidden" name="next" value="{% url 'Home' %}" >
+                        </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-            </form>
-            </div>
-                    </div></div></div>
+                </div>
+        </div>
     </div>
-   </div>
 </div>
+
+
 
 
 

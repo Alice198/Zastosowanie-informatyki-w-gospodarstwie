@@ -10,13 +10,15 @@
              <div class="offset-4 col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="offset-3 col-md-8">
-                                <h4>Rejestracja</h4>
-                            </div>
-                        </div>
+
                         <div class="row-md-6">
                             <div class="col-md-12">
+                                <div class="row">
+                                    <div class="offset-3 col-md-8">
+                                        <h4>Rejestracja</h4>
+                                    </div>
+                                </div>
+
                                 <form method="post">
                                 {% csrf_token %}
                                     <div class="form-group row">
@@ -51,6 +53,15 @@
                                             <input type="text" name="last_name" placeholder="Nazwisko" class="user form-control here" required="" id="last_name" autofocus="" maxlength="150">
                                         </div>
 
+
+                                        <div class="offset-3 col-6">
+                                        </br>
+                                        </div>
+
+                                        <div class="offset-3 col-6">
+                                            <button class="btn btn-outline-dark" type="submit">Zarejestruj się</button>
+                                            <input type="hidden" name="next" value="{% url 'Home' %}" >
+                                        </div>
                                   </div>
 
                                      <!--<label for="tel_num"></label>-->
@@ -58,13 +69,6 @@
                         <!--<small class="form-text text-muted">-->
                             <!--<strong>Powinien mieć format xxx-xxx-xxx</strong>-->
                         <!--</small>-->
-
-                        </br>
-
-                        <div class="offset-3 col-6">
-                            <button class="btn btn-outline-dark" type="submit">Zarejestruj się</button>
-                            <input type="hidden" name="next" value="{% url 'Home' %}" >
-                        </div>
                                 </form>
                             </div>
                         </div>

@@ -89,6 +89,10 @@ opacity:0.9;
  padding: 2rem;
 }
 
+.carousel-inner{
+    height:100%
+}
+
 
 
 

@@ -117,7 +117,7 @@
                                                       {% elif died.makeup == "L" %}
                                                         Lekki
                                                       {% elif died.makeup == "N" %}
-                                                        Nie
+                                                        Brak
                                                       {% else %}
                                                       Brak danych
                                                       {% endif %}
@@ -191,16 +191,16 @@
                                   <div class="tab-pane fade" id="flower" role="tabpanel" aria-labelledby="contact-tab">
                                       <div class="form-group row">
                                           <div class="col-4">
-                                              <label for="flower">Kwiaty</label>
+                                              <label for="flower">Wielkość wiązanek</label>
                                           </div>
                                           <div class="col-8">
                                               <span class="flowers" for="flower">
-                                                  <p>{{ flowers.size }}
+                                                  <p>
                                                       {% if flowers.size == "S" %}
                                                         Mała
-                                                      {% elif flowers.color == "M" %}
+                                                      {% elif flowers.size == "M" %}
                                                         Średnia
-                                                      {% elif flowers.color == "B" %}
+                                                      {% elif flowers.size == "B" %}
                                                         Duża
                                                       {% else %}
                                                       Brak danych
@@ -223,7 +223,7 @@
                                                       {% elif flowers.color == "Pi" %}
                                                         Różowa
                                                       {% elif flowers.color == "Mi" %}
-                                                        Wymieszane wszystkie powyższe kolory
+                                                        Wymieszane dostępne kolory
                                                       {% else %}
                                                       Brak danych
                                                       {% endif %}

@@ -58,17 +58,6 @@ def submit_order(request):
 
 @login_required
 def submit_order_appearance(request):
-    # """Add information about died appearance"""
-    # if request.method != 'POST':
-    #     form = DiedLookForm()
-    # else:
-    #     form = DiedLookForm(request.POST)
-    #     if form.is_valid():
-    #         new_form = form.save(commit=False)
-    #         new_form.owner = request.user
-    #         new_form.save()
-    #         return render(request, 'home.html')
-    # context = {'form': form}
     return render(request, 'submit_order_appearance.html',)
 
 
@@ -107,17 +96,28 @@ def submit_order_flower(request):
 @login_required
 def submit_order_music(request):
     """Add information about music"""
-    if request.method != 'POST':
-        form = MusicForm()
+    try:
+        music_query = Music.objects.get(user=request.user)
+    except:
+        music_query = None
+    if music_query:
+        if request.method != 'POST':
+            print("elo mam ten szajs w bazie", music_query)
+        else:
+            pass
     else:
-        form = MusicForm(request.POST)
-        if form.is_valid():
-            new_form = form.save(commit=False)
-            new_form.user = User.objects.get(id=request.user.id)
-            new_form.save()
-            return render(request, 'submit_order_summary.html')
-    context = {'formErrors': form.errors}
-    return render(request, 'submit_order_music.html', context)
+        if request.method != 'POST':
+            form = MusicForm()
+        else:
+            form = MusicForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                return render(request, 'submit_order_music.html')
+        context = {'formErrors': form.errors}
+        return render(request, 'submit_order_music.html', context)
+    return render(request, 'submit_order_music.html')
 
 
 @login_required
@@ -134,14 +134,15 @@ def submit_order_summary(request):
         flowers_query = Flowers.objects.get(user=request.user)
     except:
         flowers_query = None
-    try:
-        music_query = Music.objects.get(user=request.user)
-    except:
-        music_query = None
+    # try:
+    music_query = Music.objects.filter(user=request.user).order_by('-id')[0]
+    print(music_query)
+    # except:
+    #     music_query = None
+    # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
+    total_price = 20    # coffin_query.price + music_query.price
 
     if request.method == 'POST':
-        # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
-        # total_price = coffin_query.price + music_query.price
         pass
         # TODO: tworzenie obiektu order, to jest akcja klikniecia przycusku Potwierdź w podsumowaniu zamówienia
         # Obiekt order ma zawierać wszystkie wyżej pola
@@ -150,14 +151,15 @@ def submit_order_summary(request):
             coffin=coffin_query,
             music=music_query,
             flowers=flowers_query,
-            user=User.objects.get(id=request.user.id),)
-        #     # costs=total_price
-        # )
+            user=User.objects.get(id=request.user.id),
+            costs=total_price
+        )
     context = {
         'died': died_query,
         'coffin': coffin_query,
         'flowers': flowers_query,
         'music': music_query,
+        'costs': total_price
     }
     return render(request, 'submit_order_summary.html', context)
 

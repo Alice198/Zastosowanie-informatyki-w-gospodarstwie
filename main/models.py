@@ -94,6 +94,6 @@ class Order(models.Model):
     music = models.ForeignKey(Music, on_delete=models.CASCADE, null=True, blank=True)
     flowers = models.ForeignKey(Flowers, on_delete=models.CASCADE, null=True, blank=True)
 
-    def __str__(self):
-        """Returns model as string"""
-        return self.order_date
+    # def __str__(self):
+    #     """Returns model as string"""
+    #     return self.user

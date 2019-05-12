@@ -1,16 +1,22 @@
-# Create your views here.
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.models import User
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from .models import Order, Died, Coffin, Flowers, Music
 from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, MusicForm
+
+
+def check_and_save_form(request, form, template):
+    if form.is_valid():
+        new_form = form.save(commit=False)
+        new_form.user = User.objects.get(id=request.user.id)
+        new_form.save()
+        return render(request, template)
 
 
 def home(request):
@@ -48,28 +54,25 @@ def submit_order(request):
         died_query = None
     if died_query:
         if request.method != 'POST':
-            context = {'died': died_query}
+            date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+            date_d = died_query.date_died.strftime("%Y-%m-%d")
+            context = {'died': died_query, 'birthday': date_b, 'death': date_d}
             return render(request, 'submit_order.html', context)
         else:
             died_query.delete()
             form = DiedForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                return render(request, 'submit_order_coffin.html')
-        context = {'formErrors': form.errors}
+            check_and_save_form(request, form, 'submit_order_coffin.html')
+        new_query = Died.objects.get(user=request.user)
+        date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+        date_d = died_query.date_died.strftime("%Y-%m-%d")
+        context = {'formErrors': form.errors, 'died': new_query, 'birthday': date_b, 'death': date_d}
         return render(request, 'submit_order.html', context)
     else:
         if request.method != 'POST':
             form = DiedForm()
         else:
             form = DiedForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                return render(request, 'submit_order_coffin.html')
+            check_and_save_form(request, form, 'submit_order_coffin.html')
         context = {'formErrors': form.errors}
         return render(request, 'submit_order.html', context)
 
@@ -93,12 +96,9 @@ def submit_order_coffin(request):
         else:
             coffin_query.delete()
             form = CoffinForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                return render(request, 'submit_order_flower.html')
-        context = {'formErrors': form.errors}
+            check_and_save_form(request, form, 'submit_order_flower.html')
+        new_query = Coffin.objects.get(user=request.user)
+        context = {'formErrors': form.errors, 'coffin': new_query}
         return render(request, 'submit_order_coffin.html', context)
 
     else:
@@ -106,11 +106,7 @@ def submit_order_coffin(request):
             form = CoffinForm()
         else:
             form = CoffinForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                return render(request, 'submit_order_flower.html')
+            return check_and_save_form(request, form, 'submit_order_flower.html')
         context = {'formErrors': form.errors}
         return render(request, 'submit_order_coffin.html', context)
 
@@ -129,23 +125,16 @@ def submit_order_flower(request):
         else:
             flowers_query.delete()
             form = FlowerForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                return render(request, 'submit_order_music.html')
-        context = {'formErrors': form.errors}
+            check_and_save_form(request, form, 'submit_order_music.html')
+        new_query = Flowers.objects.get(user=request.user)
+        context = {'formErrors': form.errors, 'flower': new_query}
         return render(request, 'submit_order_flower.html', context)
     else:
         if request.method != 'POST':
             form = FlowerForm()
         else:
             form = FlowerForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                return render(request, 'submit_order_music.html')
+            check_and_save_form(request, form, 'submit_order_music.html')
         context = {'formErrors': form.errors}
         return render(request, 'submit_order_flower.html', context)
 
@@ -159,32 +148,21 @@ def submit_order_music(request):
         music_query = None
     if music_query:
         if request.method != 'POST':
-            print("elo mam ten szajs w bazie:", music_query, '\n')
             context = {'music': music_query}
             return render(request, 'submit_order_music.html', context)
         else:
-            print('usuwam z bazy: ', music_query)
             music_query.delete()
-            print('wyjebane')
             form = MusicForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                print('nowy obj: ', new_form)
-                return render(request, 'submit_order_music.html')
-            context = {'formErrors': form.errors}
-            return render(request, 'submit_order_music.html', context)
+            check_and_save_form(request, form, 'submit_order_summary.html')
+        new_query = Music.objects.get(user=request.user)
+        context = {'formErrors': form.errors, 'music': new_query}
+        return render(request, 'submit_order_music.html', context)
     else:
         if request.method != 'POST':
             form = MusicForm()
         else:
             form = MusicForm(request.POST)
-            if form.is_valid():
-                new_form = form.save(commit=False)
-                new_form.user = User.objects.get(id=request.user.id)
-                new_form.save()
-                return render(request, 'submit_order_music.html')
+            check_and_save_form(request, form, 'submit_order_summary.html')
         context = {'formErrors': form.errors}
         return render(request, 'submit_order_music.html', context)
 
@@ -203,19 +181,15 @@ def submit_order_summary(request):
         flowers_query = Flowers.objects.get(user=request.user)
     except:
         flowers_query = None
-    # try:
-    music_query = Music.objects.filter(user=request.user).order_by('-id')[0]
-    print(music_query)
-    # except:
-    #     music_query = None
+    try:
+        music_query = Music.objects.get(user=request.user)
+    except:
+        music_query = None
     # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
-    total_price = 20    # coffin_query.price + music_query.price
+    total_price = 20.05    # coffin_query.price + music_query.price
 
     if request.method == 'POST':
-        pass
-        # TODO: tworzenie obiektu order, to jest akcja klikniecia przycusku Potwierdź w podsumowaniu zamówienia
-        # Obiekt order ma zawierać wszystkie wyżej pola
-        Order.objects.create(
+        Order.objects.get_or_create(
             died=died_query,
             coffin=coffin_query,
             music=music_query,
@@ -223,6 +197,15 @@ def submit_order_summary(request):
             user=User.objects.get(id=request.user.id),
             costs=total_price
         )
+
+        context = {
+            'died': died_query,
+            'coffin': coffin_query,
+            'flowers': flowers_query,
+            'music': music_query,
+            'costs': total_price
+        }
+        return render(request, 'your_order.html', context)
     context = {
         'died': died_query,
         'coffin': coffin_query,
@@ -235,9 +218,35 @@ def submit_order_summary(request):
 
 @login_required
 def your_order(request):
-#     order = Order.objects.filter(owner=request.user).order_by('order_date')
-#     context = {'order': order}
-    return render(request, 'your_order.html', )
+    order_query = Order.objects.filter(user=request.user).order_by('order_date')
+    print(order_query)
+
+    try:
+        died_query = Died.objects.get(user=request.user)
+    except:
+        died_query = None
+    try:
+        coffin_query = Coffin.objects.get(user=request.user)
+    except:
+        coffin_query = None
+    try:
+        flowers_query = Flowers.objects.get(user=request.user)
+    except:
+        flowers_query = None
+    try:
+        music_query = Music.objects.get(user=request.user)
+    except:
+        music_query = None
+
+    context = {
+        'died': died_query,
+        'coffin': coffin_query,
+        'flowers': flowers_query,
+        'music': music_query,
+        'costs': 20.05,
+        'order': order_query,
+    }
+    return render(request, 'your_order.html', context)
 
 
 def user_account(request):

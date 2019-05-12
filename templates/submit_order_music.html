@@ -33,24 +33,13 @@
                                     <div class="col-4">
                                         <label for="id_msc_type">Wybór instrumentu</label>
                                     </div>
-                                    {% if music.msc_type != None %}
-                                         <div class="col-8" id="id_msc_type">Trzeba to wyswietlac co jest w bazie moze jakis atrubut z inputa to okresla cos typu domyslne wyswietlenie, albozrobic kolejne ify: jezeli music.msc_type == 'T' to zaznacz tylo trabke elif zazancz organy i brak zmiany - disabled jak w textarea
-                                                <!--<div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="{{ music.msc_type }}">
-                                                    <label class="form-check-label" for="inlineRadio1">organy</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="{{ music.msc_type }}">
-                                                    <label class="form-check-label" for="inlineRadio2">trąbka</label>
-                                                </div>-->
-                                         </div>
-                                    {% else %}
                                         <div class="col-8" id="id_msc_type">
                                             <!--<form action="" autocomplete="off">-->
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
                                                     <label class="form-check-label" for="inlineRadio1">organy</label>
                                                 </div>
+
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
                                                     <label class="form-check-label" for="inlineRadio2">trąbka</label>
@@ -61,38 +50,22 @@
                                                     To pole jest wymagane
                                                 </p>
                                             {% endif %}
-                                    {% endif %}
                                     </div>
                                 </div>
-
-                                    {% if music.songs != None %}
-                                    <div class="form-group row">
-                                        <div class="col-4">
-                                            <label for="id_song">Lista utworów</label>
-                                        </div>
-                                        <div class="col-8">
-                                          <span class="music" id="id_song">
-                                              <textarea type="text" name="songs" placeholder="{{.music.songs}}"
-                                                        class="music form-control"  id="id_music" autofocus="" >{{ music.songs }}
-                                              </textarea>
-                                          </span>
-                                        </div>
-                                    </div>
-                                    {% else %}
                                      <div class="form-group row">
                                         <div class="col-4">
                                             <label for="id_songs">Lista utworów</label>
                                         </div>
                                         <div class="col-8">
                                             <textarea type="text" name="songs" placeholder="Proszę podać parę tytułów wybranych utworów" class="form-control"
-                                                      id="id_songs" autofocus=""></textarea>
+                                                      id="id_songs" autofocus="">{{music.songs}}</textarea>
                                             {% if formErrors.songs %}
                                                 <p style="color: red;">
                                                     To pole jest wymagane
                                                 </p>
                                             {% endif %}
                                         </div>
-                                    {% endif %}
+
                                 </div>
                                 <!--<div class="form-group row">-->
                                     <!--<div class="col-4">-->

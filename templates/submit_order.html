@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="date" name="date_birthday" placeholder="Data urodzenia"
-                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150" value="{{ died.date_birthday }}">
+                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150" value="{{ birthday }}">
                                         {% if formErrors.date_birthday  %}
                                             <p style="color: red;">
                                                   To pole jest wymagane
@@ -104,7 +104,7 @@
                                         <label for="id_date_birth">Data śmierci</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="date" name="date_died" placeholder="Data śmierci" value="{{ died.date_died }}"
+                                        <input type="date" name="date_died" placeholder="Data śmierci" value="{{ death }}"
                                                class="form-control" id="id_date_death" autofocus="" maxlength="150">
                                         {% if formErrors.date_died %}
                                             <p style="color: red;">

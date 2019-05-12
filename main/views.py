@@ -42,18 +42,36 @@ def logout_view(request):
 @login_required
 def submit_order(request):
     """Add information about died"""
-    if request.method != 'POST':
-        form = DiedForm()
+    try:
+        died_query = Died.objects.get(user=request.user)
+    except:
+        died_query = None
+    if died_query:
+        if request.method != 'POST':
+            context = {'died': died_query}
+            return render(request, 'submit_order.html', context)
+        else:
+            died_query.delete()
+            form = DiedForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                return render(request, 'submit_order_coffin.html')
+        context = {'formErrors': form.errors}
+        return render(request, 'submit_order.html', context)
     else:
-        form = DiedForm(request.POST)
-        if form.is_valid():
-            new_form = form.save(commit=False)
-            new_form.user = User.objects.get(id=request.user.id)
-            new_form.save()
-            return render(request, 'submit_order_coffin.html')
-
-    context = {'formErrors': form.errors}
-    return render(request, 'submit_order.html', context)
+        if request.method != 'POST':
+            form = DiedForm()
+        else:
+            form = DiedForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                return render(request, 'submit_order_coffin.html')
+        context = {'formErrors': form.errors}
+        return render(request, 'submit_order.html', context)
 
 
 @login_required
@@ -64,33 +82,72 @@ def submit_order_appearance(request):
 @login_required
 def submit_order_coffin(request):
     """Add information about coffin"""
-    if request.method != 'POST':
-        form = CoffinForm()
+    try:
+        coffin_query = Coffin.objects.get(user=request.user)
+    except:
+        coffin_query = None
+    if coffin_query:
+        if request.method != 'POST':
+            context = {'coffin': coffin_query}
+            return render(request, 'submit_order_flowers.html', context)
+        else:
+            coffin_query.delete()
+            form = CoffinForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                return render(request, 'submit_order_flower.html')
+        context = {'formErrors': form.errors}
+        return render(request, 'submit_order_coffin.html', context)
+
     else:
-        form = CoffinForm(request.POST)
-        if form.is_valid():
-            new_form = form.save(commit=False)
-            new_form.user = User.objects.get(id=request.user.id)
-            new_form.save()
-            return render(request, 'submit_order_flower.html')
-    context = {'formErrors': form.errors}
-    return render(request, 'submit_order_coffin.html', context)
+        if request.method != 'POST':
+            form = CoffinForm()
+        else:
+            form = CoffinForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                return render(request, 'submit_order_flower.html')
+        context = {'formErrors': form.errors}
+        return render(request, 'submit_order_coffin.html', context)
 
 
 @login_required
 def submit_order_flower(request):
     """Add information about flowers"""
-    if request.method != 'POST':
-        form = FlowerForm()
+    try:
+        flowers_query = Flowers.objects.get(user=request.user)
+    except:
+        flowers_query = None
+    if flowers_query:
+        if request.method != 'POST':
+            context = {'flower': flowers_query}
+            return render(request, 'submit_order_flower.html', context)
+        else:
+            flowers_query.delete()
+            form = FlowerForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                return render(request, 'submit_order_music.html')
+        context = {'formErrors': form.errors}
+        return render(request, 'submit_order_flower.html', context)
     else:
-        form = FlowerForm(request.POST)
-        if form.is_valid():
-            new_form = form.save(commit=False)
-            new_form.user = User.objects.get(id=request.user.id)
-            new_form.save()
-            return render(request, 'submit_order_music.html')
-    context = {'formErrors': form.errors}
-    return render(request, 'submit_order_flower.html', context)
+        if request.method != 'POST':
+            form = FlowerForm()
+        else:
+            form = FlowerForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                return render(request, 'submit_order_music.html')
+        context = {'formErrors': form.errors}
+        return render(request, 'submit_order_flower.html', context)
 
 
 @login_required
@@ -102,9 +159,22 @@ def submit_order_music(request):
         music_query = None
     if music_query:
         if request.method != 'POST':
-            print("elo mam ten szajs w bazie", music_query)
+            print("elo mam ten szajs w bazie:", music_query, '\n')
+            context = {'music': music_query}
+            return render(request, 'submit_order_music.html', context)
         else:
-            pass
+            print('usuwam z bazy: ', music_query)
+            music_query.delete()
+            print('wyjebane')
+            form = MusicForm(request.POST)
+            if form.is_valid():
+                new_form = form.save(commit=False)
+                new_form.user = User.objects.get(id=request.user.id)
+                new_form.save()
+                print('nowy obj: ', new_form)
+                return render(request, 'submit_order_music.html')
+            context = {'formErrors': form.errors}
+            return render(request, 'submit_order_music.html', context)
     else:
         if request.method != 'POST':
             form = MusicForm()
@@ -117,7 +187,6 @@ def submit_order_music(request):
                 return render(request, 'submit_order_music.html')
         context = {'formErrors': form.errors}
         return render(request, 'submit_order_music.html', context)
-    return render(request, 'submit_order_music.html')
 
 
 @login_required

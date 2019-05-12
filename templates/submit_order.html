@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="date" name="date_birthday" placeholder="Data urodzenia"
-                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150">
+                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150" value="{{ died.date_birthday }}">
                                         {% if formErrors.date_birthday  %}
                                             <p style="color: red;">
                                                   To pole jest wymagane
@@ -104,7 +104,7 @@
                                         <label for="id_date_birth">Data śmierci</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="date" name="date_died" placeholder="Data śmierci"
+                                        <input type="date" name="date_died" placeholder="Data śmierci" value="{{ died.date_died }}"
                                                class="form-control" id="id_date_death" autofocus="" maxlength="150">
                                         {% if formErrors.date_died %}
                                             <p style="color: red;">
@@ -119,7 +119,7 @@
                                         <label for="id_transcription">Transkrypcja</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="text" name="transcription" placeholder="Transkrypcja"
+                                        <input type="text" name="transcription" placeholder="Transkrypcja" value="{{ died.transcription }}"
                                                class="form-control" id="id_transcription" autofocus="" maxlength="150">
                                         {% if formErrors.transcription %}
                                             <p style="color: red;">
@@ -161,7 +161,8 @@
                                         <label for="id_outfit">Ubranie</label>
                                     </div>
                                     <div class="col-8" id="id_outfit">
-                                        <textarea type="text" name="outfit" placeholder="Ubiór zmarłego w dniu pogrzebu" class="form-control" required="" id="id_transcription" autofocus=""></textarea>
+                                        <textarea type="text" name="outfit" placeholder="Ubiór zmarłego w dniu pogrzebu"
+                                                  class="form-control" required="" id="id_transcription" autofocus="">{{ died.outfit }}</textarea>
                                     </div>
                                 </div>
                                 <div class="offset-4 col-8">

@@ -131,3 +131,11 @@ opacity:0.9;
 }
 
 
+.tab-content>.active
+{
+    margin:5% 5% 0 20%;
+}
+
+.nav-tabs{
+justify-content: center;
+}

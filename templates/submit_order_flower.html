@@ -90,7 +90,7 @@
                                         <label for="example-number-input">Ilość wiązanek</label>
                                     </div>
                                     <div class="col-8">
-                                        <input class="form-control" type="number" name="count" value="" id="example-number-input">
+                                        <input class="form-control" type="number" name="count" value="{{flower.count}}" id="example-number-input">
 
                                         {% if formErrors.count %}
                                             <p style="color: red;">
@@ -105,7 +105,8 @@
                                         <label for="id_description_flowers">Opis</label>
                                     </div>
                                     <div class="col-8">
-                                        <textarea type="text" name="description" placeholder="Dodatkowy opis kwiatów" class="form-control"  id="id_description_flowers" autofocus=""></textarea>
+                                        <textarea type="text" name="description" placeholder="Dodatkowy opis kwiatów"
+                                                  class="form-control"  id="id_description_flowers" autofocus="">{{flower.description}}</textarea>
                                     </div>
                                 </div>
 

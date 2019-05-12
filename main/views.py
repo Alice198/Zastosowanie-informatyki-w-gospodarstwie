@@ -89,7 +89,7 @@ def submit_order_coffin(request):
     if coffin_query:
         if request.method != 'POST':
             context = {'coffin': coffin_query}
-            return render(request, 'submit_order_flowers.html', context)
+            return render(request, 'submit_order_coffin.html', context)
         else:
             coffin_query.delete()
             form = CoffinForm(request.POST)

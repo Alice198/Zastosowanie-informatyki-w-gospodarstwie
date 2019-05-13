@@ -83,7 +83,7 @@ opacity:0.9;
 
 .carousel-caption {
  top:25%;
- left:40%;
+ left:45%;
  margin: 1rem;
  margin bottom:0;
  padding: 2rem;
@@ -138,4 +138,9 @@ opacity:0.9;
 
 .nav-tabs{
 justify-content: center;
+}
+
+
+.h2 {
+font-size:6vh;
 }

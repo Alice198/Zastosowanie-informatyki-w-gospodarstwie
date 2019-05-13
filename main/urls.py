@@ -20,4 +20,5 @@ urlpatterns = [
     path('twoje_zamowienia/', views.your_order, name='Your order'),
     path('usun_konto/', views.delete_user, name='User delete'),
     path('opinie/', views.opinion, name='Opinion'),
+    path('edycja_zamowienia/', views.edit_your_order, name='Edit your order'),
 ]

@@ -279,3 +279,7 @@ def delete_user(request):
 
 def opinion(request):
     return render(request, 'opinion.html')
+
+
+def edit_your_order(request):
+    return render(request, 'edit_your_order.html')

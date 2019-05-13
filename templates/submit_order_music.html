@@ -34,16 +34,40 @@
                                         <label for="id_msc_type">Wybór instrumentu</label>
                                     </div>
                                         <div class="col-8" id="id_msc_type">
+                                            {% if music.msc_type != None %}
+                                                {% if music.msc_type == "O" %}
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
+                                                    <label class="form-check-label" for="inlineRadio2">trąbka</label>
+
                                             <!--<form action="" autocomplete="off">-->
-                                                <div class="form-check form-check-inline">
+                                                {% elif music.msc_type == "T" %}
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
+                                                    <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">trąbka</label>
+                                                    </div>
+                                                {% endif %}
+                                            {% else %}
+
+                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
                                                     <label class="form-check-label" for="inlineRadio1">organy</label>
                                                 </div>
-
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
                                                     <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                                 </div>
+                                            {% endif %}
                                             <!--</form>-->
                                             {% if formErrors.msc_type %}
                                                 <p style="color: red;">

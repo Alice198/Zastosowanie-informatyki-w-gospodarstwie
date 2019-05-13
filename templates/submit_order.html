@@ -65,16 +65,42 @@
                                     </div>
                                     <div id="gender" class="col-8">
                                         <!--<form action="" autocomplete="off">-->
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender"
-                                                   id="inlineRadio1" value="F">
-                                            <label class="form-check-label" for="inlineRadio1">Kobieta</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender"
-                                                   id="inlineRadio2" value="M">
-                                            <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
-                                        </div>
+                                        {% if died.gender != None %}
+                                            {% if died.gender == "F" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio1" value="F" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Kobieta</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio2" value="M">
+                                                    <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
+                                                </div>
+                                            {% elif died.gender == "M" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio1" value="F" >
+                                                    <label class="form-check-label" for="inlineRadio1">Kobieta</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio2" value="M" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
+                                                </div>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                       id="inlineRadio1" value="F" >
+                                                <label class="form-check-label" for="inlineRadio1">Kobieta</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                       id="inlineRadio2" value="M">
+                                                <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
+                                            </div>
+                                        {% endif %}
                                         {% if formErrors.gender  %}
                                             <p style="color: red;">
                                                  To pole jest wymagane
@@ -135,7 +161,49 @@
                                         <label for="makeup">Makijaż</label>
                                     </div>
                                     <div class="col-8" id="makeup">
-                                          <div class="form-check form-check-inline">
+                                        {% if died.makeup != None %}
+                                            {% if died.makeup == "Y" %}
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L">
+                                                    <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
+                                                    <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                                  </div>
+                                            {% elif died.makeup == "L" %}
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y" >
+                                                    <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
+                                                    <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                          </div>
+                                            {% elif died.makeup == "N" %}
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y">
+                                                    <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L">
+                                                    <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N" checked>
+                                                    <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                                  </div>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y">
                                             <label class="form-check-label" for="inlineRadio1">Tak</label>
                                           </div>
@@ -147,6 +215,7 @@
                                             <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
                                             <label class="form-check-label" for="inlineRadio3">Nie</label>
                                           </div>
+                                        {% endif %}
                                     <!--NIE DZIALA TEN ERROR-->
                                         {% if formErrors.makeup %}
                                             <p style="color: red;">

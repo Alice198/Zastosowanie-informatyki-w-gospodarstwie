@@ -37,6 +37,31 @@
                                     </div>
                                     <div class="col-8" id="size">
                                         <!--<form action="" autocomplete="off">-->
+                                        {% if coffin.size != None %}
+                                            {% if coffin.size == "A" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size"
+                                                           id="size-adult" value="A" checked>
+                                                    <label class="form-check-label" for="size-adult">Dorosły</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size"
+                                                           id="size-child" value="C">
+                                                    <label class="form-check-label" for="size-child">Dziecko</label>
+                                                </div>
+                                            {% elif coffin.size == "C" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size"
+                                                           id="size-adult" value="A">
+                                                    <label class="form-check-label" for="size-adult">Dorosły</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size"
+                                                           id="size-child" value="C" checked>
+                                                    <label class="form-check-label" for="size-child">Dziecko</label>
+                                            </div>
+                                            {% endif %}
+                                        {%else%}
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="size"
                                                        id="size-adult" value="A">
@@ -47,6 +72,7 @@
                                                        id="size-child" value="C">
                                                 <label class="form-check-label" for="size-child">Dziecko</label>
                                             </div>
+                                        {% endif %}
                                             {% if formErrors.size %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -62,6 +88,57 @@
                                     </div>
                                     <div class="col-8" id="wood">
                                         <!--<form action="" autocomplete="off">-->
+                                        {% if coffin.wood != None %}
+                                            {% if coffin.wood == "O" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio1" value="O" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Dąb</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio2" value="B">
+                                                    <label class="form-check-label" for="inlineRadio2">Buk</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio3" value="P">
+                                                    <label class="form-check-label" for="inlineRadio3">Sosna</label>
+                                                </div>
+                                            {% elif coffin.wood == "B" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio1" value="O">
+                                                    <label class="form-check-label" for="inlineRadio1">Dąb</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio2" value="B" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Buk</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio3" value="P">
+                                                    <label class="form-check-label" for="inlineRadio3">Sosna</label>
+                                                </div>
+                                            {% elif coffin.wood == "P" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio1" value="O">
+                                                    <label class="form-check-label" for="inlineRadio1">Dąb</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio2" value="B">
+                                                    <label class="form-check-label" for="inlineRadio2">Buk</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio3" value="P" checked>
+                                                    <label class="form-check-label" for="inlineRadio3">Sosna</label>
+                                                </div>
+                                            {% endif %}
+                                        {%else%}
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="wood"
                                                        id="inlineRadio1" value="O">
@@ -77,6 +154,8 @@
                                                        id="inlineRadio3" value="P">
                                                 <label class="form-check-label" for="inlineRadio3">Sosna</label>
                                             </div>
+                                        {%endif%}
+
                                         <!--</form>-->
                                         {% if formErrors.wood %}
                                             <p style="color: red;">

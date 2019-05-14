@@ -78,7 +78,6 @@ def submit_order(request):
             died = check_and_save_form(request, form, 'submit_order_coffin.html')
             current_order.died = died
             current_order.save()
-            # return render(request, 'submit_order_coffin.html')
         new_query = Died.objects.get(user=request.user, id=current_order.died.id)
         date_b = died_query.date_birthday.strftime("%Y-%m-%d")
         date_d = died_query.date_died.strftime("%Y-%m-%d")
@@ -209,23 +208,6 @@ def submit_order_music(request):
 
 @login_required
 def submit_order_summary(request):
-    # try:
-    #     died_query = Died.objects.get(user=request.user)
-    # except:
-    #     died_query = None
-    # try:
-    #     coffin_query = Coffin.objects.get(user=request.user)
-    # except:
-    #     coffin_query = None
-    # try:
-    #     flowers_query = Flowers.objects.get(user=request.user)
-    # except:
-    #     flowers_query = None
-    # try:
-    #     music_query = Music.objects.get(user=request.user)
-    # except:
-    #     music_query = None
-
     current_order = get_order(request)
 
     try:
@@ -246,28 +228,21 @@ def submit_order_summary(request):
         music_query = None
     # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
     total_price = 2000.05    # coffin_query.price + music_query.price
+    date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+    date_d = died_query.date_died.strftime("%d.%m.%Y")
 
     if request.method == 'POST':
         current_order.is_finished = True
         current_order.costs = total_price
         current_order.save()
-
-        # Order.objects.get_or_create(
-        #     died=died_query,
-        #     coffin=coffin_query,
-        #     music=music_query,
-        #     flowers=flowers_query,
-        #     user=User.objects.get(id=request.user.id),
-        #     costs=total_price,
-        #     is_finished=True
-        # )
-
         context = {
             'died': died_query,
             'coffin': coffin_query,
             'flowers': flowers_query,
             'music': music_query,
-            'costs': total_price
+            'costs': total_price,
+            'birthday': date_b,
+            'death': date_d,
         }
         return render(request, 'your_order.html', context)
     context = {
@@ -275,7 +250,9 @@ def submit_order_summary(request):
         'coffin': coffin_query,
         'flowers': flowers_query,
         'music': music_query,
-        'costs': total_price
+        'costs': total_price,
+        'birthday': date_b,
+        'death': date_d,
     }
     return render(request, 'submit_order_summary.html', context)
 
@@ -283,41 +260,41 @@ def submit_order_summary(request):
 @login_required
 def your_order(request):
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('order_date')
-    print(order_query)
-
-    for order in order_query:
-        print(order.costs)
-
+    order_id = request.GET.get('order_id', order_query[0].id)
+    current_order = Order.objects.get(id=order_id)
     try:
-        died_query = Died.objects.get(user=request.user)
+        died_query = Died.objects.get(id=current_order.died.id)
     except:
         died_query = None
     try:
-        coffin_query = Coffin.objects.get(user=request.user)
+        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
     except:
         coffin_query = None
     try:
-        flowers_query = Flowers.objects.get(user=request.user)
+        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
     except:
         flowers_query = None
     try:
-        music_query = Music.objects.get(user=request.user)
+        music_query = Music.objects.get(id=current_order.music.id)
     except:
         music_query = None
     try:
-        total_costs = order_query.costs
+        total_costs = current_order.costs
     except:
         total_costs = None
-
+    date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+    date_d = died_query.date_died.strftime("%d.%m.%Y")
     context = {
+        'orders': order_query,
         'died': died_query,
         'coffin': coffin_query,
         'flowers': flowers_query,
         'music': music_query,
         'costs': total_costs,
-        'order': order_query,
+        'birthday': date_b,
+        'death': date_d,
     }
-    return render(request, 'your_order.html', context={'orders': order_query})
+    return render(request, 'your_order.html', context)
 
 
 def user_account(request):

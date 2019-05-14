@@ -9,13 +9,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
+                {% for order in orders %}
                  <div class="list-group ">
-                  <a  class="list-group-item list-group-item-action active">
-                          {{died.name}} {{died.surname}}
+                  <a  class="list-group-item list-group-item-action active" href="{% url 'Your order' %}?order_id={{order.id}}">
+                      Zmarły: {{order.died.name}}  {{order.died.surname}}
                           <button type="button" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
                           <a href="{% url 'Edit your order' %}"  class="btn btn-primary" role="button" ><i class="fas fa-edit"></i></a>
                   </a>
                 </div>
+                {% empty %}
+                Utworzenie zamówienia przebiegło pomyślnie
+                {% endfor %}
             </div>
             <div class="offset-1 col-6">
                 <div class="card">
@@ -89,7 +93,7 @@
                                             </div>
                                             <div class="col-8">
                                               <span class="died" id="id_died">
-                                                  <p>{{ died.date_birthday }}</p>
+                                                  <p>{{ birthday }}</p>
                                               </span>
                                             </div>
                                         </div>
@@ -99,7 +103,7 @@
                                             </div>
                                             <div class="col-8">
                                               <span class="died" id="id_died">
-                                                  <p>{{ died.date_died }}</p>
+                                                  <p>{{ death }}</p>
                                               </span>
                                             </div>
                                         </div>

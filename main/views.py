@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from .models import Order, Died, Coffin, Flowers, Music
-from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, MusicForm
+from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, MusicForm, UserUpdateForm
 
 
 def check_and_save_form(request, form, template):
@@ -302,6 +302,25 @@ def user_account(request):
 
 
 def edit_user(request):
+
+    if request.method == 'POST':
+        form = UserUpdateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            print('zapisałem')
+        user = User.objects.get(id=request.user.id)
+        print('obsługa zmiany danych', user)
+
+#     music_query.delete()
+#     form = MusicForm(request.POST)
+#     music = check_and_save_form(request, form, 'submit_order_summary.html')
+#     current_order.music = music
+#     current_order.save()
+#
+#
+# new_query = Music.objects.get(user=request.user, id=current_order.music.id)
+# context = {'formErrors': form.errors, 'music': new_query}
+# return render(request, 'submit_order_music.html', context)
     return render(request, 'edit_user.html')
 
 

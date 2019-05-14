@@ -27,7 +27,8 @@
                         </div>
                         <div class="row-md-6">
                             <div class="col-md-12">
-                                <form>
+                                <form action="{% url 'User edit' %}" method="post">
+                                {% csrf_token %}
                                   <div class="form-group row">
                                     <label for="username" class="col-4 col-form-label">Nazwa użykownika</label>
                                     <div class="col-8">
@@ -43,13 +44,13 @@
                                   <div class="form-group row">
                                     <label for="name" class="col-4 col-form-label">Imię</label>
                                     <div class="col-8">
-                                      <input id="name" name="name" placeholder="Imię" class="form-control here" type="text" value="{{user.first_name}}">
+                                      <input id="name" name="first_name" placeholder="Imię" class="form-control here" type="text" value="{{user.first_name}}">
                                     </div>
                                   </div>
                                   <div class="form-group row">
                                     <label for="lastname" class="col-4 col-form-label">Nazwisko</label>
                                     <div class="col-8">
-                                      <input id="lastname" name="lastname" placeholder="Nazwisko" class="form-control here" type="text" value="{{user.last_name}}">
+                                      <input id="lastname" name="last_name" placeholder="Nazwisko" class="form-control here" type="text" value="{{user.last_name}}">
                                     </div>
                                   </div>
                                   <!--<div class="form-group row phone-number">

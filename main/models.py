@@ -60,7 +60,7 @@ class Flowers(models.Model):
     size = models.CharField(max_length=1, choices=FLOWERS_SIZE)
     color = models.CharField(max_length=2, choices=FLOWERS_COLOR)
     count = models.IntegerField()
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, null=True, blank=True)
     # price = models.DecimalField(decimal_places=2, max_digits=4)
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
 
@@ -86,14 +86,15 @@ class Music(models.Model):
 class Order(models.Model):
     """Full order information"""
 
+    is_finished = models.BooleanField(default=False)
     order_date = models.DateField(auto_now_add=True)
-    costs = models.DecimalField(decimal_places=2, max_digits=6)
+    costs = models.DecimalField(decimal_places=2, max_digits=6, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
-    died = models.OneToOneField(Died, on_delete=models.CASCADE)
-    coffin = models.OneToOneField(Coffin, on_delete=models.CASCADE)
+    died = models.OneToOneField(Died, on_delete=models.CASCADE, null=True, blank=True)
+    coffin = models.OneToOneField(Coffin, on_delete=models.CASCADE, null=True, blank=True)
     music = models.ForeignKey(Music, on_delete=models.CASCADE, null=True, blank=True)
     flowers = models.ForeignKey(Flowers, on_delete=models.CASCADE, null=True, blank=True)
 
     # def __str__(self):
     #     """Returns model as string"""
-    #     return self.user
+    #     return str(self.user.id)

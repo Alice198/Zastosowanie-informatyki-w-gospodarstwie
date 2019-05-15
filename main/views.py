@@ -311,6 +311,9 @@ def edit_user(request):
         form = UserUpdateForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Dane zostały pomyślnie zmienione.')
+        else:
+            messages.error(request, 'Dane nie zostały zmienione, proszę spróbować ponownie.')
     return render(request, 'edit_user.html')
 
 
@@ -323,10 +326,10 @@ def change_password(request):
         if form.is_valid():
             current_user = form.save()
             update_session_auth_hash(request, current_user)
-            messages.success(request, 'Twoje haslo zostalo pomyslnie zmienione')
+            messages.success(request, 'Hasło zostało pomyślnie zmienione')
             return redirect('Change password')
         else:
-            messages.error(request, 'Prosze poprawic dane')
+            messages.error(request, 'Hasło nie zostało zmienione, proszę poprawić dane')
     context = {'form': form}
     print(form.errors)
     return render(request, 'change_password.html', context)

@@ -16,8 +16,17 @@ def check_and_save_form(request, form, template):
         new_form = form.save(commit=False)
         new_form.user = User.objects.get(id=request.user.id)
         new_form.save()
-        # return render(request, template)
         return new_form
+
+
+def get_order(request):
+    try:
+        open_order = Order.objects.filter(user=request.user, is_finished=False)[0]
+    except:
+        open_order = None
+    if not open_order:
+        open_order = Order.objects.create(user=User.objects.get(id=request.user.id))
+    return open_order
 
 
 def home(request):
@@ -40,20 +49,50 @@ def registration(request):
     return render(request, 'registration.html', context)
 
 
+@login_required
+def user_account(request):
+    return render(request, 'user_account.html')
+
+
+@login_required
+def edit_user(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Dane zostały pomyślnie zmienione.')
+        else:
+            messages.error(request, 'Dane nie zostały zmienione, proszę spróbować ponownie.')
+    return render(request, 'edit_user.html')
+
+
+@login_required
+def change_password(request):
+    if request.method != 'POST':
+        form = PasswordChangeForm(request.user)   # Empty form
+    else:
+        form = PasswordChangeForm(request.user, data=request.POST)  # Fill fo
+        if form.is_valid():
+            current_user = form.save()
+            update_session_auth_hash(request, current_user)
+            messages.success(request, 'Hasło zostało pomyślnie zmienione')
+            return redirect('Change password')
+        else:
+            messages.error(request, 'Hasło nie zostało zmienione, proszę poprawić dane')
+    context = {'form': form}
+    print(form.errors)
+    return render(request, 'change_password.html', context)
+
+
+@login_required
+def delete_user(request):
+    return render(request, 'delete_user.html')
+
+
 def logout_view(request):
     """Log out users"""
     logout(request)
     return render(request, 'home.html')
-
-
-def get_order(request):
-    try:
-        open_order = Order.objects.filter(user=request.user, is_finished=False)[0]
-    except:
-        open_order = None
-    if not open_order:
-        open_order = Order.objects.create(user=User.objects.get(id=request.user.id))
-    return open_order
 
 
 @login_required
@@ -298,46 +337,6 @@ def your_order(request):
         }
         return render(request, 'your_order.html', context)
     return render(request, 'your_order.html', context={'orders': None})
-
-
-@login_required
-def user_account(request):
-    return render(request, 'user_account.html')
-
-
-@login_required
-def edit_user(request):
-    if request.method == 'POST':
-        form = UserUpdateForm(data=request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Dane zostały pomyślnie zmienione.')
-        else:
-            messages.error(request, 'Dane nie zostały zmienione, proszę spróbować ponownie.')
-    return render(request, 'edit_user.html')
-
-
-@login_required
-def change_password(request):
-    if request.method != 'POST':
-        form = PasswordChangeForm(request.user)   # Empty form
-    else:
-        form = PasswordChangeForm(request.user, data=request.POST)  # Fill fo
-        if form.is_valid():
-            current_user = form.save()
-            update_session_auth_hash(request, current_user)
-            messages.success(request, 'Hasło zostało pomyślnie zmienione')
-            return redirect('Change password')
-        else:
-            messages.error(request, 'Hasło nie zostało zmienione, proszę poprawić dane')
-    context = {'form': form}
-    print(form.errors)
-    return render(request, 'change_password.html', context)
-
-
-@login_required
-def delete_user(request):
-    return render(request, 'delete_user.html')
 
 
 def opinion(request):

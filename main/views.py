@@ -347,6 +347,14 @@ def your_order(request):
         except:
             died_query = None
         try:
+            date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+        except:
+            date_b = None
+        try:
+            date_d = died_query.date_died.strftime("%d.%m.%Y")
+        except:
+            date_d = None
+        try:
             coffin_query = Coffin.objects.get(id=current_order.coffin.id)
         except:
             coffin_query = None
@@ -362,8 +370,7 @@ def your_order(request):
             total_costs = current_order.costs
         except:
             total_costs = None
-        date_b = died_query.date_birthday.strftime("%d.%m.%Y")
-        date_d = died_query.date_died.strftime("%d.%m.%Y")
+
         context = {
             'orders': order_query,
             'died': died_query,
@@ -406,6 +413,8 @@ def delete_order(request):
         music = None
 
     order.delete()
+    if not order:
+        messages.success(request, 'Usunięto zamówienie')
 
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
     try:

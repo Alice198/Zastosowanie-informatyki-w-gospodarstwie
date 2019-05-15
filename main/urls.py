@@ -21,4 +21,5 @@ urlpatterns = [
     path('usun_konto/', views.delete_user, name='User delete'),
     path('opinie/', views.opinion, name='Opinion'),
     path('edycja_zamowienia/', views.edit_your_order, name='Edit your order'),
+    path('usun_zamowienie/', views.delete_order, name='Delete order'),
 ]

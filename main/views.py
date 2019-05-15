@@ -3,12 +3,15 @@ from django.contrib.auth import logout, login, authenticate, update_session_auth
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Order, Died, Coffin, Flowers, Music
+from main.models.coffin import Coffin
+from main.models.died import Died
+from main.models.flowers import Flowers
+from main.models.music import Music
+from main.models.order import Order
 from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, \
     MusicForm, UserUpdateForm, GetPasswordForm
 
@@ -38,13 +41,13 @@ def home(request):
 def registration(request):
     """Register for new users"""
     if request.method != 'POST':
-        form = UserCreationForm()   # Empty form to register
+        form = UserCreationForm()  # Empty form to register
     else:
         form = UserCreationForm(data=request.POST)  # Fill form to register
         if form.is_valid():
             new_user = form.save()
             auth_user = authenticate(username=new_user.username, password=request.POST['password1'])
-            login(request, auth_user)   # Log in authenticate user
+            login(request, auth_user)  # Log in authenticate user
             return render(request, 'home.html')
         else:
             messages.error(request, 'Nie utworzono konta, proszę poprawić dane.')
@@ -73,7 +76,7 @@ def edit_user(request):
 @login_required
 def change_password(request):
     if request.method != 'POST':
-        form = PasswordChangeForm(request.user)   # Empty form
+        form = PasswordChangeForm(request.user)  # Empty form
     else:
         form = PasswordChangeForm(request.user, data=request.POST)  # Fill fo
         if form.is_valid():
@@ -90,7 +93,6 @@ def change_password(request):
 
 @login_required
 def delete_user(request):
-
     if request.method != 'POST':
         form = GetPasswordForm()
     else:
@@ -302,7 +304,7 @@ def submit_order_summary(request):
     except:
         music_query = None
     # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
-    total_price = 2000.05    # coffin_query.price + music_query.price
+    total_price = 2000.05  # coffin_query.price + music_query.price
 
     if request.method == 'POST':
         current_order.is_finished = True
@@ -335,8 +337,7 @@ def submit_order_summary(request):
 
 @login_required
 def your_order(request):
-
-    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('order_date')
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
     if order_query:
         order_id = request.GET.get('order_id', order_query[0].id)
         current_order = Order.objects.get(id=order_id)
@@ -375,6 +376,75 @@ def your_order(request):
         }
         return render(request, 'your_order.html', context)
     return render(request, 'your_order.html', context={'orders': None})
+
+
+def delete_order(request):
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
+    order_id = request.GET.get('order_id', '')
+    print(order_id)
+    order = Order.objects.get(id=order_id)
+    try:
+        died = Died.objects.get(id=order.died.id)
+        died.delete()
+    except:
+        died = None
+    try:
+        coffin = Coffin.objects.get(id=order.coffin.id)
+        coffin.delete()
+    except:
+        coffin = None
+    try:
+        flowers = Flowers.objects.get(id=order.flowers.id)
+        flowers.delete()
+    except:
+        flowers = None
+    try:
+        music = Music.objects.get(id=order.music.id)
+        music.delete()
+    except:
+        music = None
+
+    order.delete()
+
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
+    try:
+        current_order = order_query[0]
+    except:
+        current_order = None
+        return render(request, 'your_order.html')
+    try:
+        died_query = Died.objects.get(id=current_order.died.id)
+    except:
+        died_query = None
+    try:
+        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+    except:
+        coffin_query = None
+    try:
+        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+    except:
+        flowers_query = None
+    try:
+        music_query = Music.objects.get(id=current_order.music.id)
+    except:
+        music_query = None
+    try:
+        total_costs = current_order.costs
+    except:
+        total_costs = None
+    date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+    date_d = died_query.date_died.strftime("%d.%m.%Y")
+    context = {
+        'orders': order_query,
+        'died': died_query,
+        'coffin': coffin_query,
+        'flowers': flowers_query,
+        'music': music_query,
+        'costs': total_costs,
+        'birthday': date_b,
+        'death': date_d,
+    }
+    return render(request, 'your_order.html', context)
 
 
 # TODO:

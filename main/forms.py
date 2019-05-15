@@ -1,6 +1,12 @@
 from django import forms
 from django.contrib.auth import forms as form
-from .models import Died, Coffin, Flowers, Music, Order, User
+from django.contrib.auth.models import User
+
+from main.models.coffin import Coffin
+from main.models.died import Died
+from main.models.flowers import Flowers
+from main.models.music import Music
+from main.models.order import Order
 
 
 class UserCreationForm(form.UserCreationForm):

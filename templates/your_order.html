@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-{% if orders != None %}
+{% if orders %}
 <div class="jumbotron d-flex align-items-center justify-content-center">
     <div class="container">
         <div class="row">
@@ -15,12 +15,13 @@
                      {% if order_id %}
                       <div  class="list-group-item list-group-item-action active" href="{% url 'Your order' %}">
                           <a href="{% url 'Your order' %}?order_id={{order.id}}" class="btn btn-dark" role="button">{{order.died.name}}  {{order.died.surname}}</a>
-                          <button type="button" class="btn btn-outcolor"><i class="fas fa-trash-alt float-right"></i></button>
-                          <a href="{% url 'Edit your order' %}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>                 </div>
+                          <a href="{% url 'Delete order' %}?order_id={{order.id}}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-trash-alt float-right"></i></a>
+                          <a href="{% url 'Edit your order' %}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>
+                      </div>
                      {%else%}
                      <div  class="list-group-item list-group-item-action"  href="{% url 'Your order' %}">
                          <a href="{% url 'Your order' %}?order_id={{order.id}}" class="btn btn-outcolor" role="button">{{order.died.name}}  {{order.died.surname}}</a>
-                          <button type="button" class="btn btn-outcolor float-right"><i class="fas fa-trash-alt"></i></button>
+                         <a href="{% url 'Delete order' %}?order_id={{order.id}}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-trash-alt float-right"></i></a>
                           <a href="{% url 'Edit your order' %}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>
                     </div>
                      {%endif%}

@@ -16,7 +16,7 @@
                      <a href="{% url 'User delete' %}" class="list-group-item list-group-item-action">Usuń konto</a>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="offset-1 col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -65,18 +65,20 @@
                                           <input type="tel" name="phone" class="form-control" value="" size="3" maxlength="3" required="required" title="">
                                       </div>
                                   </div>-->
+                                    {% if messages %}
+                                    <div class="messages text-center">
+                                        {% for message in messages %}
+                                            {% if message.tags %}
+                                                <h3 style="color:green; font-size:105%;"><b>{{ message }}</b></h3>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
                                     <div class="offset-4 col-8">
                                       <button name="submit" type="submit" class="btn btn-outline-dark">Zapisz</button>
                                     </div>
 
                                 </form>
-                                {% if messages %}
-                                <ul class="messages">
-                                    {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
                             </div>
                         </div>
                     </div>

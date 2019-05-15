@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Strona główna{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+  {% load static %}
+  <link rel="stylesheet"  href="{%static 'css/main.css' %}" type="text/css">
+</head>
+<body>
+
+{% if user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#191919">
+  <a class="navbar-brand">Ostatnie pożegnanie</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="{% url 'Home' %}">Strona główna <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{% url 'User account' %}">Moje konto </a>
+      <a class="nav-item nav-link" href="{% url 'Submit order' %}">Złóż zamówienie</a>
+      <a class="nav-item nav-link" href="{% url 'Your order' %}">Twoje zamówienia</a>
+      <a class="nav-item nav-link" href="{% url 'Opinion' %}">Dodaj opinie</a>
+      <a class="nav-item nav-link" href="{% url 'Logout' %}">Wylogowanie</a>
+
+    </div>
+  </div>
+</nav>
+
+
+{% else %}
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#191919">
+  <a class="navbar-brand">Ostatnie pożegnanie</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="{% url 'Home' %}">Strona główna <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{% url 'Opinion' %}">Opinie</a>
+      <a class="nav-item nav-link" href="{% url 'Login' %}">Logowanie</a>
+      <a class="nav-item nav-link" href="{% url 'Registration' %}">Rejestracja</a>
+
+    </div>
+  </div>
+</nav>
+
+
+{% endif %}
+
+{% block content %}
+{% endblock %}
+
+<!--<div class="footer text-center py-3">
+         © 2019 Copyright: Alicja Tomczak & Sebastian Ryś
+</div>-->
+</body>
+
+</html>

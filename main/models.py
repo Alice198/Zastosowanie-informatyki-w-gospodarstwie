@@ -34,7 +34,7 @@ class Died(models.Model):
     transcription = models.CharField(max_length=50)
     outfit = models.CharField(max_length=200)
     makeup = models.CharField(max_length=1, choices=MAKEUP_CHOICES)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
@@ -47,7 +47,7 @@ class Coffin(models.Model):
     wood = models.CharField(max_length=1, choices=TYPE_WOOD)
     size = models.CharField(max_length=1, choices=COFFIN_SIZE)
     description = models.CharField(max_length=200)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
@@ -62,7 +62,7 @@ class Flowers(models.Model):
     count = models.IntegerField()
     description = models.CharField(max_length=200, null=True, blank=True)
     # price = models.DecimalField(decimal_places=2, max_digits=4)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
@@ -76,7 +76,7 @@ class Music(models.Model):
     songs = models.TextField()
     # telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
     # price = models.DecimalField(decimal_places=2, max_digits=4)
-    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""
@@ -89,7 +89,7 @@ class Order(models.Model):
     is_finished = models.BooleanField(default=False)
     order_date = models.DateField(auto_now_add=True)
     costs = models.DecimalField(decimal_places=2, max_digits=6, null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     died = models.OneToOneField(Died, on_delete=models.CASCADE, null=True, blank=True)
     coffin = models.OneToOneField(Coffin, on_delete=models.CASCADE, null=True, blank=True)
     music = models.ForeignKey(Music, on_delete=models.CASCADE, null=True, blank=True)

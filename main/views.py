@@ -3,12 +3,14 @@ from django.contrib.auth import logout, login, authenticate, update_session_auth
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from .models import Order, Died, Coffin, Flowers, Music
-from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, MusicForm, UserUpdateForm
+from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, \
+    MusicForm, UserUpdateForm, GetPasswordForm
 
 
 def check_and_save_form(request, form, template):
@@ -44,6 +46,8 @@ def registration(request):
             auth_user = authenticate(username=new_user.username, password=request.POST['password1'])
             login(request, auth_user)   # Log in authenticate user
             return render(request, 'home.html')
+        else:
+            messages.error(request, 'Nie utworzono konta, proszę poprawić dane.')
     context = {'form': form}
     print(form.errors)
     return render(request, 'registration.html', context)
@@ -84,9 +88,32 @@ def change_password(request):
     return render(request, 'change_password.html', context)
 
 
+# TODO:
 @login_required
 def delete_user(request):
-    return render(request, 'delete_user.html')
+
+    if request.method != 'POST':
+        form = GetPasswordForm()
+    else:
+        form = GetPasswordForm(request.POST)
+        if form.is_valid():
+            pass_password = form.cleaned_data.get('password', None)
+            current_user = User.objects.get(id=request.user.id)
+            if current_user.check_password(pass_password):
+                try:
+                    current_user.is_active = False
+                    current_user.delete()
+                    logout(request)
+                    # messages.success(request, "Pomyślnie usunięto konto")
+                    return render(request, 'home.html')
+                except User.DoesNotExist:
+                    messages.error(request, "Taki użytkownik nie istnieje")
+                    return render(request, 'delete_user.html')
+            else:
+                print('zle haslo')
+                messages.info(request, 'Podano nieprawidłowe hasło')
+    context = {'password': form}
+    return render(request, 'delete_user.html', context)
 
 
 def logout_view(request):
@@ -339,10 +366,12 @@ def your_order(request):
     return render(request, 'your_order.html', context={'orders': None})
 
 
+# TODO:
 def opinion(request):
     return render(request, 'opinion.html')
 
 
+# TODO:
 @login_required
 def edit_your_order(request):
     return render(request, 'edit_your_order.html')

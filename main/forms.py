@@ -9,6 +9,12 @@ class UserCreationForm(form.UserCreationForm):
         fields = ['username', 'first_name', 'last_name', 'email']
 
 
+class GetPasswordForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['password']
+
+
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -44,7 +50,6 @@ class MusicForm(forms.ModelForm):
         labels = {'msc_type': '', 'songs': ''}
 
 
-# TODO: how to make order form
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order

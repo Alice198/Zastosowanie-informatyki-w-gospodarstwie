@@ -27,11 +27,12 @@
                         </div>
                         <div class="row-md-6">
                             <div class="col-md-12">
-                                <form>
+                                <form action="{% url 'User delete' %}" method="post">
+                                {% csrf_token %}
                                   <div class="form-group row">
                                     <label for="id_password" class="col-4 col-form-label">Hasło</label>
                                     <div class="col-8">
-                                      <input id="id_password" name="id_password" placeholder="Hasło" class="form-control here" required="required" type="password">
+                                      <input id="id_password" name="password" placeholder="Hasło" class="form-control here" required="required" type="password">
                                     </div>
                                   </div>
 
@@ -40,6 +41,13 @@
                                     </div>
 
                                 </form>
+                                {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

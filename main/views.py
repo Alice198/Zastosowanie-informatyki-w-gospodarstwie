@@ -53,7 +53,6 @@ def get_order(request):
         open_order = None
     if not open_order:
         open_order = Order.objects.create(user=User.objects.get(id=request.user.id))
-
     return open_order
 
 
@@ -259,87 +258,81 @@ def submit_order_summary(request):
 
 @login_required
 def your_order(request):
+
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('order_date')
-    order_id = request.GET.get('order_id', order_query[0].id)
-    current_order = Order.objects.get(id=order_id)
-    try:
-        died_query = Died.objects.get(id=current_order.died.id)
-    except:
-        died_query = None
-    try:
-        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-    except:
-        coffin_query = None
-    try:
-        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-    except:
-        flowers_query = None
-    try:
-        music_query = Music.objects.get(id=current_order.music.id)
-    except:
-        music_query = None
-    try:
-        total_costs = current_order.costs
-    except:
-        total_costs = None
-    date_b = died_query.date_birthday.strftime("%d.%m.%Y")
-    date_d = died_query.date_died.strftime("%d.%m.%Y")
-    context = {
-        'orders': order_query,
-        'died': died_query,
-        'coffin': coffin_query,
-        'flowers': flowers_query,
-        'music': music_query,
-        'costs': total_costs,
-        'birthday': date_b,
-        'death': date_d,
-    }
-    return render(request, 'your_order.html', context)
+    if order_query:
+        order_id = request.GET.get('order_id', order_query[0].id)
+        current_order = Order.objects.get(id=order_id)
+
+        try:
+            died_query = Died.objects.get(id=current_order.died.id)
+        except:
+            died_query = None
+        try:
+            coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+        except:
+            coffin_query = None
+        try:
+            flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+        except:
+            flowers_query = None
+        try:
+            music_query = Music.objects.get(id=current_order.music.id)
+        except:
+            music_query = None
+        try:
+            total_costs = current_order.costs
+        except:
+            total_costs = None
+        date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+        date_d = died_query.date_died.strftime("%d.%m.%Y")
+        context = {
+            'orders': order_query,
+            'died': died_query,
+            'coffin': coffin_query,
+            'flowers': flowers_query,
+            'music': music_query,
+            'costs': total_costs,
+            'birthday': date_b,
+            'death': date_d,
+        }
+        return render(request, 'your_order.html', context)
+    return render(request, 'your_order.html', context={'orders': None})
 
 
+@login_required
 def user_account(request):
     return render(request, 'user_account.html')
 
 
+@login_required
 def edit_user(request):
-
     if request.method == 'POST':
         form = UserUpdateForm(data=request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            print('zapisałem')
-        user = User.objects.get(id=request.user.id)
-        print('obsługa zmiany danych', user)
-
-#     music_query.delete()
-#     form = MusicForm(request.POST)
-#     music = check_and_save_form(request, form, 'submit_order_summary.html')
-#     current_order.music = music
-#     current_order.save()
-#
-#
-# new_query = Music.objects.get(user=request.user, id=current_order.music.id)
-# context = {'formErrors': form.errors, 'music': new_query}
-# return render(request, 'submit_order_music.html', context)
     return render(request, 'edit_user.html')
 
 
+@login_required
 def change_password(request):
     if request.method != 'POST':
         form = PasswordChangeForm(request.user)   # Empty form
     else:
         form = PasswordChangeForm(request.user, data=request.POST)  # Fill fo
         if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
+            current_user = form.save()
+            update_session_auth_hash(request, current_user)
             messages.success(request, 'Twoje haslo zostalo pomyslnie zmienione')
             return redirect('Change password')
         else:
             messages.error(request, 'Prosze poprawic dane')
     context = {'form': form}
+    print(form.errors)
     return render(request, 'change_password.html', context)
 
 
+@login_required
 def delete_user(request):
     return render(request, 'delete_user.html')
 
@@ -348,6 +341,7 @@ def opinion(request):
     return render(request, 'opinion.html')
 
 
+@login_required
 def edit_your_order(request):
     return render(request, 'edit_your_order.html')
 

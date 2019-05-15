@@ -58,6 +58,16 @@
                                         </br>
                                         </div>
 
+                                         {% if messages %}
+                                            <div class="messages text-center">
+                                                {% for message in messages %}
+                                                    {% if message.tags %}
+                                                        <h3 style="color:red; font-size:105%;"><b>{{ message }}</b></h3>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+
                                         <div class="offset-3 col-6">
                                             <button class="btn btn-outline-dark" type="submit">Zarejestruj się</button>
                                             <input type="hidden" name="next" value="{% url 'Home' %}" >
@@ -70,13 +80,7 @@
                             <!--<strong>Powinien mieć format xxx-xxx-xxx</strong>-->
                         <!--</small>-->
                                 </form>
-                                {% if messages %}
-                                <ul class="messages">
-                                    {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                    {% endfor %}
-                                </ul>
-                                {% endif %}
+
                             </div>
                         </div>
                     </div>

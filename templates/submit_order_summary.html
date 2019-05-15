@@ -307,20 +307,22 @@
                                     </div>
                                 </div>
                             </form>
+
+                            <div class="messages text-center">
+                                  {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                    <h3 style="color:red; font-size:105%;"><b>{{ message }}</b></h3>
+                                    {% elif message.tags == "success" %}
+                                    <h3 style="color:green; font-size:105%;"><b>{{ message }}</b></h3>
+                                    {% endif %}
+                                  {% endfor %}
+                              </div>
                           <div class="form- row offset-2 col-8">
                               <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Wróć do zamówienia</a>
                               <form action="{% url 'Summary submit order' %}" method="post">
                                   {% csrf_token %}
                                   <input type="submit" value="Potwierdż" class="btn btn-outline-dark" />
                               </form>
-                              <div class="messages text-center">
-                                        {% for message in messages %}
-                                            {% if message.tags %}
-                                                <h3 style="color:green; font-size:105%;"><b>{{ message }}</b></h3>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-
                           </div>
                         </div>
                         </div>

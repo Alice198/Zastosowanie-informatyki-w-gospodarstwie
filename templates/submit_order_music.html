@@ -61,11 +61,11 @@
                                             {% else %}
 
                                                  <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O" required>
                                                     <label class="form-check-label" for="inlineRadio1">organy</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T" required>
                                                     <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                                 </div>
                                             {% endif %}
@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="col-8">
                                             <textarea type="text" name="songs" placeholder="Proszę podać parę tytułów wybranych utworów" class="form-control"
-                                                      id="id_songs" autofocus="">{{music.songs}}</textarea>
+                                                      id="id_songs" required autofocus="">{{music.songs}}</textarea>
                                             {% if formErrors.songs %}
                                                 <p style="color: red;">
                                                     To pole jest wymagane

@@ -77,15 +77,15 @@
                                             {% endif %}
                                         {%else%}
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S">
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S" required>
                                                 <label class="form-check-label" for="inlineRadio1">Mała</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M">
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M" required>
                                                 <label class="form-check-label" for="inlineRadio2">Średnia</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B">
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B" required>
                                                 <label class="form-check-label" for="inlineRadio3">Duża</label>
                                             </div>
                                         {% endif %}
@@ -176,19 +176,19 @@
                                             {% endif %}
                                         {%else %}
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh" required>
                                                 <label class="form-check-label" for="inlineRadio1">Biała</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl" required>
                                                 <label class="form-check-label" for="inlineRadio2">Niebieska</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi" required>
                                                 <label class="form-check-label" for="inlineRadio3">Różowa</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi" required>
                                                 <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
                                             </div>
                                         {% endif %}
@@ -208,7 +208,7 @@
                                         <label for="example-number-input">Ilość wiązanek</label>
                                     </div>
                                     <div class="col-8">
-                                        <input class="form-control" type="number" name="count" value="{{flower.count}}" id="example-number-input">
+                                        <input class="form-control" type="number" name="count" value="{{flower.count}}" id="example-number-input" required>
 
                                         {% if formErrors.count %}
                                             <p style="color: red;">

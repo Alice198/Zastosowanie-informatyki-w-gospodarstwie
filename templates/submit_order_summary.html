@@ -313,6 +313,14 @@
                                   {% csrf_token %}
                                   <input type="submit" value="Potwierdż" class="btn btn-outline-dark" />
                               </form>
+                              <div class="messages text-center">
+                                        {% for message in messages %}
+                                            {% if message.tags %}
+                                                <h3 style="color:green; font-size:105%;"><b>{{ message }}</b></h3>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
                           </div>
                         </div>
                         </div>

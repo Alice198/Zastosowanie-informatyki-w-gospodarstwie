@@ -88,7 +88,6 @@ def change_password(request):
     return render(request, 'change_password.html', context)
 
 
-# TODO:
 @login_required
 def delete_user(request):
 
@@ -128,6 +127,8 @@ def submit_order(request):
     current_order = get_order(request)
     try:
         died_query = Died.objects.get(id=current_order.died.id)
+        date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+        date_d = died_query.date_died.strftime("%Y-%m-%d")
     except:
         died_query = None
 
@@ -151,13 +152,17 @@ def submit_order(request):
     else:
         if request.method != 'POST':
             form = DiedForm()
+            context = {'formErrors': form.errors, 'died': died_query}
         else:
             form = DiedForm(request.POST)
             died = check_and_save_form(request, form, 'submit_order_coffin.html')
             current_order.died = died
             current_order.save()
             died_query = Died.objects.get(id=current_order.died.id)
-        context = {'formErrors': form.errors, 'died': died_query}
+            date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+            date_d = died_query.date_died.strftime("%Y-%m-%d")
+            if date_b and date_d:
+                context = {'formErrors': form.errors, 'died': died_query, 'birthday': date_b, 'death': date_d}
         return render(request, 'submit_order.html', context)
 
 
@@ -221,13 +226,14 @@ def submit_order_flower(request):
     else:
         if request.method != 'POST':
             form = FlowerForm()
+            context = {'formErrors': form.errors, 'flowers': flowers_query}
         else:
             form = FlowerForm(request.POST)
             flowers = check_and_save_form(request, form, 'submit_order_music.html')
             current_order.flowers = flowers
             current_order.save()
             flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-        context = {'formErrors': form.errors, 'flowers': flowers_query}
+            context = {'formErrors': form.errors, 'flowers': flowers_query}
         return render(request, 'submit_order_flower.html', context)
 
 
@@ -277,8 +283,12 @@ def submit_order_summary(request):
 
     try:
         died_query = Died.objects.get(id=current_order.died.id)
+        date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+        date_d = died_query.date_died.strftime("%d.%m.%Y")
     except:
         died_query = None
+        date_d = None
+        date_b = None
     try:
         coffin_query = Coffin.objects.get(id=current_order.coffin.id)
     except:
@@ -293,8 +303,6 @@ def submit_order_summary(request):
         music_query = None
     # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
     total_price = 2000.05    # coffin_query.price + music_query.price
-    date_b = died_query.date_birthday.strftime("%d.%m.%Y")
-    date_d = died_query.date_died.strftime("%d.%m.%Y")
 
     if request.method == 'POST':
         current_order.is_finished = True
@@ -309,7 +317,10 @@ def submit_order_summary(request):
             'birthday': date_b,
             'death': date_d,
         }
-        return render(request, 'your_order.html', context)
+        messages.success(request, 'Utworzenie zamównia zostało zakończone sukcesem')
+        return render(request, 'submit_order_summary.html', context)
+    else:
+        messages.error(request, 'Zamówienie nie zostało zapisane')
     context = {
         'died': died_query,
         'coffin': coffin_query,

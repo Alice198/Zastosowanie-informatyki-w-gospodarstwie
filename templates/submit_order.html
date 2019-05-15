@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="text" name="name" placeholder="Imię" value="{{died.name}}" class="form-control"
-                                               id="id_name_death" autofocus="" maxlength="150">
+                                               id="id_name_death" autofocus="" maxlength="150" required="">
                                         {% if formErrors.name  %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="text" name="surname" placeholder="Nazwisko" value="{{died.surname}}" class="form-control"
-                                               id="id_surname_death" autofocus="" maxlength="150">
+                                               id="id_surname_death" autofocus="" maxlength="150" required="">
                                         {% if formErrors.surname  %}
                                             <p style="color: red;">
                                                  To pole jest wymagane
@@ -91,12 +91,12 @@
                                             {% endif %}
                                         {% else %}
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender"
+                                                <input class="form-check-input" type="radio" name="gender" required
                                                        id="inlineRadio1" value="F" >
                                                 <label class="form-check-label" for="inlineRadio1">Kobieta</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender"
+                                                <input class="form-check-input" type="radio" name="gender" required
                                                        id="inlineRadio2" value="M">
                                                 <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
                                             </div>
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="date" name="date_birthday" placeholder="Data urodzenia"
-                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150" value="{{ birthday }}">
+                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150" value="{{ birthday }}" required="">
                                         {% if formErrors.date_birthday  %}
                                             <p style="color: red;">
                                                   To pole jest wymagane
@@ -131,7 +131,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="date" name="date_died" placeholder="Data śmierci" value="{{ death }}"
-                                               class="form-control" id="id_date_death" autofocus="" maxlength="150">
+                                               class="form-control" id="id_date_death" autofocus="" maxlength="150" required="">
                                         {% if formErrors.date_died %}
                                             <p style="color: red;">
                                                To pole jest wymagane
@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="text" name="transcription" placeholder="Transkrypcja" value="{{ died.transcription }}"
-                                               class="form-control" id="id_transcription" autofocus="" maxlength="150">
+                                               class="form-control" id="id_transcription" autofocus="" maxlength="150" required="">
                                         {% if formErrors.transcription %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -204,15 +204,15 @@
                                             {% endif %}
                                         {% else %}
                                             <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y" required>
                                             <label class="form-check-label" for="inlineRadio1">Tak</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L" required>
                                             <label class="form-check-label" for="inlineRadio2">Lekki</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N" required>
                                             <label class="form-check-label" for="inlineRadio3">Nie</label>
                                           </div>
                                         {% endif %}

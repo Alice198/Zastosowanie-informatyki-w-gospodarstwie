@@ -379,10 +379,11 @@ def your_order(request):
 
 
 def delete_order(request):
-    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
-    order_id = request.GET.get('order_id', '')
-    print(order_id)
-    order = Order.objects.get(id=order_id)
+    try:
+        order_id = request.GET.get('order_id', '')
+        order = Order.objects.get(id=order_id)
+    except:
+        return render(request, 'your_order.html')
     try:
         died = Died.objects.get(id=order.died.id)
         died.delete()
@@ -410,7 +411,6 @@ def delete_order(request):
     try:
         current_order = order_query[0]
     except:
-        current_order = None
         return render(request, 'your_order.html')
     try:
         died_query = Died.objects.get(id=current_order.died.id)

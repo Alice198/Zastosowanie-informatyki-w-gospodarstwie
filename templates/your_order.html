@@ -16,21 +16,13 @@
                       <div  class="list-group-item list-group-item-action active" href="{% url 'Your order' %}">
                           <a href="{% url 'Your order' %}?order_id={{order.id}}" class="btn btn-dark" role="button">{{order.died.name}}  {{order.died.surname}}</a>
                           <a href="{% url 'Delete order' %}?order_id={{order.id}}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-trash-alt float-right"></i></a>
-                          <a href="{% url 'Edit your order' %}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>
-                          <div class="messages text-center">
-                                    {% for message in messages %}
-                                        {% if message.tags == "info"%}
-                                            <h3 style="color: red; font-size:105%;"><b>{{ message }}</b></h3>
-                                    {% endif %}
-
-                                    {% endfor %}
-                                    </div>
+                          <a href="{% url 'Edit your order' %}?order_id={{order.id}}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>
                       </div>
                      {%else%}
                      <div  class="list-group-item list-group-item-action"  href="{% url 'Your order' %}">
                          <a href="{% url 'Your order' %}?order_id={{order.id}}" class="btn btn-outcolor" role="button">{{order.died.name}}  {{order.died.surname}}</a>
                          <a href="{% url 'Delete order' %}?order_id={{order.id}}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-trash-alt float-right"></i></a>
-                          <a href="{% url 'Edit your order' %}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>
+                          <a href="{% url 'Edit your order' %}?order_id={{order.id}}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>
                     </div>
                      {%endif%}
                 </div>

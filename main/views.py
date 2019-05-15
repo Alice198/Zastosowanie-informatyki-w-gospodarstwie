@@ -464,7 +464,51 @@ def opinion(request):
 # TODO:
 @login_required
 def edit_your_order(request):
-    return render(request, 'edit_your_order.html')
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
+    # if order_query:
+    order_id = request.GET.get('order_id', order_query[0].id)
+    current_order = Order.objects.get(id=order_id)
+
+    try:
+        died_query = Died.objects.get(id=current_order.died.id)
+    except:
+        died_query = None
+    try:
+        date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+    except:
+        date_b = None
+    try:
+        date_d = died_query.date_died.strftime("%Y-%m-%d")
+    except:
+        date_d = None
+    try:
+        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+    except:
+        coffin_query = None
+    try:
+        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+    except:
+        flowers_query = None
+    try:
+        music_query = Music.objects.get(id=current_order.music.id)
+    except:
+        music_query = None
+    try:
+        total_costs = current_order.costs
+    except:
+        total_costs = None
+
+    context = {
+        'orders': order_query,
+        'died': died_query,
+        'coffin': coffin_query,
+        'flowers': flowers_query,
+        'music': music_query,
+        'costs': total_costs,
+        'birthday': date_b,
+        'death': date_d,
+    }
+    return render(request, 'edit_your_order.html', context)
 
 
 def submit_order_appearance():

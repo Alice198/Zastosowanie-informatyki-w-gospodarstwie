@@ -11,16 +11,19 @@
         <div class="row">
             <div class="col-md-3 ">
                 {% for order in orders %}
-
                  <div class="list-group ">
-                  <div  class="list-group-item list-group-item-action active" href="{% url 'Your order' %}?order_id={{order.id}}">
-                      {{order.died.name}}  {{order.died.surname}}
-                      <div class="float-right">
-                          <button type="button" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
-                          <a href="{% url 'Edit your order' %}"  class="btn btn-primary" role="button" ><i class="fas fa-edit"></i></a>
-
-                      </div>
-                  </div>
+                     {% if order_id %}
+                      <div  class="list-group-item list-group-item-action active" href="{% url 'Your order' %}">
+                          <a href="{% url 'Your order' %}?order_id={{order.id}}" class="btn btn-dark" role="button">{{order.died.name}}  {{order.died.surname}}</a>
+                          <button type="button" class="btn btn-outcolor"><i class="fas fa-trash-alt float-right"></i></button>
+                          <a href="{% url 'Edit your order' %}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>                 </div>
+                     {%else%}
+                     <div  class="list-group-item list-group-item-action"  href="{% url 'Your order' %}">
+                         <a href="{% url 'Your order' %}?order_id={{order.id}}" class="btn btn-outcolor" role="button">{{order.died.name}}  {{order.died.surname}}</a>
+                          <button type="button" class="btn btn-outcolor float-right"><i class="fas fa-trash-alt"></i></button>
+                          <a href="{% url 'Edit your order' %}"  class="btn btn-outcolor float-right" role="button" ><i class="fas fa-edit"></i></a>
+                    </div>
+                     {%endif%}
                 </div>
                 {% empty %}
                 Utworzenie zamówienia przebiegło pomyślnie

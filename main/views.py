@@ -34,6 +34,38 @@ def get_order(request):
     return open_order
 
 
+def get_your_orders(current_order):
+        try:
+            died_query = Died.objects.get(id=current_order.died.id)
+        except:
+            died_query = None
+        try:
+            date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+        except:
+            date_b = None
+        try:
+            date_d = died_query.date_died.strftime("%d.%m.%Y")
+        except:
+            date_d = None
+        try:
+            coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+        except:
+            coffin_query = None
+        try:
+            flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+        except:
+            flowers_query = None
+        try:
+            music_query = Music.objects.get(id=current_order.music.id)
+        except:
+            music_query = None
+        try:
+            total_costs = current_order.costs
+        except:
+            total_costs = None
+        return died_query, date_b, date_d, coffin_query, flowers_query, music_query, total_costs
+
+
 def home(request):
     return render(request, 'home.html')
 
@@ -340,42 +372,14 @@ def your_order(request):
     if order_query:
         order_id = request.GET.get('order_id', order_query[0].id)
         current_order = Order.objects.get(id=order_id)
-
-        try:
-            died_query = Died.objects.get(id=current_order.died.id)
-        except:
-            died_query = None
-        try:
-            date_b = died_query.date_birthday.strftime("%d.%m.%Y")
-        except:
-            date_b = None
-        try:
-            date_d = died_query.date_died.strftime("%d.%m.%Y")
-        except:
-            date_d = None
-        try:
-            coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-        except:
-            coffin_query = None
-        try:
-            flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-        except:
-            flowers_query = None
-        try:
-            music_query = Music.objects.get(id=current_order.music.id)
-        except:
-            music_query = None
-        try:
-            total_costs = current_order.costs
-        except:
-            total_costs = None
+        died, date_b, date_d, coffin, flowers, music, total_costs = get_your_orders(current_order)
 
         context = {
             'orders': order_query,
-            'died': died_query,
-            'coffin': coffin_query,
-            'flowers': flowers_query,
-            'music': music_query,
+            'died': died,
+            'coffin': coffin,
+            'flowers': flowers,
+            'music': music,
             'costs': total_costs,
             'birthday': date_b,
             'death': date_d,
@@ -384,6 +388,7 @@ def your_order(request):
     return render(request, 'your_order.html', context={'orders': None})
 
 
+@login_required
 def delete_order(request):
     try:
         order_id = request.GET.get('order_id', '')
@@ -420,34 +425,13 @@ def delete_order(request):
         current_order = order_query[0]
     except:
         return render(request, 'your_order.html')
-    try:
-        died_query = Died.objects.get(id=current_order.died.id)
-    except:
-        died_query = None
-    try:
-        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-    except:
-        coffin_query = None
-    try:
-        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-    except:
-        flowers_query = None
-    try:
-        music_query = Music.objects.get(id=current_order.music.id)
-    except:
-        music_query = None
-    try:
-        total_costs = current_order.costs
-    except:
-        total_costs = None
-    date_b = died_query.date_birthday.strftime("%d.%m.%Y")
-    date_d = died_query.date_died.strftime("%d.%m.%Y")
+    died, date_b, date_d, coffin, flowers, music, total_costs = get_your_orders(current_order)
     context = {
         'orders': order_query,
-        'died': died_query,
-        'coffin': coffin_query,
-        'flowers': flowers_query,
-        'music': music_query,
+        'died': died,
+        'coffin': coffin,
+        'flowers': flowers,
+        'music': music,
         'costs': total_costs,
         'birthday': date_b,
         'death': date_d,

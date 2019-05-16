@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from main.costs import coffin_price, flowers_price, music_price, labour_price
 from main.models.coffin import Coffin
 from main.models.died import Died
 from main.models.flowers import Flowers
@@ -335,7 +336,11 @@ def submit_order_summary(request):
     except:
         music_query = None
     # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
-    total_price = 2000.05  # coffin_query.price + music_query.price
+    coff_price = coffin_price(coffin_query.wood, coffin_query.size)
+    flow_price = flowers_price(flowers_query.size, flowers_query.count)
+    musi_price = music_price(music_query.msc_type)
+    labo_price = labour_price()
+    total_price = coff_price + flow_price + musi_price + labo_price  # coffin_query.price + music_query.price
 
     if request.method == 'POST':
         current_order.is_finished = True

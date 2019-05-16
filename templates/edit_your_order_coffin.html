@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block title %}Edytuj zamówienia{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<!-- if orders != None %}-->
+<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 ">
+                <!-- for order in orders %}-->
+                 <div class="list-group ">
+                     <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
+                     <a class="btn btn-outcolor" role="button">{{died.name}}  {{died.surname}}</a>
+
+                         <a href="{% url 'Your order' %}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-backspace"></i></a>
+                    </div>
+                </div>
+                <!-- empty %}
+                Utworzenie zamówienia przebiegło pomyślnie
+                {% endfor -->
+            </div>
+            <div class="offset-1 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Edytuj zamówienie </h4>
+                                <hr>
+                            </div>
+                      </div>
+                        <div class="row-md-6">
+
+                                  <form action="{% url 'Edit coffin'%}" method="post">
+                                     {% csrf_token %}
+                                      <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="size">Rozmiar</label>
+                                        </div>
+                                        <div class="col-8" id="size">
+                                            <!--<form action="" autocomplete="off">-->
+                                            {% if coffin.size != None %}
+                                                {% if coffin.size == "A" %}
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="size"
+                                                               id="size-adult" value="A" checked>
+                                                        <label class="form-check-label" for="size-adult">Dorosły</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="size"
+                                                               id="size-child" value="C">
+                                                        <label class="form-check-label" for="size-child">Dziecko</label>
+                                                    </div>
+                                                {% elif coffin.size == "C" %}
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="size"
+                                                               id="size-adult" value="A">
+                                                        <label class="form-check-label" for="size-adult">Dorosły</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="size"
+                                                               id="size-child" value="C" checked>
+                                                        <label class="form-check-label" for="size-child">Dziecko</label>
+                                                </div>
+                                                {% endif %}
+                                            {%else%}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size"
+                                                           id="size-adult" value="A" required>
+                                                    <label class="form-check-label" for="size-adult">Dorosły</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size"
+                                                           id="size-child" value="C" required>
+                                                    <label class="form-check-label" for="size-child">Dziecko</label>
+                                                </div>
+                                            {% endif %}
+                                                {% if formErrors.size %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                            <!--</form>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="wood">Rodzaj drewna</label>
+                                        </div>
+                                        <div class="col-8" id="wood">
+                                            <!--<form action="" autocomplete="off">-->
+                                            {% if coffin.wood != None %}
+                                                {% if coffin.wood == "O" %}
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio1" value="O" checked>
+                                                        <label class="form-check-label" for="inlineRadio1">Dąb</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio2" value="B">
+                                                        <label class="form-check-label" for="inlineRadio2">Buk</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio3" value="P">
+                                                        <label class="form-check-label" for="inlineRadio3">Sosna</label>
+                                                    </div>
+                                                {% elif coffin.wood == "B" %}
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio1" value="O">
+                                                        <label class="form-check-label" for="inlineRadio1">Dąb</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio2" value="B" checked>
+                                                        <label class="form-check-label" for="inlineRadio2">Buk</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio3" value="P">
+                                                        <label class="form-check-label" for="inlineRadio3">Sosna</label>
+                                                    </div>
+                                                {% elif coffin.wood == "P" %}
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio1" value="O">
+                                                        <label class="form-check-label" for="inlineRadio1">Dąb</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio2" value="B">
+                                                        <label class="form-check-label" for="inlineRadio2">Buk</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="wood"
+                                                               id="inlineRadio3" value="P" checked>
+                                                        <label class="form-check-label" for="inlineRadio3">Sosna</label>
+                                                    </div>
+                                                {% endif %}
+                                            {%else%}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio1" value="O" required>
+                                                    <label class="form-check-label" for="inlineRadio1">Dąb</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio2" value="B" required>
+                                                    <label class="form-check-label" for="inlineRadio2">Buk</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="wood"
+                                                           id="inlineRadio3" value="P" required>
+                                                    <label class="form-check-label" for="inlineRadio3">Sosna</label>
+                                                </div>
+                                             {%endif%}
+
+                                            <!--</form>-->
+                                            {% if formErrors.wood %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="id_description_coffin">Opis</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <textarea name="description"
+                                                      placeholder="Opis trumny" class="form-control" required=""
+                                                      id="id_description_coffin" autofocus="">{{coffin.description}}</textarea>
+                                            {% if formErrors.description %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                  </form>
+                                  </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_costs">Całkowita cena:</label>
+                                    </div>
+                                    <div class="col-8" id="id_costs">
+                                      <span class="costs" for="costs">
+                                          <li>{{costs}}</li></span>
+                                    </div>
+                                </div>
+
+                            <div class="offset-4 col-8">
+                                        <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
+                            </div></form>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- else %}
+<div class="container-fluid" >
+    <div class="jumbotron box">
+        <div class="container">
+            <div class="row-sm-12 mt-4 mb-4">
+                <div class="col-sm-12">
+                    <h2>Nie posiadasz jeszcze żadnego zamówienia, proszę przejść w zakładkę "Złóż zamówienie"</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif -->
+
+{% else %}
+
+  <p>You are not logged in</p>
+
+
+{% endif %}
+
+{% endblock %}

@@ -228,14 +228,13 @@ def submit_order_flower(request):
     else:
         if request.method != 'POST':
             form = FlowerForm()
-            context = {'formErrors': form.errors, 'flowers': flowers_query}
         else:
             form = FlowerForm(request.POST)
             flowers = check_and_save_form(request, form, 'submit_order_music.html')
             current_order.flowers = flowers
             current_order.save()
             flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-            context = {'formErrors': form.errors, 'flowers': flowers_query}
+        context = {'formErrors': form.errors, 'flower': flowers_query}
         return render(request, 'submit_order_flower.html', context)
 
 

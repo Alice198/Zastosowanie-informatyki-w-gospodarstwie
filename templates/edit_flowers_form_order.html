@@ -12,9 +12,11 @@
             <div class="col-md-3 ">
                 <!-- for order in orders %}-->
                  <div class="list-group ">
-                  <div  class="list-group-item list-group-item-action active" href="{% url 'Your order' %}?order_id={{order.id}}">
-                      {{died.name}} {{died.surname}}
-                  </div>
+                  <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
+                     <a class="btn btn-outcolor" role="button">{{died.name}}  {{died.surname}}</a>
+
+                         <a href="{% url 'Your order' %}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-backspace"></i></a>
+                    </div>
                 </div>
                 <!-- empty %}
                 Utworzenie zamówienia przebiegło pomyślnie

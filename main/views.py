@@ -625,14 +625,3 @@ def edit_music_form_order(request):
 def submit_order_appearance():
     pass
 
-
-def edit_your_order_coffin(request):
-    return render(request, 'edit_your_order_coffin.html')
-
-
-def edit_your_order_flower(request):
-    return render(request, 'edit_your_order_flower.html')
-
-
-def edit_your_order_music(request):
-    return render(request, 'edit_your_order_music.html')

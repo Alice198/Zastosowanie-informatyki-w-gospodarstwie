@@ -16,7 +16,7 @@ from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, \
     MusicForm, UserUpdateForm, GetPasswordForm
 
 
-def check_and_save_form(request, form, template):
+def check_and_save_form(request, form, template= 'empty'):
     if form.is_valid():
         new_form = form.save(commit=False)
         new_form.user = User.objects.get(id=request.user.id)
@@ -453,13 +453,19 @@ def edit_your_order(request):
     current_order = Order.objects.get(id=order_id)
 
     died, date_b, date_d, coffin, flowers, music, total_costs = get_your_orders(current_order)
-    date_b = died.date_birthday.strftime("%Y-%m-%d")
-    date_d = died.date_died.strftime("%Y-%m-%d")
+    try:
+        date_b = died.date_birthday.strftime("%Y-%m-%d")
+    except:
+        date_b = None
+    try:
+        date_d = died.date_died.strftime("%Y-%m-%d")
+    except:
+        date_d = None
     context = {
         'orders': order_query,
         'died': died,
         'coffin': coffin,
-        'flowers': flowers,
+        'flower': flowers,
         'music': music,
         'costs': total_costs,
         'birthday': date_b,

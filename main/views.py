@@ -314,7 +314,7 @@ def submit_order_music(request):
 @login_required
 def submit_order_summary(request):
     current_order = get_order(request)
-
+    total_price = labour_price()
     try:
         died_query = Died.objects.get(id=current_order.died.id)
         date_b = died_query.date_birthday.strftime("%d.%m.%Y")
@@ -325,22 +325,22 @@ def submit_order_summary(request):
         date_b = None
     try:
         coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+        if coffin_query:
+            total_price += coffin_price(coffin_query.wood, coffin_query.size)
     except:
         coffin_query = None
     try:
         flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+        if flowers_query:
+            total_price += flowers_price(flowers_query.size, flowers_query.count)
     except:
         flowers_query = None
     try:
         music_query = Music.objects.get(id=current_order.music.id)
+        if music_query:
+            total_price += music_price(music_query.msc_type)
     except:
         music_query = None
-    # TODO: logika do liczenia ceny całkowitej (if coffin_qery.wood == oak: wood_price = 200
-    coff_price = coffin_price(coffin_query.wood, coffin_query.size)
-    flow_price = flowers_price(flowers_query.size, flowers_query.count)
-    musi_price = music_price(music_query.msc_type)
-    labo_price = labour_price()
-    total_price = coff_price + flow_price + musi_price + labo_price  # coffin_query.price + music_query.price
 
     if request.method == 'POST':
         current_order.is_finished = True
@@ -453,7 +453,6 @@ def opinion(request):
 @login_required
 def edit_your_order(request):
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
-    # if order_query:
     order_id = request.GET.get('order_id', order_query[0].id)
     current_order = Order.objects.get(id=order_id)
 

@@ -6,7 +6,7 @@
 
 {% if user.is_authenticated %}
 <!-- if orders != None %}-->
-<div class="jumbotron d-flex align-items-center justify-content-center">
+<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
@@ -30,7 +30,7 @@
                             </div>
                       </div>
                         <div class="row-md-6">
-                            <form>
+
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link active" id="died-tab" data-toggle="tab" href="#died" role="tab" aria-controls="died" aria-selected="true">Zmarły</a>
@@ -48,13 +48,16 @@
 
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="died" role="tabpanel" aria-labelledby="died-tab">
+
+                                <form action="{% url 'Edit died'%}" method="post">
+                                             {% csrf_token %}
                                         <div class="form-group row">
                                     <div class="col-4">
                                         <label for="id_name_death">Imie</label>
                                     </div>
                                     <div class="col-8">
                                         <input type="text" name="name" placeholder="Imię" value="{{died.name}}" class="form-control"
-                                               id="id_name_death" autofocus="" maxlength="150">
+                                               id="id_name_death" autofocus="" maxlength="150" required>
                                         {% if formErrors.name  %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -69,7 +72,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="text" name="surname" placeholder="Nazwisko" value="{{died.surname}}" class="form-control"
-                                               id="id_surname_death" autofocus="" maxlength="150">
+                                               id="id_surname_death" autofocus="" maxlength="150" required>
                                         {% if formErrors.surname  %}
                                             <p style="color: red;">
                                                  To pole jest wymagane
@@ -111,12 +114,12 @@
                                         {% else %}
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="gender"
-                                                       id="inlineRadio1" value="F" >
+                                                       id="inlineRadio1" value="F" required>
                                                 <label class="form-check-label" for="inlineRadio1">Kobieta</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="gender"
-                                                       id="inlineRadio2" value="M">
+                                                       id="inlineRadio2" value="M" required>
                                                 <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
                                             </div>
                                         {% endif %}
@@ -134,7 +137,7 @@
                                         <label for="id_date_birth">Data urodzenia</label>
                                     </div>
                                     <div class="col-8">
-                                        <input type="date" name="date_birthday" placeholder="Data urodzenia"
+                                        <input type="date" name="date_birthday" placeholder="Data urodzenia" required
                                                class="form-control" id="id_date_birth" autofocus="" maxlength="150" value="{{ birthday }}">
                                         {% if formErrors.date_birthday  %}
                                             <p style="color: red;">
@@ -150,7 +153,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="date" name="date_died" placeholder="Data śmierci" value="{{ death }}"
-                                               class="form-control" id="id_date_death" autofocus="" maxlength="150">
+                                               class="form-control" id="id_date_death" autofocus="" maxlength="150" required>
                                         {% if formErrors.date_died %}
                                             <p style="color: red;">
                                                To pole jest wymagane
@@ -165,7 +168,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input type="text" name="transcription" placeholder="Transkrypcja" value="{{ died.transcription }}"
-                                               class="form-control" id="id_transcription" autofocus="" maxlength="150">
+                                               class="form-control" id="id_transcription" autofocus="" maxlength="150" required>
                                         {% if formErrors.transcription %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -223,15 +226,15 @@
                                             {% endif %}
                                         {% else %}
                                             <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y" required>
                                             <label class="form-check-label" for="inlineRadio1">Tak</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L" required>
                                             <label class="form-check-label" for="inlineRadio2">Lekki</label>
                                           </div>
                                           <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N" required>
                                             <label class="form-check-label" for="inlineRadio3">Nie</label>
                                           </div>
                                         {% endif %}
@@ -256,11 +259,14 @@
                                     </div>
                                 <div class="offset-4 col-8">
                                         <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
+                                </div></form>
                                 </div>
-                                </div>
+
 
 <!--TTTTTTTTTTRRRRRRRRRRRRUUUUUUUUUUUUMMMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNAAAAAAAAAAAAAAA-->
                                   <div class="tab-pane fade" id="coffin" role="tabpanel" aria-labelledby="profile-tab">
+                                  <form action="{% url 'Edit coffin'%}" method="post">
+                                     {% csrf_token %}
                                       <div class="form-group row">
                                         <div class="col-4">
                                             <label for="size">Rozmiar</label>
@@ -294,12 +300,12 @@
                                             {%else%}
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="size"
-                                                           id="size-adult" value="A">
+                                                           id="size-adult" value="A" required>
                                                     <label class="form-check-label" for="size-adult">Dorosły</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="size"
-                                                           id="size-child" value="C">
+                                                           id="size-child" value="C" required>
                                                     <label class="form-check-label" for="size-child">Dziecko</label>
                                                 </div>
                                             {% endif %}
@@ -371,17 +377,17 @@
                                             {%else%}
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="wood"
-                                                           id="inlineRadio1" value="O">
+                                                           id="inlineRadio1" value="O" required>
                                                     <label class="form-check-label" for="inlineRadio1">Dąb</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="wood"
-                                                           id="inlineRadio2" value="B">
+                                                           id="inlineRadio2" value="B" required>
                                                     <label class="form-check-label" for="inlineRadio2">Buk</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="wood"
-                                                           id="inlineRadio3" value="P">
+                                                           id="inlineRadio3" value="P" required>
                                                     <label class="form-check-label" for="inlineRadio3">Sosna</label>
                                                 </div>
                                              {%endif%}
@@ -412,13 +418,15 @@
                                     </div>
                                       <div class="offset-4 col-8">
                                         <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
-                                      </div>
+                                      </div></form>
                                   </div>
 
 
 
 <!--KWIATYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY-->
                                   <div class="tab-pane fade" id="flower" role="tabpanel" aria-labelledby="contact-tab">
+                                      <form action="{% url 'Edit flowers'%}" method="post">
+                                     {% csrf_token %}
                                       <div class="form-group row">
                                         <div class="col-4">
                                             <label for="size">Wielkość wiązanki</label>
@@ -467,15 +475,15 @@
                                                 {% endif %}
                                             {%else%}
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S"required>
                                                     <label class="form-check-label" for="inlineRadio1">Mała</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M" required>
                                                     <label class="form-check-label" for="inlineRadio2">Średnia</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B" required>
                                                     <label class="form-check-label" for="inlineRadio3">Duża</label>
                                                 </div>
                                             {% endif %}
@@ -566,19 +574,19 @@
                                                 {% endif %}
                                             {%else %}
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh" required>
                                                     <label class="form-check-label" for="inlineRadio1">Biała</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl" required>
                                                     <label class="form-check-label" for="inlineRadio2">Niebieska</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi" required>
                                                     <label class="form-check-label" for="inlineRadio3">Różowa</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi" required>
                                                     <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
                                                 </div>
                                             {% endif %}
@@ -598,7 +606,7 @@
                                             <label for="example-number-input">Ilość wiązanek</label>
                                         </div>
                                         <div class="col-8">
-                                            <input class="form-control" type="number" name="count" value="{{flower.count}}" id="example-number-input">
+                                            <input class="form-control" type="number" name="count" required value="{{flower.count}}" id="example-number-input">
 
                                             {% if formErrors.count %}
                                                 <p style="color: red;">
@@ -613,17 +621,19 @@
                                             <label for="id_description_flowers">Opis</label>
                                         </div>
                                         <div class="col-8">
-                                            <textarea type="text" name="description" placeholder="Dodatkowy opis kwiatów"
+                                            <textarea type="text" name="description" placeholder="Opis kwiatów" required
                                                       class="form-control"  id="id_description_flowers" autofocus="">{{flower.description}}</textarea>
                                         </div>
                                     </div>
                                       <div class="offset-4 col-8">
                                         <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
-                                      </div>
+                                      </div></form>
                                   </div>
 
 <!--MUZYKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK-->
                                 <div class="tab-pane fade" id="music" role="tabpanel" aria-labelledby="contact-tab">
+                                   <form action="{% url 'Edit music'%}" method="post">
+                                     {% csrf_token %}
                                     <div class="form-group row">
                                         <div class="col-4">
                                             <label for="id_msc_type">Wybór instrumentu</label>
@@ -656,11 +666,11 @@
                                                 {% else %}
 
                                                      <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O" required>
                                                         <label class="form-check-label" for="inlineRadio1">organy</label>
                                                     </div>
                                                     <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T" required>
                                                         <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                                     </div>
                                                 {% endif %}
@@ -678,7 +688,7 @@
                                         </div>
                                         <div class="col-8">
                                             <textarea type="text" name="songs" placeholder="Proszę podać parę tytułów wybranych utworów" class="form-control"
-                                                      id="id_songs" autofocus="">{{music.songs}}</textarea>
+                                                      id="id_songs" autofocus="" required>{{music.songs}}</textarea>
                                             {% if formErrors.songs %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -696,10 +706,10 @@
                                           <li>{{costs}}</li></span>
                                     </div>
                                 </div>
-                            </form>
+
                             <div class="offset-4 col-8">
                                         <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
-                            </div>
+                            </div></form>
 
                         </div>
                         </div>

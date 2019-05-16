@@ -35,35 +35,35 @@ def get_order(request):
 
 
 def get_your_orders(current_order):
-        try:
-            died_query = Died.objects.get(id=current_order.died.id)
-        except:
-            died_query = None
-        try:
-            date_b = died_query.date_birthday.strftime("%d.%m.%Y")
-        except:
-            date_b = None
-        try:
-            date_d = died_query.date_died.strftime("%d.%m.%Y")
-        except:
-            date_d = None
-        try:
-            coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-        except:
-            coffin_query = None
-        try:
-            flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-        except:
-            flowers_query = None
-        try:
-            music_query = Music.objects.get(id=current_order.music.id)
-        except:
-            music_query = None
-        try:
-            total_costs = current_order.costs
-        except:
-            total_costs = None
-        return died_query, date_b, date_d, coffin_query, flowers_query, music_query, total_costs
+    try:
+        died_query = Died.objects.get(id=current_order.died.id)
+    except:
+        died_query = None
+    try:
+        date_b = died_query.date_birthday.strftime("%d.%m.%Y")
+    except:
+        date_b = None
+    try:
+        date_d = died_query.date_died.strftime("%d.%m.%Y")
+    except:
+        date_d = None
+    try:
+        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+    except:
+        coffin_query = None
+    try:
+        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+    except:
+        flowers_query = None
+    try:
+        music_query = Music.objects.get(id=current_order.music.id)
+    except:
+        music_query = None
+    try:
+        total_costs = current_order.costs
+    except:
+        total_costs = None
+    return died_query, date_b, date_d, coffin_query, flowers_query, music_query, total_costs
 
 
 def home(request):
@@ -452,46 +452,168 @@ def edit_your_order(request):
     order_id = request.GET.get('order_id', order_query[0].id)
     current_order = Order.objects.get(id=order_id)
 
-    try:
-        died_query = Died.objects.get(id=current_order.died.id)
-    except:
-        died_query = None
-    try:
-        date_b = died_query.date_birthday.strftime("%Y-%m-%d")
-    except:
-        date_b = None
-    try:
-        date_d = died_query.date_died.strftime("%Y-%m-%d")
-    except:
-        date_d = None
-    try:
-        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-    except:
-        coffin_query = None
-    try:
-        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-    except:
-        flowers_query = None
-    try:
-        music_query = Music.objects.get(id=current_order.music.id)
-    except:
-        music_query = None
-    try:
-        total_costs = current_order.costs
-    except:
-        total_costs = None
-
+    died, date_b, date_d, coffin, flowers, music, total_costs = get_your_orders(current_order)
+    date_b = died.date_birthday.strftime("%Y-%m-%d")
+    date_d = died.date_died.strftime("%Y-%m-%d")
     context = {
         'orders': order_query,
-        'died': died_query,
-        'coffin': coffin_query,
-        'flowers': flowers_query,
-        'music': music_query,
+        'died': died,
+        'coffin': coffin,
+        'flowers': flowers,
+        'music': music,
         'costs': total_costs,
         'birthday': date_b,
         'death': date_d,
     }
     return render(request, 'edit_your_order.html', context)
+
+
+@login_required
+def edit_died_from_order(request):
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
+    order_id = request.GET.get('order_id', order_query[0].id)
+    current_order = Order.objects.get(id=order_id)
+    try:
+        died_query = Died.objects.get(id=current_order.died.id)
+    except:
+        died_query = None
+    if died_query:
+        if request.method != 'POST':
+            date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+            date_d = died_query.date_died.strftime("%Y-%m-%d")
+            context = {'died': died_query, 'birthday': date_b, 'death': date_d}
+            return render(request, 'edit_your_order.html', context)
+        else:
+            died_query.delete()
+            form = DiedForm(request.POST)
+            died = check_and_save_form(request, form, 'st')
+            current_order.died = died
+            current_order.save()
+        new_query = Died.objects.get(user=request.user, id=current_order.died.id)
+        date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+        date_d = died_query.date_died.strftime("%Y-%m-%d")
+        context = {'formErrors': form.errors, 'died': new_query, 'birthday': date_b, 'death': date_d}
+        return render(request, 'edit_your_order.html', context)
+    else:
+        if request.method != 'POST':
+            form = DiedForm()
+            context = {'formErrors': form.errors, 'died': died_query}
+        else:
+            form = DiedForm(request.POST)
+            died = check_and_save_form(request, form, 'di.html')
+            current_order.died = died
+            current_order.save()
+            died_query = Died.objects.get(id=current_order.died.id)
+            date_b = died_query.date_birthday.strftime("%Y-%m-%d")
+            date_d = died_query.date_died.strftime("%Y-%m-%d")
+            if date_b and date_d:
+                context = {'formErrors': form.errors, 'died': died_query, 'birthday': date_b, 'death': date_d}
+        return render(request, 'edit_your_order.html', context)
+
+
+@login_required
+def edit_coffin_form_order(request):
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
+    order_id = request.GET.get('order_id', order_query[0].id)
+    current_order = Order.objects.get(id=order_id)
+    try:
+        coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+    except:
+        coffin_query = None
+    if coffin_query:
+        if request.method != 'POST':
+            context = {'coffin': coffin_query}
+            return render(request, 'edit_your_order.html', context)
+        else:
+            coffin_query.delete()
+            form = CoffinForm(request.POST)
+            coffin = check_and_save_form(request, form, 'col')
+            current_order.coffin = coffin
+            current_order.save()
+        new_query = Coffin.objects.get(user=request.user, id=current_order.coffin.id)
+        context = {'formErrors': form.errors, 'coffin': new_query}
+        return render(request, 'edit_your_order.html', context)
+    else:
+        if request.method != 'POST':
+            form = CoffinForm()
+        else:
+            form = CoffinForm(request.POST)
+            coffin = check_and_save_form(request, form, 'co.html')
+            current_order.coffin = coffin
+            current_order.save()
+            coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+        context = {'formErrors': form.errors, 'coffin': coffin_query}
+        return render(request, 'edit_your_order.html', context)
+
+
+@login_required
+def edit_flowers_form_order(request):
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
+    order_id = request.GET.get('order_id', order_query[0].id)
+    current_order = Order.objects.get(id=order_id)
+    try:
+        flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+    except:
+        flowers_query = None
+    if flowers_query:
+        if request.method != 'POST':
+            context = {'flower': flowers_query}
+            return render(request, 'edit_your_order.html', context)
+        else:
+            flowers_query.delete()
+            form = FlowerForm(request.POST)
+            flowers = check_and_save_form(request, form, 'fl')
+            current_order.flowers = flowers
+            current_order.save()
+        new_query = Flowers.objects.get(user=request.user, id=current_order.flowers.id)
+        context = {'formErrors': form.errors, 'flower': new_query}
+        return render(request, 'edit_your_order.html', context)
+    else:
+        if request.method != 'POST':
+            form = FlowerForm()
+        else:
+            form = FlowerForm(request.POST)
+            flowers = check_and_save_form(request, form, 'fl')
+            current_order.flowers = flowers
+            current_order.save()
+            flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+        context = {'formErrors': form.errors, 'flower': flowers_query}
+        return render(request, 'edit_your_order.html', context)
+
+
+@login_required
+def edit_music_form_order(request):
+    order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
+    order_id = request.GET.get('order_id', order_query[0].id)
+    current_order = Order.objects.get(id=order_id)
+    try:
+        music_query = Music.objects.get(id=current_order.music.id)
+    except:
+        music_query = None
+    if music_query:
+        if request.method != 'POST':
+            context = {'music': music_query}
+            return render(request, 'edit_your_order.html', context)
+        else:
+            music_query.delete()
+            form = MusicForm(request.POST)
+            music = check_and_save_form(request, form, 'mu')
+            current_order.music = music
+            current_order.save()
+        new_query = Music.objects.get(user=request.user, id=current_order.music.id)
+        context = {'formErrors': form.errors, 'music': new_query}
+        return render(request, 'edit_your_order.html', context)
+    else:
+        if request.method != 'POST':
+            form = MusicForm()
+        else:
+            form = MusicForm(request.POST)
+            music = check_and_save_form(request, form, 'mu')
+            current_order.music = music
+            current_order.save()
+            music_query = Music.objects.get(id=current_order.music.id)
+        context = {'formErrors': form.errors, 'music': music_query}
+        return render(request, 'edit_your_order.html', context)
 
 
 def submit_order_appearance():

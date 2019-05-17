@@ -491,8 +491,8 @@ def edit_died_from_order(request):
         if request.method != 'POST':
             date_b = died_query.date_birthday.strftime("%Y-%m-%d")
             date_d = died_query.date_died.strftime("%Y-%m-%d")
-            context = {'died': died_query, 'birthday': date_b, 'death': date_d}
-            return render(request, 'edit_your_order.html', context)
+            context = {'died': died_query, 'birthday': date_b, 'death': date_d, 'order': current_order}
+            return render(request, 'edit_died_form_order.html', context)
         else:
             died_query.delete()
             form = DiedForm(request.POST)
@@ -502,8 +502,8 @@ def edit_died_from_order(request):
         new_query = Died.objects.get(user=request.user, id=current_order.died.id)
         date_b = died_query.date_birthday.strftime("%Y-%m-%d")
         date_d = died_query.date_died.strftime("%Y-%m-%d")
-        context = {'formErrors': form.errors, 'died': new_query, 'birthday': date_b, 'death': date_d}
-        return render(request, 'edit_your_order.html', context)
+        context = {'formErrors': form.errors, 'died': new_query, 'birthday': date_b, 'death': date_d, 'order': current_order}
+        return render(request, 'edit_died_form_order.html', context)
     else:
         if request.method != 'POST':
             form = DiedForm()
@@ -517,8 +517,8 @@ def edit_died_from_order(request):
             date_b = died_query.date_birthday.strftime("%Y-%m-%d")
             date_d = died_query.date_died.strftime("%Y-%m-%d")
             if date_b and date_d:
-                context = {'formErrors': form.errors, 'died': died_query, 'birthday': date_b, 'death': date_d}
-        return render(request, 'edit_your_order.html', context)
+                context = {'formErrors': form.errors, 'died': died_query, 'birthday': date_b, 'death': date_d, 'orders': current_order}
+        return render(request, 'edit_died_form_order.html', context)
 
 
 @login_required
@@ -526,6 +526,7 @@ def edit_coffin_form_order(request):
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
     order_id = request.GET.get('order_id', order_query[0].id)
     current_order = Order.objects.get(id=order_id)
+    total_price = current_order.costs
     try:
         died = Died.objects.get(id=current_order.died.id)
     except:
@@ -536,7 +537,7 @@ def edit_coffin_form_order(request):
         coffin_query = None
     if coffin_query:
         if request.method != 'POST':
-            context = {'coffin': coffin_query, 'died': died}
+            context = {'coffin': coffin_query, 'died': died, 'order': current_order}
             return render(request, 'edit_coffin_form_order.html', context)
         else:
             coffin_query.delete()
@@ -545,7 +546,7 @@ def edit_coffin_form_order(request):
             current_order.coffin = coffin
             current_order.save()
         new_query = Coffin.objects.get(user=request.user, id=current_order.coffin.id)
-        context = {'formErrors': form.errors, 'coffin': new_query, 'died': died}
+        context = {'formErrors': form.errors, 'coffin': new_query, 'died': died, 'order': current_order}
         return render(request, 'edit_coffin_form_order.html', context)
     else:
         if request.method != 'POST':
@@ -555,8 +556,12 @@ def edit_coffin_form_order(request):
             coffin = check_and_save_form(request, form, 'co.html')
             current_order.coffin = coffin
             current_order.save()
+            #Coffin.objects.filter
             coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-        context = {'formErrors': form.errors, 'coffin': coffin_query, 'died': died}
+            _price = coffin_price(coffin_query.wood, coffin_query.size)
+            total_price += _price
+       # current_order.update(costs=total_price)
+        context = {'formErrors': form.errors, 'coffin': coffin_query, 'died': died, 'order': current_order}
         return render(request, 'edit_coffin_form_order.html', context)
 
 
@@ -575,7 +580,7 @@ def edit_flowers_form_order(request):
         flowers_query = None
     if flowers_query:
         if request.method != 'POST':
-            context = {'flower': flowers_query, 'died': died}
+            context = {'flower': flowers_query, 'died': died, 'order': current_order}
             return render(request, 'edit_flowers_form_order.html', context)
         else:
             flowers_query.delete()
@@ -584,7 +589,7 @@ def edit_flowers_form_order(request):
             current_order.flowers = flowers
             current_order.save()
         new_query = Flowers.objects.get(user=request.user, id=current_order.flowers.id)
-        context = {'formErrors': form.errors, 'flower': new_query, 'died': died}
+        context = {'formErrors': form.errors, 'flower': new_query, 'died': died, 'order': current_order}
         return render(request, 'edit_flowers_form_order.html', context)
     else:
         if request.method != 'POST':
@@ -595,7 +600,7 @@ def edit_flowers_form_order(request):
             current_order.flowers = flowers
             current_order.save()
             flowers_query = Flowers.objects.get(id=current_order.flowers.id)
-        context = {'formErrors': form.errors, 'flower': flowers_query, 'died': died}
+        context = {'formErrors': form.errors, 'flower': flowers_query, 'died': died, 'order': current_order}
         return render(request, 'edit_flowers_form_order.html', context)
 
 
@@ -614,7 +619,7 @@ def edit_music_form_order(request):
         music_query = None
     if music_query:
         if request.method != 'POST':
-            context = {'music': music_query, 'died': died}
+            context = {'music': music_query, 'died': died, 'order': current_order}
             return render(request, 'edit_music_form_order.html', context)
         else:
             music_query.delete()
@@ -623,7 +628,7 @@ def edit_music_form_order(request):
             current_order.music = music
             current_order.save()
         new_query = Music.objects.get(user=request.user, id=current_order.music.id)
-        context = {'formErrors': form.errors, 'music': new_query, 'died': died}
+        context = {'formErrors': form.errors, 'music': new_query, 'died': died, 'order': current_order}
         return render(request, 'edit_music_form_order.html', context)
     else:
         if request.method != 'POST':
@@ -634,7 +639,7 @@ def edit_music_form_order(request):
             current_order.music = music
             current_order.save()
             music_query = Music.objects.get(id=current_order.music.id)
-        context = {'formErrors': form.errors, 'music': music_query, 'died': died}
+        context = {'formErrors': form.errors, 'music': music_query, 'died': died, 'order': current_order}
         return render(request, 'edit_music_form_order.html', context)
 
 

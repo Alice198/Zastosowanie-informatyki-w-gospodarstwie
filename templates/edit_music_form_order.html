@@ -10,9 +10,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
-                <!-- for order in orders %}-->
+                 <!-- for order in orders %}-->
                  <div class="list-group ">
-                     <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
+                  <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
                      <a class="btn btn-outcolor" role="button">{{died.name}}  {{died.surname}}</a>
 
                          <a href="{% url 'Your order' %}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-backspace"></i></a>
@@ -34,16 +34,16 @@
                         <div class="row-md-6">
                             <ul class="nav nav-tabs">
                               <li class="nav-item">
-                                <a class="nav-link " href="{%url 'Edit died'%}">Zmarły</a>
+                                <a class="nav-link " href="{%url 'Edit died'%}?order_id={{order.id}}">Zmarły</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link " href="{%url 'Edit coffin'%}">Trumna</a>
+                                <a class="nav-link " href="{%url 'Edit coffin'%}?order_id={{order.id}}">Trumna</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="{%url 'Edit flowers'%}">Kwiaty</a>
+                                <a class="nav-link" href="{%url 'Edit flowers'%}?order_id={{order.id}}">Kwiaty</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link active" href="{%url 'Edit music'%}">Oprawa muzyczna</a>
+                                <a class="nav-link active" href="{%url 'Edit music'%}?order_id={{order.id}}">Oprawa muzyczna</a>
                               </li>
                             </ul>
                             </br>

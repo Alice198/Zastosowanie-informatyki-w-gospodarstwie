@@ -9,18 +9,18 @@
 <div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 ">
+        <div class="col-md-3 ">
+                <!-- for order in orders %}-->
                  <div class="list-group ">
-                     <!--{% for order in orders %}-->
                   <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
                      <a class="btn btn-outcolor" role="button">{{died.name}}  {{died.surname}}</a>
 
                          <a href="{% url 'Your order' %}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-backspace"></i></a>
-                  </div>
-                     <!--{% endfor %}-->
+                    </div>
                 </div>
                 <!-- empty %}
-                Utworzenie zamówienia przebiegło pomyślnie -->
+                Utworzenie zamówienia przebiegło pomyślnie
+                {% endfor -->
             </div>
             <div class="offset-1 col-6">
                 <div class="card">

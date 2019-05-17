@@ -24,6 +24,6 @@ urlpatterns = [
     path('edycja_zmarlego/', views.edit_died_from_order, name='Edit died'),
     path('edycja_trumny/', views.edit_coffin_form_order, name='Edit coffin'),
     path('edycja_kwiatow/', views.edit_flowers_form_order, name='Edit flowers'),
-    path('edycja_muzyki', views.edit_music_form_order, name='Edit music'),
+    path('edycja_muzyki/', views.edit_music_form_order, name='Edit music'),
     path('usun_zamowienie/', views.delete_order, name='Delete order'),
 ]

@@ -556,10 +556,11 @@ def edit_coffin_form_order(request):
             coffin = check_and_save_form(request, form, 'co.html')
             current_order.coffin = coffin
             current_order.save()
-            #Coffin.objects.filter
+            _price = coffin_price(coffin.wood, coffin.size)
+            Order.objects.filter(id=order_id).update(costs=_price)
             coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-            _price = coffin_price(coffin_query.wood, coffin_query.size)
-            total_price += _price
+            # _price = coffin_price(coffin_query.wood, coffin_query.size)
+            # total_price += _price
        # current_order.update(costs=total_price)
         context = {'formErrors': form.errors, 'coffin': coffin_query, 'died': died, 'order': current_order}
         return render(request, 'edit_coffin_form_order.html', context)
@@ -607,40 +608,42 @@ def edit_flowers_form_order(request):
 @login_required
 def edit_music_form_order(request):
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
-    order_id = request.GET.get('order_id', order_query[0].id)
-    current_order = Order.objects.get(id=order_id)
-    try:
-        died = Died.objects.get(id=current_order.died.id)
-    except:
-        died = None
-    try:
-        music_query = Music.objects.get(id=current_order.music.id)
-    except:
-        music_query = None
-    if music_query:
-        if request.method != 'POST':
-            context = {'music': music_query, 'died': died, 'order': current_order}
+    order_id = request.GET.get('order_id', 0)
+    if order_id:
+        current_order = Order.objects.get(id=order_id)
+        try:
+            died = Died.objects.get(id=current_order.died.id)
+        except:
+            died = None
+        try:
+            music_query = Music.objects.get(id=current_order.music.id)
+        except:
+            music_query = None
+        if music_query:
+            if request.method != 'POST':
+                context = {'music': music_query, 'died': died, 'order': current_order}
+                return render(request, 'edit_music_form_order.html', context)
+            else:
+                music_query.delete()
+                form = MusicForm(request.POST)
+                music = check_and_save_form(request, form, 'mu')
+                current_order.music = music
+                current_order.save()
+            new_query = Music.objects.get(user=request.user, id=current_order.music.id)
+            context = {'formErrors': form.errors, 'music': new_query, 'died': died, 'order': current_order}
             return render(request, 'edit_music_form_order.html', context)
         else:
-            music_query.delete()
-            form = MusicForm(request.POST)
-            music = check_and_save_form(request, form, 'mu')
-            current_order.music = music
-            current_order.save()
-        new_query = Music.objects.get(user=request.user, id=current_order.music.id)
-        context = {'formErrors': form.errors, 'music': new_query, 'died': died, 'order': current_order}
-        return render(request, 'edit_music_form_order.html', context)
-    else:
-        if request.method != 'POST':
-            form = MusicForm()
-        else:
-            form = MusicForm(request.POST)
-            music = check_and_save_form(request, form, 'mu')
-            current_order.music = music
-            current_order.save()
-            music_query = Music.objects.get(id=current_order.music.id)
-        context = {'formErrors': form.errors, 'music': music_query, 'died': died, 'order': current_order}
-        return render(request, 'edit_music_form_order.html', context)
+            if request.method != 'POST':
+                form = MusicForm()
+            else:
+                form = MusicForm(request.POST)
+                music = check_and_save_form(request, form, 'mu')
+                current_order.music = music
+                current_order.save()
+                music_query = Music.objects.get(id=current_order.music.id)
+            context = {'formErrors': form.errors, 'music': music_query, 'died': died, 'order': current_order}
+            return render(request, 'edit_music_form_order.html', context)
+    return render(request, 'edit_music_form_order.html')
 
 
 def submit_order_appearance():

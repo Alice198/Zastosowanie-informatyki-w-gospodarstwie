@@ -48,7 +48,7 @@
                             </ul>
                             </br>
 
-                                   <form action="{% url 'Edit music'%}" method="post">
+                                   <form action="{% url 'Edit music'%}?order_id={{order.id}}" method="post">
                                      {% csrf_token %}
                                     <div class="form-group row">
                                         <div class="col-4">

@@ -47,7 +47,7 @@
                               </li>
                             </ul>
                             </br>
-                                      <form action="{% url 'Edit flowers'%}" method="post">
+                                      <form action="{% url 'Edit flowers'%}?order_id={{order.id}}" method="post">
                                      {% csrf_token %}
                                       <div class="form-group row">
                                         <div class="col-4">

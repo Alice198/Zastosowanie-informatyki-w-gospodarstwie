@@ -11,7 +11,6 @@ class Music(models.Model):
     msc_type = models.CharField(max_length=1, choices=MUSIC_TYPE)
     songs = models.TextField()
     price_M = models.DecimalField(decimal_places=2, max_digits=5, null=True, blank=True)
-    level = models.CharField(max_length=1, choices=MUSIC_LEVEL)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

@@ -12,7 +12,7 @@ class Order(models.Model):
 
     is_finished = models.BooleanField(default=False)
     order_date = models.DateField(auto_now_add=True)
-    costs = models.DecimalField(decimal_places=2, max_digits=6, null=True, blank=True)
+    costs = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     died = models.OneToOneField(Died, on_delete=models.CASCADE, null=True, blank=True)
     coffin = models.OneToOneField(Coffin, on_delete=models.CASCADE, null=True, blank=True)

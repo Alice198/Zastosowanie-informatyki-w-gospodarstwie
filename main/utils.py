@@ -46,9 +46,3 @@ MUSIC_TYPE = (
     ('O', 'Organ'),
 )
 
-MUSIC_LEVEL = (
-    ('B', 'Beginner'),
-    ('S', 'Semi-Advanced'),
-    ('A', 'Advanced'),
-    ('P', 'Professional'),
-)

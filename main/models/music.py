@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator
 from django.db import models
 
-# from main.models.order import Order
-from main.utils import MUSIC_TYPE
+from main.utils import MUSIC_TYPE, MUSIC_LEVEL
 
 
 class Music(models.Model):
@@ -10,10 +10,9 @@ class Music(models.Model):
 
     msc_type = models.CharField(max_length=1, choices=MUSIC_TYPE)
     songs = models.TextField()
-    # telephone_num = models.DecimalField(max_digits=9, decimal_places=0)
-    # price = models.DecimalField(decimal_places=2, max_digits=4)
+    price_M = models.DecimalField(decimal_places=2, max_digits=5, null=True, blank=True)
+    level = models.CharField(max_length=1, choices=MUSIC_LEVEL)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    # order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""

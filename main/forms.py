@@ -30,30 +30,31 @@ class UserUpdateForm(forms.ModelForm):
 class DiedForm(forms.ModelForm):
     class Meta:
         model = Died
-        fields = ['surname', 'name', 'gender', 'date_birthday', 'date_died', 'transcription', 'outfit', 'makeup']
-        labels = {'surname': '', 'name': '', 'gender': '', 'date_birthday': '', 'date_died': '', 'transcription': '', \
-                  'outfit': '', 'makeup': ''}
+        fields = ['surname', 'name', 'gender', 'date_birthday', 'date_died',
+                  'transcription', 'outfit', 'makeup']
+        labels = {'surname': '', 'name': '', 'gender': '', 'date_birthday': '', 'date_died': '',
+                  'transcription': '', 'outfit': '', 'makeup': ''}
 
 
 class CoffinForm(forms.ModelForm):
     class Meta:
         model = Coffin
-        fields = ['description', 'size', 'wood']
-        labels = {'description': '', 'size': '', 'wood': ''}
+        fields = ['description', 'size', 'wood', 'price_C']
+        labels = {'description': '', 'size': '', 'wood': '', 'price_C': ''}
 
 
 class FlowerForm(forms.ModelForm):
     class Meta:
         model = Flowers
-        fields = ['description', 'size', 'color', 'count']
-        labels = {'description': '', 'size': '', 'color': '', 'count': '', }
+        fields = ['description', 'size', 'color', 'count', 'price_F']
+        labels = {'description': '', 'size': '', 'color': '', 'count': '', 'price_F': ''}
 
 
 class MusicForm(forms.ModelForm):
     class Meta:
         model = Music
-        fields = ['msc_type', 'songs']
-        labels = {'msc_type': '', 'songs': ''}
+        fields = ['msc_type', 'songs', 'price_M']
+        labels = {'msc_type': '', 'songs': '', 'price_M': ''}
 
 
 class OrderForm(forms.ModelForm):

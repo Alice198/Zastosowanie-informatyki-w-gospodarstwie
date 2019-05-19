@@ -9,7 +9,7 @@ def coffin_price(wood, size):
         _price == 650
     if size == 'A':
         _price *= 2
-    return _price
+    return float("{0:.2f}".format(_price))
 
 
 def flowers_price(size, count):
@@ -20,7 +20,7 @@ def flowers_price(size, count):
     elif size == 'B':
         _price = 600
     _price *= count
-    return _price
+    return float("{0:.2f}".format(_price))
 
 
 def music_price(typ):
@@ -28,7 +28,7 @@ def music_price(typ):
         _price = 200
     elif typ == 'T':
         _price = 200
-    return _price
+    return float("{0:.2f}".format(_price))
 
 
 def labour_price():
@@ -40,4 +40,4 @@ def labour_price():
               'freezer': 210}
     for price in labour.values():
         _price += price
-    return _price
+    return float("{0:.2f}".format(_price))

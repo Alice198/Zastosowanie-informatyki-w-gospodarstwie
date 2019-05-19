@@ -17,7 +17,6 @@ class Died(models.Model):
     outfit = models.CharField(max_length=200)
     makeup = models.CharField(max_length=1, choices=MAKEUP_CHOICES)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    # order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         """Returns model as string"""

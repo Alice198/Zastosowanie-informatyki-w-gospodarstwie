@@ -218,6 +218,8 @@ def submit_order_coffin(request):
             coffin_query.delete()
             form = CoffinForm(request.POST)
             coffin = check_and_save_form(request, form, 'submit_order_flower.html')
+            coffin.price_C = coffin_price(coffin.wood, coffin.size)
+            coffin.save()
             current_order.coffin = coffin
             current_order.save()
         new_query = Coffin.objects.get(user=request.user, id=current_order.coffin.id)
@@ -229,6 +231,8 @@ def submit_order_coffin(request):
         else:
             form = CoffinForm(request.POST)
             coffin = check_and_save_form(request, form, 'submit_order_flower.html')
+            coffin.price_C = coffin_price(coffin.wood, coffin.size)
+            coffin.save()
             current_order.coffin = coffin
             current_order.save()
             coffin_query = Coffin.objects.get(id=current_order.coffin.id)
@@ -253,6 +257,8 @@ def submit_order_flower(request):
             flowers_query.delete()
             form = FlowerForm(request.POST)
             flowers = check_and_save_form(request, form, 'submit_order_music.html')
+            flowers.price_F = flowers_price(flowers.size, flowers.count)
+            flowers.save()
             current_order.flowers = flowers
             current_order.save()
         new_query = Flowers.objects.get(user=request.user, id=current_order.flowers.id)
@@ -264,6 +270,8 @@ def submit_order_flower(request):
         else:
             form = FlowerForm(request.POST)
             flowers = check_and_save_form(request, form, 'submit_order_music.html')
+            flowers.price_F = flowers_price(flowers.size, flowers.count)
+            flowers.save()
             current_order.flowers = flowers
             current_order.save()
             flowers_query = Flowers.objects.get(id=current_order.flowers.id)
@@ -293,6 +301,8 @@ def submit_order_music(request):
             music_query.delete()
             form = MusicForm(request.POST)
             music = check_and_save_form(request, form, 'submit_order_summary.html')
+            music.price_M = music_price(music.msc_type)
+            music.save()
             current_order.music = music
             current_order.save()
         new_query = Music.objects.get(user=request.user, id=current_order.music.id)
@@ -304,6 +314,8 @@ def submit_order_music(request):
         else:
             form = MusicForm(request.POST)
             music = check_and_save_form(request, form, 'submit_order_summary.html')
+            music.price_M = music_price(music.msc_type)
+            music.save()
             current_order.music = music
             current_order.save()
             music_query = Music.objects.get(id=current_order.music.id)
@@ -326,19 +338,19 @@ def submit_order_summary(request):
     try:
         coffin_query = Coffin.objects.get(id=current_order.coffin.id)
         if coffin_query:
-            total_price += coffin_price(coffin_query.wood, coffin_query.size)
+            total_price += coffin_query.price_C
     except:
         coffin_query = None
     try:
         flowers_query = Flowers.objects.get(id=current_order.flowers.id)
         if flowers_query:
-            total_price += flowers_price(flowers_query.size, flowers_query.count)
+            total_price += flowers_query.price_F
     except:
         flowers_query = None
     try:
         music_query = Music.objects.get(id=current_order.music.id)
         if music_query:
-            total_price += music_price(music_query.msc_type)
+            total_price += music_query.price_M
     except:
         music_query = None
 

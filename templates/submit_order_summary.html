@@ -30,7 +30,7 @@
                                         <a class="nav-link" id="flower-tab" data-toggle="tab" href="#flower" role="tab" aria-controls="contact" aria-selected="false">Kwiaty</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="music-tab" data-toggle="tab" href="#music" role="tab" aria-controls="contact" aria-selected="false">Muzyk</a>
+                                        <a class="nav-link" id="music-tab" data-toggle="tab" href="#music" role="tab" aria-controls="contact" aria-selected="false">Oprawa muzyczna</a>
                                     </li>
                                 </ul>
 
@@ -292,6 +292,28 @@
                                           </span>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="music_level">Typ instrumentu</label>
+                                        </div>
+                                        <div class="col-8">
+                                          <span class="music_level" for="music_level">
+                                              <p>
+                                                  {% if music.music_level == "B" %}
+                                                    Początkujący
+                                                  {% elif music.music_level == "S" %}
+                                                    Średnio zaawansowany
+                                                  {% elif music.music_level == "A" %}
+                                                    Zaawansowany
+                                                  {% elif music.music_level == "P" %}
+                                                    Profesjonalny
+                                                  {% else %}
+                                                  Brak danych
+                                                  {% endif %}
+                                              </p>
+                                          </span>
+                                        </div>
+                                    </div>
                                               <!--<li>Numer: {{ music.telephone_num }}</li>-->
                                               <!--<li>Cena: {{ music.price }}</li>-->
                                 </div>
@@ -303,7 +325,7 @@
                                     </div>
                                     <div class="col-8" id="id_costs">
                                       <span class="costs" for="costs">
-                                          <li>{{costs}}</li></span>
+                                          {{costs}}</span>
                                     </div>
                                 </div>
                             </form>

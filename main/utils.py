@@ -50,5 +50,5 @@ MUSIC_LEVEL = (
     ('B', 'Beginner'),
     ('S', 'Semi-Advanced'),
     ('A', 'Advanced'),
-    # ('P', 'Professional'),
+    ('P', 'Professional'),
 )

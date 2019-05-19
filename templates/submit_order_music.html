@@ -92,6 +92,32 @@
                                         </div>
 
                                 </div>
+                                <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="id_music_level">Poziom zaawansowania grania</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="d-flex justify-content-center my-4">
+                                                <span class="font-weight-bold purple-text mr-2 mt-1">1</span>
+                                                <form class="range-field w-100">
+                                                    <input type="range" class="custom-range id_music_level" id="customRange1" min="1" max="4">
+                                                </form>
+                                                <span class="font-weight-bold purple-text ml-2 mt-1">4</span>
+                                            </div>
+                                           <!-- <div class="col-md-12 text-center pb-5">
+                                                <h5><span class="badge blue lighten-2 mb-4">1 - Początkujący</span></h5>
+                                                <h5><span class="badge blue lighten-2 mb-4">2 - Średnio zaawansowany</span></h5>
+                                                <h5><span class="badge blue lighten-2 mb-4">3 - Zaawansowany</span></h5>
+                                                <h5><span class="badge blue lighten-2 mb-4">4 - Profesjonalny</span></h5>
+                                            </div>-->
+                                            {% if formErrors.songs %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                        </div>
+
+                                </div>
                                 <!--<div class="form-group row">-->
                                     <!--<div class="col-4">-->
                                         <!--<label for="">Numer telefonu</label>-->

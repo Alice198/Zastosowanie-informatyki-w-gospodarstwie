@@ -45,4 +45,3 @@ MUSIC_TYPE = (
     ('T', 'Trumpet'),
     ('O', 'Organ'),
 )
-

@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 from django.db import models
 
-from main.utils import MUSIC_TYPE, MUSIC_LEVEL
+from main.utils import MUSIC_TYPE
 
 
 class Music(models.Model):

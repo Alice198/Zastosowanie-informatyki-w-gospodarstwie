@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django.contrib import messages
 from django.contrib.auth import logout, login, authenticate, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -17,7 +19,7 @@ from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, \
     MusicForm, UserUpdateForm, GetPasswordForm
 
 
-def check_and_save_form(request, form, template= 'empty'):
+def check_and_save_form(request, form, template='empty'):
     if form.is_valid():
         new_form = form.save(commit=False)
         new_form.user = User.objects.get(id=request.user.id)
@@ -326,7 +328,7 @@ def submit_order_music(request):
 @login_required
 def submit_order_summary(request):
     current_order = get_order(request)
-    total_price = labour_price()
+    total_price = 0
     try:
         died_query = Died.objects.get(id=current_order.died.id)
         date_b = died_query.date_birthday.strftime("%d.%m.%Y")
@@ -338,22 +340,26 @@ def submit_order_summary(request):
     try:
         coffin_query = Coffin.objects.get(id=current_order.coffin.id)
         if coffin_query:
-            total_price += coffin_query.price_C
+            print('dupa')
+            print(coffin_query.price_C + total_price)
+            total_price += Decimal(coffin_query.price_C)
+            print(total_price)
     except:
         coffin_query = None
     try:
         flowers_query = Flowers.objects.get(id=current_order.flowers.id)
         if flowers_query:
-            total_price += flowers_query.price_F
+            total_price += Decimal(flowers_query.price_F)
     except:
         flowers_query = None
     try:
         music_query = Music.objects.get(id=current_order.music.id)
         if music_query:
-            total_price += music_query.price_M
+            total_price += Decimal(music_query.price_M)
     except:
         music_query = None
 
+    total_price = total_price + Decimal(labour_price())
     if request.method == 'POST':
         current_order.is_finished = True
         current_order.costs = total_price
@@ -371,6 +377,7 @@ def submit_order_summary(request):
         return render(request, 'submit_order_summary.html', context)
     else:
         messages.error(request, 'Zamówienie nie zostało zapisane')
+    print(total_price)
     context = {
         'died': died_query,
         'coffin': coffin_query,
@@ -514,7 +521,8 @@ def edit_died_from_order(request):
         new_query = Died.objects.get(user=request.user, id=current_order.died.id)
         date_b = died_query.date_birthday.strftime("%Y-%m-%d")
         date_d = died_query.date_died.strftime("%Y-%m-%d")
-        context = {'formErrors': form.errors, 'died': new_query, 'birthday': date_b, 'death': date_d, 'order': current_order}
+        context = {'formErrors': form.errors, 'died': new_query, 'birthday': date_b, 'death': date_d,
+                   'order': current_order}
         return render(request, 'edit_died_form_order.html', context)
     else:
         if request.method != 'POST':
@@ -529,7 +537,8 @@ def edit_died_from_order(request):
             date_b = died_query.date_birthday.strftime("%Y-%m-%d")
             date_d = died_query.date_died.strftime("%Y-%m-%d")
             if date_b and date_d:
-                context = {'formErrors': form.errors, 'died': died_query, 'birthday': date_b, 'death': date_d, 'orders': current_order}
+                context = {'formErrors': form.errors, 'died': died_query, 'birthday': date_b, 'death': date_d,
+                           'orders': current_order}
         return render(request, 'edit_died_form_order.html', context)
 
 
@@ -573,7 +582,7 @@ def edit_coffin_form_order(request):
             current_order.coffin = coffin
             current_order.save()
             coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-       # current_order.update(costs=total_price)
+        # current_order.update(costs=total_price)
         context = {'formErrors': form.errors, 'coffin': coffin_query, 'died': died, 'order': current_order}
         return render(request, 'edit_coffin_form_order.html', context)
 
@@ -668,4 +677,3 @@ def edit_music_form_order(request):
 
 def submit_order_appearance():
     pass
-

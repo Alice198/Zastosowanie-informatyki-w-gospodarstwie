@@ -555,6 +555,8 @@ def edit_coffin_form_order(request):
             coffin_query.delete()
             form = CoffinForm(request.POST)
             coffin = check_and_save_form(request, form, 'col')
+            coffin.price_C = coffin_price(coffin.wood, coffin.size)
+            coffin.save()
             current_order.coffin = coffin
             current_order.save()
         new_query = Coffin.objects.get(user=request.user, id=current_order.coffin.id)
@@ -566,13 +568,11 @@ def edit_coffin_form_order(request):
         else:
             form = CoffinForm(request.POST)
             coffin = check_and_save_form(request, form, 'co.html')
+            coffin.price_C = coffin_price(coffin.wood, coffin.size)
+            coffin.save()
             current_order.coffin = coffin
             current_order.save()
-            _price = coffin_price(coffin.wood, coffin.size)
-            Order.objects.filter(id=order_id).update(costs=_price)
             coffin_query = Coffin.objects.get(id=current_order.coffin.id)
-            # _price = coffin_price(coffin_query.wood, coffin_query.size)
-            # total_price += _price
        # current_order.update(costs=total_price)
         context = {'formErrors': form.errors, 'coffin': coffin_query, 'died': died, 'order': current_order}
         return render(request, 'edit_coffin_form_order.html', context)
@@ -599,6 +599,8 @@ def edit_flowers_form_order(request):
             flowers_query.delete()
             form = FlowerForm(request.POST)
             flowers = check_and_save_form(request, form, 'fl')
+            flowers.price_F = flowers_price(flowers.size, flowers.count)
+            flowers.save()
             current_order.flowers = flowers
             current_order.save()
         new_query = Flowers.objects.get(user=request.user, id=current_order.flowers.id)
@@ -610,6 +612,8 @@ def edit_flowers_form_order(request):
         else:
             form = FlowerForm(request.POST)
             flowers = check_and_save_form(request, form, 'fl')
+            flowers.price_F = flowers_price(flowers.size, flowers.count)
+            flowers.save()
             current_order.flowers = flowers
             current_order.save()
             flowers_query = Flowers.objects.get(id=current_order.flowers.id)
@@ -639,6 +643,8 @@ def edit_music_form_order(request):
                 music_query.delete()
                 form = MusicForm(request.POST)
                 music = check_and_save_form(request, form, 'mu')
+                music.price_M = music_price(music.msc_type)
+                music.save()
                 current_order.music = music
                 current_order.save()
             new_query = Music.objects.get(user=request.user, id=current_order.music.id)
@@ -650,6 +656,8 @@ def edit_music_form_order(request):
             else:
                 form = MusicForm(request.POST)
                 music = check_and_save_form(request, form, 'mu')
+                music.price_M = music_price(music.msc_type)
+                music.save()
                 current_order.music = music
                 current_order.save()
                 music_query = Music.objects.get(id=current_order.music.id)

@@ -38,6 +38,7 @@ def get_order(request):
 
 
 def get_your_orders(current_order):
+    total_price = 0
     try:
         died_query = Died.objects.get(id=current_order.died.id)
     except:
@@ -52,20 +53,25 @@ def get_your_orders(current_order):
         date_d = None
     try:
         coffin_query = Coffin.objects.get(id=current_order.coffin.id)
+        if coffin_query:
+            total_price += Decimal(coffin_query.price_C)
     except:
         coffin_query = None
     try:
         flowers_query = Flowers.objects.get(id=current_order.flowers.id)
+        if flowers_query:
+            total_price += Decimal(flowers_query.price_F)
     except:
         flowers_query = None
     try:
         music_query = Music.objects.get(id=current_order.music.id)
+        if music_query:
+            total_price += Decimal(music_query.price_M)
     except:
         music_query = None
-    try:
-        total_costs = current_order.costs
-    except:
-        total_costs = None
+
+    total_costs = total_price + Decimal(labour_price())
+
     return died_query, date_b, date_d, coffin_query, flowers_query, music_query, total_costs
 
 
@@ -398,6 +404,8 @@ def your_order(request):
         current_order = Order.objects.get(id=order_id)
         died, date_b, date_d, coffin, flowers, music, total_costs = get_your_orders(current_order)
 
+        print(died, date_b, date_d, coffin, flowers, music, total_costs)
+
         context = {
             'orders': order_query,
             'died': died,
@@ -561,7 +569,9 @@ def edit_coffin_form_order(request):
             context = {'coffin': coffin_query, 'died': died, 'order': current_order}
             return render(request, 'edit_coffin_form_order.html', context)
         else:
+            print(current_order.costs)
             coffin_query.delete()
+            print(current_order.costs)
             form = CoffinForm(request.POST)
             coffin = check_and_save_form(request, form, 'col')
             coffin.price_C = coffin_price(coffin.wood, coffin.size)

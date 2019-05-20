@@ -555,7 +555,6 @@ def edit_coffin_form_order(request):
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
     order_id = request.GET.get('order_id', order_query[0].id)
     current_order = Order.objects.get(id=order_id)
-    total_price = current_order.costs
     try:
         died = Died.objects.get(id=current_order.died.id)
     except:
@@ -569,9 +568,7 @@ def edit_coffin_form_order(request):
             context = {'coffin': coffin_query, 'died': died, 'order': current_order}
             return render(request, 'edit_coffin_form_order.html', context)
         else:
-            print(current_order.costs)
             coffin_query.delete()
-            print(current_order.costs)
             form = CoffinForm(request.POST)
             coffin = check_and_save_form(request, form, 'col')
             coffin.price_C = coffin_price(coffin.wood, coffin.size)

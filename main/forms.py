@@ -7,6 +7,7 @@ from main.models.died import Died
 from main.models.flowers import Flowers
 from main.models.music import Music
 from main.models.order import Order
+from main.models.reviews import Reviews
 
 
 class UserCreationForm(form.UserCreationForm):
@@ -61,3 +62,9 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+
+
+class OpinionForm(forms.ModelForm):
+    class Meta:
+        model = Reviews
+        fields = ['rating', 'description', ]

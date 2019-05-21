@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Opinie{% endblock %}
+{% block title %}Dodaj opinie{% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="jumbotron d-flex align-items-center justify-content-center">
+<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="container">
         <div class="row">
 
@@ -19,7 +19,8 @@
                             </div>
                       </div>
                         <div class="row-md-6">
-                            <form>
+                            <form action="{% url 'Opinion' %}" method="post">
+                                {% csrf_token %}
                                <div class="form-group row">
                                     <div class="col-4">
                                         <label for="id_opinion">Opinia</label>
@@ -32,13 +33,14 @@
                                             <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
                                             <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
                                         </div>
-                                        <textarea type="text" name="opinion" placeholder="Dodaj swoją opinie" class="form-control" required="" id="id_opinion" autofocus=""></textarea>
+                                        <textarea type="text" name="description" placeholder="Dodaj swoją opinie" class="form-control" required="" id="id_opinion" autofocus=""></textarea>
                                     </div>
                                 </div>
-                            </form>
+
                           <div class="offset-5 col-6">
-                              <button class="btn btn-outline-dark">Dodaj</button>
-                          </div>
+                              <input type="submit" value="Dodaj" class="btn btn-outline-dark" />
+                              <a href="{% url 'View user opinions' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Twoje opinie</a>
+                          </div></form>
                         </div>
                         </div>
                     </div>
@@ -47,98 +49,105 @@
         </div>
     </div>
 </div>
-<div class="jumbotron d-flex align-items-center justify-content-center">
-    <div class="container">
-        <div class="row">
+<!--<div class="jumbotron d-flex align-items-center justify-content-center">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
 
-            <div class="offset-3 col-6">
-                <div class="card">
-                    <div class="card-body">
-                      <div class="row">
-                            <div class="col-md-12">
-                                <h4>Wszyskie twoje opinie</h4>
-                                <hr>
-                            </div>
-                      </div>
-                        <div class="row-md-6">
-                            <form>
-                               <div class="form-group row">
-                                    <div class="col-4">
-                                        <label for="id_opinion">{{user.username}}</label>
-                                    </div>
+            <!--<div class="offset-3 col-6">-->
+                <!--<div class="card">-->
+                    <!--<div class="card-body">-->
+                      <!--<div class="row">-->
+                            <!--<div class="col-md-12">-->
+                                <!--<h4>Wszyskie twoje opinie</h4>-->
+                                <!--<hr>-->
+                            <!--</div>-->
+                      <!--</div>-->
+                        <!--<div class="row-md-6">-->
+                            <!--<form action="{% url 'View user opinions'%}">-->
+                                 <!--{% csrf_token %}-->
+                                <!--<li>opinie {{opinions}}</li>-->
+                                <!--{% for opinion in opinions %}-->
 
-                                    <div class="col-8" id="id_opinion">
-                                        <div class="d-flex justify-content-center flex-row-reverse fa fa-star float-right">
-                                            <!--<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
-                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
-                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
-                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
-                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>-->
-                                            <label for="star1" title="1 star"></label><span class="float-right" id="star1" name="rating" value="1"><i class="fa fa-star star"></i></span>
-                                            <label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>
-                                        </div>
-                                    </br>
-                                        <span class="custom-control-description"><b>opinieeeeesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</b></span>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                               <!--<div class="form-group row">-->
+                                    <!--<div class="col-4">-->
+                                        <!--<label for="id_opinions">{{user.username}}</label>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="col-8" id="id_opinions">-->
+                                        <!--&lt;!&ndash;<div class="d-flex justify-content-center flex-row-reverse fa fa-star float-right">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>-->
+                                            <!--<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>-->
+                                            <!--<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>-->
+                                            <!--<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>-->
+                                            <!--<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<label for="star1" title="1 star"></label><span class="float-right" id="star1" name="rating" value="1"><i class="fa fa-star star"></i></span>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--</br>-->
+                                        <!--<span class="custom-control-description"><b>{{opinion.description}}</b></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--{% endfor %}-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 
 
 
-{% else %}
+<!--{% else %}-->
 
-<div class="jumbotron d-flex align-items-center justify-content-center">
-    <div class="container">
-        <div class="row">
+<!--<div class="jumbotron d-flex align-items-center justify-content-center">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
 
-            <div class="offset-3 col-6">
-                <div class="card">
-                    <div class="card-body">
-                      <div class="row">
-                            <div class="col-md-12">
-                                <h4>Opinie użytkowników wykonanej przez nas usługi</h4>
-                                <hr>
-                            </div>
-                      </div>
-                        <div class="row-md-6">
-                            <form>
-                               <div class="form-group row">
-                                    <div class="col-4">
-                                        <label for="id_opinion">Nick{{user.username}}</label>
-                                    </div>
+            <!--<div class="offset-3 col-6">-->
+                <!--<div class="card">-->
+                    <!--<div class="card-body">-->
+                      <!--<div class="row">-->
+                            <!--<div class="col-md-12">-->
+                                <!--<h4>Opinie użytkowników wykonanej przez nas usługi</h4>-->
+                                <!--<hr>-->
+                            <!--</div>-->
+                      <!--</div>-->
+                        <!--<div class="row-md-6">-->
+                            <!--<form action="{% url 'View all opinions'%}">-->
+                                <!--{% for opinion in opinions %}-->
+                               <!--<div class="form-group row">-->
+                                    <!--<div class="col-4">-->
+                                        <!--<label for="id_opinion">Nick{{opinion.user.username}}</label>-->
+                                    <!--</div>-->
 
-                                    <div class="col-8" id="id_opinion">
-                                        <div class="d-flex justify-content-center flex-row-reverse fa fa-star float-right">
-                                            <!--<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>
-                                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>
-                                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>
-                                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
-                                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>-->
-                                            <label for="star1" title="1 star"></label><span class="float-right" id="star1" name="rating" value="1"><i class="fa fa-star star"></i></span>
-                                            <label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>
-                                        </div>
-                                    </br>
-                                        <span class="custom-control-description"><b>opinieeeeesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</b></span>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                                    <!--<div class="col-8" id="id_opinion">-->
+                                        <!--<div class="d-flex justify-content-center flex-row-reverse fa fa-star float-right">-->
+                                            <!--&lt;!&ndash;<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>-->
+                                            <!--<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>-->
+                                            <!--<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star"></label>-->
+                                            <!--<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>-->
+                                            <!--<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<label for="star1" title="1 star"></label><span class="float-right" id="star1" name="rating" value="1"><i class="fa fa-star star"></i></span>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>&ndash;&gt;-->
+                                        <!--</div>-->
+                                    <!--</br>-->
+                                        <!--<span class="custom-control-description"><b>{{opinion.description}}</b></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--{% endfor %}-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
 
 {% endif %}

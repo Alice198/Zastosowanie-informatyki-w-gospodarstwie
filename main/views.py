@@ -15,8 +15,9 @@ from main.models.died import Died
 from main.models.flowers import Flowers
 from main.models.music import Music
 from main.models.order import Order
+from main.models.reviews import Reviews
 from .forms import DiedForm, CoffinForm, FlowerForm, UserCreationForm, \
-    MusicForm, UserUpdateForm, GetPasswordForm
+    MusicForm, UserUpdateForm, GetPasswordForm, OpinionForm
 
 
 def check_and_save_form(request, form, template='empty'):
@@ -471,12 +472,6 @@ def delete_order(request):
     return render(request, 'your_order.html', context)
 
 
-# TODO:
-def opinion(request):
-    return render(request, 'opinion.html')
-
-
-# TODO:
 @login_required
 def edit_your_order(request):
     order_query = Order.objects.filter(user=request.user, is_finished=True).order_by('-order_date')
@@ -680,6 +675,38 @@ def edit_music_form_order(request):
             context = {'formErrors': form.errors, 'music': music_query, 'died': died, 'order': current_order}
             return render(request, 'edit_music_form_order.html', context)
     return render(request, 'edit_music_form_order.html')
+
+
+@login_required
+def add_opinion(request):
+    if request.method != 'POST':
+        form = OpinionForm()
+        opinion = None
+    else:
+        form = OpinionForm(request.POST)
+        opinion = check_and_save_form(request, form, 'nic')
+    context = {'formErrors': form.errors, 'opinion': opinion}
+    return render(request, 'opinion.html', context)
+
+
+def view_user_opinions(request):
+    if request.method == 'GET':
+        if request.user.id:
+            opinions = Reviews.objects.filter(user=request.user.id)
+            print('dzaila', opinions)
+        else:
+            print('dzialasm, jpojoj')
+            opinions = Reviews.objects.all().order_by('date_added')
+            print(opinions)
+        return render(request, 'view_opinions.html', context={'opinions': opinions})
+
+
+def view_all_opinions(request):
+    if request.method == 'GET':
+        print('dzialasm, jpojoj')
+        opinions = Reviews.objects.all().order_by('date_added')
+        print(opinions)
+        return render(request, 'view_opinions.html', context={'opinions': opinions})
 
 
 def submit_order_appearance():

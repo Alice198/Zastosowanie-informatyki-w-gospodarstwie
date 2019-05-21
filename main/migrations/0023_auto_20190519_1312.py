@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('main', '0022_auto_20190519_1258'),
     ]
@@ -14,5 +13,9 @@ class Migration(migrations.Migration):
             model_name='music',
             name='price_M',
             field=models.DecimalField(blank=True, decimal_places=2, max_digits=5, null=True),
+        ),
+        migrations.RemoveField(
+            model_name='music',
+            name='level',
         ),
     ]

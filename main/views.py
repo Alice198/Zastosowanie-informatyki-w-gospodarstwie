@@ -689,23 +689,12 @@ def add_opinion(request):
     return render(request, 'opinion.html', context)
 
 
-def view_user_opinions(request):
+def view_opinions(request):
     if request.method == 'GET':
         if request.user.id:
             opinions = Reviews.objects.filter(user=request.user.id)
-            print('dzaila', opinions)
         else:
-            print('dzialasm, jpojoj')
             opinions = Reviews.objects.all().order_by('date_added')
-            print(opinions)
-        return render(request, 'view_opinions.html', context={'opinions': opinions})
-
-
-def view_all_opinions(request):
-    if request.method == 'GET':
-        print('dzialasm, jpojoj')
-        opinions = Reviews.objects.all().order_by('date_added')
-        print(opinions)
         return render(request, 'view_opinions.html', context={'opinions': opinions})
 
 

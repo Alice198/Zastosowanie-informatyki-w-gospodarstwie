@@ -26,6 +26,5 @@ urlpatterns = [
     path('edycja_muzyki/', views.edit_music_form_order, name='Edit music'),
     path('usun_zamowienie/', views.delete_order, name='Delete order'),
     path('dodaj_opinie/', views.add_opinion, name='Opinion'),
-    path('opinie/', views.view_user_opinions, name='View user opinions'),
-    path('opinie/', views.view_all_opinions, name='View all opinions'),
+    path('opinie/', views.view_opinions, name='View opinions'),
 ]

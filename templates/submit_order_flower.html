@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="jumbotron d-flex align-items-center justify-content-center">
+<!--<div class="jumbotron d-flex align-items-center justify-content-center">
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
@@ -227,22 +227,6 @@
                                                   class="form-control"  id="id_description_flowers" autofocus="">{{flower.description}}</textarea>
                                     </div>
                                 </div>
-
-                                    <!--<div class="form-group row">-->
-                                        <!--<div class="col-4">-->
-                                            <!--<label for="price">Cena za zamówione kwiaty</label>-->
-                                        <!--</div>-->
-                                        <!--<div class="col-8" id="price">-->
-                                          <!--<span data-model-name="price" class="custom-control-description"><b>trzeba jakos wyliczac</b></span>-->
-
-                                            <!--{% if formErrors.price %}-->
-                                            <!--<p style="color: red;">-->
-                                            <!--</p>-->
-                                            <!--{% endif %}-->
-                                        <!--</div>-->
-
-
-                                    <!--</div>-->
                           <div class="offset-3 col-8">
                               <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
                               <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
@@ -257,7 +241,254 @@
         </div>
     </div>
 </div>
+-->
 
+<div class="d-flex" id="wrapper">
+    <div class="bg-dark border-dark" id="sidebar-wrapper">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                         <a data-toggle=" show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style active bg-dark">Złóż zamówienie</a>
+                     </h5>
+                </div>
+                <div id="collapse1" class="panel-collapse show">
+                    <ul class="list-group">
+                        <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action bg-dark">Zmarły</a>
+                        <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action bg-dark">Trumna</a>
+                        <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action a_style active bg-dark">Kwiaty</a>
+                        <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action bg-dark">Oprawa muzyczna</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="offset-1 col-10">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Kwiaty</h4>
+                                <hr>
+                            </div>
+                      </div>
+                        <div class="row-md-6">
+                            <form action="{% url 'Submit order flowers'%}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="size">Wielkość wiązanki</label>
+                                    </div>
+                                    <div class="col-8" id="size">
+                                        {% if flower.size != None %}
+                                            {% if flower.size == "S" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Mała</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M">
+                                                    <label class="form-check-label" for="inlineRadio2">Średnia</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B">
+                                                    <label class="form-check-label" for="inlineRadio3">Duża</label>
+                                                </div>
+                                            {% elif flower.size == "M" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S">
+                                                    <label class="form-check-label" for="inlineRadio1">Mała</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Średnia</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B">
+                                                    <label class="form-check-label" for="inlineRadio3">Duża</label>
+                                                </div>
+                                            {% elif flower.size == "B" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S">
+                                                    <label class="form-check-label" for="inlineRadio1">Mała</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M">
+                                                    <label class="form-check-label" for="inlineRadio2">Średnia</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B" checked>
+                                                    <label class="form-check-label" for="inlineRadio3">Duża</label>
+                                                </div>
+                                            {% endif %}
+                                        {%else%}
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio1" value="S" required>
+                                                <label class="form-check-label" for="inlineRadio1">Mała</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio2" value="M" required>
+                                                <label class="form-check-label" for="inlineRadio2">Średnia</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="size" id="inlineRadio3" value="B" required>
+                                                <label class="form-check-label" for="inlineRadio3">Duża</label>
+                                            </div>
+                                        {% endif %}
+
+
+                                            {% if formErrors.size %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="color">Kolory</label>
+                                    </div>
+                                    <div class="col-8" id="color">
+                                        {% if flower.color != None %}
+                                            {% if flower.color == "Wh" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Biała</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl">
+                                                    <label class="form-check-label" for="inlineRadio2">Niebieska</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi">
+                                                    <label class="form-check-label" for="inlineRadio3">Różowa</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi">
+                                                    <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
+                                                </div>
+                                            {% elif flower.color == "Bl" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh">
+                                                    <label class="form-check-label" for="inlineRadio1">Biała</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Niebieska</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi">
+                                                    <label class="form-check-label" for="inlineRadio3">Różowa</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi">
+                                                    <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
+                                                </div>
+                                            {% elif flower.color == "Pi" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh">
+                                                    <label class="form-check-label" for="inlineRadio1">Biała</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl">
+                                                    <label class="form-check-label" for="inlineRadio2">Niebieska</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi" checked>
+                                                    <label class="form-check-label" for="inlineRadio3">Różowa</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi">
+                                                    <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
+                                                </div>
+                                            {% elif flower.color == "Mi" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh">
+                                                    <label class="form-check-label" for="inlineRadio1">Biała</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl">
+                                                    <label class="form-check-label" for="inlineRadio2">Niebieska</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi">
+                                                    <label class="form-check-label" for="inlineRadio3">Różowa</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi" checked>
+                                                    <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
+                                                </div>
+                                            {% endif %}
+                                        {%else %}
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio1" value="Wh" required>
+                                                <label class="form-check-label" for="inlineRadio1">Biała</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio2" value="Bl" required>
+                                                <label class="form-check-label" for="inlineRadio2">Niebieska</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio3" value="Pi" required>
+                                                <label class="form-check-label" for="inlineRadio3">Różowa</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="color" id="inlineRadio4" value="Mi" required>
+                                                <label class="form-check-label" for="inlineRadio3">Wymieszane wszystkie powyższe kolory</label>
+                                            </div>
+                                        {% endif %}
+
+
+
+                                            {% if formErrors.color %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="example-number-input">Ilość wiązanek</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" type="number" name="count" value="{{flower.count}}" id="example-number-input" required>
+
+                                        {% if formErrors.count %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_description_flowers">Opis</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <textarea type="text" name="description" placeholder="Opis kwiatów"
+                                                  class="form-control"  id="id_description_flowers" autofocus="">{{flower.description}}</textarea>
+                                    </div>
+                                </div>
+                          <div class="offset-3 col-8">
+                              <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
+                              <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
+                              <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
+                          </div></form>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% else %}
 

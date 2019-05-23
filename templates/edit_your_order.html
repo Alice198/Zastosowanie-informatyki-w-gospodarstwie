@@ -11,16 +11,11 @@
         <div class="row">
             <div class="col-md-3 ">
                  <div class="list-group ">
-                     <!--{% for order in orders %}-->
                   <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
                      <a class="btn btn-outcolor" role="button">{{died.name}}  {{died.surname}}</a>
-
                          <a href="{% url 'Your order' %}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-backspace"></i></a>
                   </div>
-                     <!--{% endfor %}-->
                 </div>
-                <!-- empty %}
-                Utworzenie zamówienia przebiegło pomyślnie -->
             </div>
             <div class="offset-1 col-6">
                 <div class="card">
@@ -86,7 +81,6 @@
                                         <label for="gender">Płeć</label>
                                     </div>
                                     <div id="gender" class="col-8">
-                                        <!--<form action="" autocomplete="off">-->
                                         {% if died.gender != None %}
                                             {% if died.gender == "F" %}
                                                 <div class="form-check form-check-inline">
@@ -238,7 +232,6 @@
                                             <label class="form-check-label" for="inlineRadio3">Nie</label>
                                           </div>
                                         {% endif %}
-                                    <!--NIE DZIALA TEN ERROR-->
                                         {% if formErrors.makeup %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -271,7 +264,7 @@
         </div>
     </div>
 </div>
-<!-- else %}
+<!--else %}
 <div class="container-fluid" >
     <div class="jumbotron box">
         <div class="container">
@@ -284,6 +277,10 @@
     </div>
 </div>
 {% endif -->
+
+
+
+
 
 {% else %}
 

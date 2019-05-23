@@ -6,11 +6,10 @@
 
 {% if user.is_authenticated %}
 <!-- if orders != None %}-->
-<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
+<!--<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="container">
         <div class="row">
         <div class="col-md-3 ">
-                <!-- for order in orders %}-->
                  <div class="list-group ">
                   <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
                      <a class="btn btn-outcolor" role="button">{{died.name}}  {{died.surname}}</a>
@@ -18,9 +17,7 @@
                          <a href="{% url 'Your order' %}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-backspace"></i></a>
                     </div>
                 </div>
-                <!-- empty %}
-                Utworzenie zamówienia przebiegło pomyślnie
-                {% endfor -->
+
             </div>
             <div class="offset-1 col-6">
                 <div class="card">
@@ -86,7 +83,6 @@
                                         <label for="gender">Płeć</label>
                                     </div>
                                     <div id="gender" class="col-8">
-                                        <!--<form action="" autocomplete="off">-->
                                         {% if died.gender != None %}
                                             {% if died.gender == "F" %}
                                                 <div class="form-check form-check-inline">
@@ -238,7 +234,6 @@
                                             <label class="form-check-label" for="inlineRadio3">Nie</label>
                                           </div>
                                         {% endif %}
-                                    <!--NIE DZIALA TEN ERROR-->
                                         {% if formErrors.makeup %}
                                             <p style="color: red;">
                                                 To pole jest wymagane
@@ -271,19 +266,277 @@
         </div>
     </div>
 </div>
-<!-- else %}
-<div class="container-fluid" >
-    <div class="jumbotron box">
-        <div class="container">
-            <div class="row-sm-12 mt-4 mb-4">
-                <div class="col-sm-12">
-                    <h2>Nie posiadasz jeszcze żadnego zamówienia, proszę przejść w zakładkę "Złóż zamówienie"</h2>
+-->
+
+<div class="d-flex" id="wrapper">
+    <div class="bg-dark border-dark" id="sidebar-wrapper">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                         <a data-toggle=" show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style active bg-dark">Złóż zamówienie</a>
+                     </h5>
+                </div>
+                <div id="collapse1" class="panel-collapse show">
+                    <ul class="list-group ">
+                        <div  class="list-group-item list-group-item-action bg-dark"  href="{% url 'Your order' %}?order_id={{order.id}}">
+                            <a class="btn bg-dark " role="button">{{died.name}}  {{died.surname}}</a>
+                            <a href="{% url 'Your order' %}" class="btn bg-dark float-right" role="button"><i class="fas fa-backspace"></i></a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="offset-1 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Edytuj zamówienie </h4>
+                                <hr>
+                            </div>
+                      </div>
+
+                        <div class="row-md-6">
+                            <ul class="nav nav-tabs">
+                              <li class="nav-item">
+                                <a class="nav-link active" href="{%url 'Edit died'%}?order_id={{order.id}}">Zmarły</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link " href="{%url 'Edit coffin'%}?order_id={{order.id}}">Trumna</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="{%url 'Edit flowers'%}?order_id={{order.id}}">Kwiaty</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="{%url 'Edit music'%}?order_id={{order.id}}">Oprawa muzyczna</a>
+                              </li>
+                            </ul>
+                            </br>
+
+                                <form action="{% url 'Edit died'%}?order_id={{order.id}}" method="post">
+                                             {% csrf_token %}
+                                        <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_name_death">Imie</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" name="name" placeholder="Imię" value="{{died.name}}" class="form-control"
+                                               id="id_name_death" autofocus="" maxlength="150" required>
+                                        {% if formErrors.name  %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_surname_death">Nazwisko</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" name="surname" placeholder="Nazwisko" value="{{died.surname}}" class="form-control"
+                                               id="id_surname_death" autofocus="" maxlength="150" required>
+                                        {% if formErrors.surname  %}
+                                            <p style="color: red;">
+                                                 To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="gender">Płeć</label>
+                                    </div>
+                                    <div id="gender" class="col-8">
+                                        {% if died.gender != None %}
+                                            {% if died.gender == "F" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio1" value="F" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Kobieta</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio2" value="M">
+                                                    <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
+                                                </div>
+                                            {% elif died.gender == "M" %}
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio1" value="F" >
+                                                    <label class="form-check-label" for="inlineRadio1">Kobieta</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                           id="inlineRadio2" value="M" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
+                                                </div>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                       id="inlineRadio1" value="F" required>
+                                                <label class="form-check-label" for="inlineRadio1">Kobieta</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender"
+                                                       id="inlineRadio2" value="M" required>
+                                                <label class="form-check-label" for="inlineRadio2">Mężczyzna</label>
+                                            </div>
+                                        {% endif %}
+                                        {% if formErrors.gender  %}
+                                            <p style="color: red;">
+                                                 To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_date_birth">Data urodzenia</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="date" name="date_birthday" placeholder="Data urodzenia" required
+                                               class="form-control" id="id_date_birth" autofocus="" maxlength="150" value="{{ birthday }}">
+                                        {% if formErrors.date_birthday  %}
+                                            <p style="color: red;">
+                                                  To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_date_birth">Data śmierci</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="date" name="date_died" placeholder="Data śmierci" value="{{ death }}"
+                                               class="form-control" id="id_date_death" autofocus="" maxlength="150" required>
+                                        {% if formErrors.date_died %}
+                                            <p style="color: red;">
+                                               To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_transcription">Transkrypcja</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" name="transcription" placeholder="Transkrypcja" value="{{ died.transcription }}"
+                                               class="form-control" id="id_transcription" autofocus="" maxlength="150" required>
+                                        {% if formErrors.transcription %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="makeup">Makijaż</label>
+                                    </div>
+                                    <div class="col-8" id="makeup">
+                                        {% if died.makeup != None %}
+                                            {% if died.makeup == "Y" %}
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L">
+                                                    <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
+                                                    <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                                  </div>
+                                            {% elif died.makeup == "L" %}
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y" >
+                                                    <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N">
+                                                    <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                          </div>
+                                            {% elif died.makeup == "N" %}
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y">
+                                                    <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L">
+                                                    <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                                  </div>
+                                                  <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N" checked>
+                                                    <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                                  </div>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio1" value="Y" required>
+                                            <label class="form-check-label" for="inlineRadio1">Tak</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio2" value="L" required>
+                                            <label class="form-check-label" for="inlineRadio2">Lekki</label>
+                                          </div>
+                                          <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="makeup" id="inlineRadio3" value="N" required>
+                                            <label class="form-check-label" for="inlineRadio3">Nie</label>
+                                          </div>
+                                        {% endif %}
+                                        {% if formErrors.makeup %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+
+                                    <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_outfit">Ubranie</label>
+                                    </div>
+                                    <div class="col-8" id="id_outfit">
+                                        <textarea type="text" name="outfit" placeholder="Ubiór zmarłego w dniu pogrzebu"
+                                                  class="form-control" required="" id="id_transcription" autofocus="">{{ died.outfit }}</textarea>
+                                    </div>
+                                    </div>
+                                <div class="offset-4 col-8">
+                                        <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
+                                </div></form>
+                                </div>
+
+
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endif -->
 
 {% else %}
 

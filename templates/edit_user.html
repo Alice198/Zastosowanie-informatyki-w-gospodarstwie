@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="jumbotron d-flex align-items-center">
+<!--<div class="jumbotron d-flex align-items-center">
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
@@ -53,18 +53,6 @@
                                       <input id="lastname" name="last_name" placeholder="Nazwisko" class="form-control here" type="text" value="{{user.last_name}}">
                                     </div>
                                   </div>
-                                  <!--<div class="form-group row phone-number">
-                                    <label for="tel" class="col-4 col-form-label">Numer telefonu</label>
-                                      <div class="col-2">
-                                        <input type="tel" name="phone" class="form-control" value="" size="3" maxlength="3" required="required" title="">
-                                      </div>
-                                      <div class="col-2">
-                                        <input type="tel" name="phone" class="form-control" value="" size="3" maxlength="3" required="required" title="">
-                                      </div>
-                                      <div class="col-2">
-                                          <input type="tel" name="phone" class="form-control" value="" size="3" maxlength="3" required="required" title="">
-                                      </div>
-                                  </div>-->
                                     {% if messages %}
                                     <div class="messages text-center">
                                         {% for message in messages %}
@@ -87,7 +75,90 @@
         </div>
     </div>
 </div>
+-->
 
+
+<div class="d-flex" id="wrapper">
+    <div class="bg-dark border-dark" id="sidebar-wrapper">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                         <a data-toggle="show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style active bg-dark">Moje konto</a>
+                     </h5>
+                </div>
+                <div id="collapse1" class="panel-collapse show">
+                    <ul class="list-group">
+                        <a href="{% url 'User account' %}" class="drop-down list-group-item list-group-item-action  bg-dark"><i class="fas fa-user"></i>Twoje dane</a>
+                        <a href="{% url 'User edit' %}" class="list-group-item list-group-item-action a_style active bg-dark"><i class="fas fa-user-edit"></i>Edytuj dane</a>
+                        <a href="{% url 'Change password' %}" class="list-group-item list-group-item-action  bg-dark"><i class="fas fa-key"></i>Zmień hasło</a>
+                        <a href="{% url 'User delete' %}" class="list-group-item list-group-item-action bg-dark"><i class="fas fa-user-times"></i>Usuń konto</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="offset-1 col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Edytuj dane</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row-md-6">
+                            <div class="col-md-12">
+                                <form action="{% url 'User edit' %}" method="post">
+                                {% csrf_token %}
+                                  <div class="form-group row">
+                                    <label for="username" class="col-4 col-form-label">Nazwa użykownika</label>
+                                    <div class="col-8">
+                                      <span class="user"><b>{{ user.username }}</b></span>
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="email" class="col-4 col-form-label">E-mail</label>
+                                    <div class="col-8">
+                                        <input id="email" name="email" placeholder="E-mail" required="required" class="form-control here" type="text" value="{{user.email}}">
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="name" class="col-4 col-form-label">Imię</label>
+                                    <div class="col-8">
+                                      <input id="name" name="first_name" placeholder="Imię" class="form-control here" type="text" value="{{user.first_name}}">
+                                    </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="lastname" class="col-4 col-form-label">Nazwisko</label>
+                                    <div class="col-8">
+                                      <input id="lastname" name="last_name" placeholder="Nazwisko" class="form-control here" type="text" value="{{user.last_name}}">
+                                    </div>
+                                  </div>
+                                    {% if messages %}
+                                    <div class="messages text-center">
+                                        {% for message in messages %}
+                                            {% if message.tags %}
+                                                <h3 style="color:green; font-size:105%;"><b>{{ message }}</b></h3>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="offset-4 col-8">
+                                      <button name="submit" type="submit" class="btn btn-outline-dark">Zapisz</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% else %}
 

@@ -6,11 +6,10 @@
 
 {% if user.is_authenticated %}
 <!-- if orders != None %}-->
-<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
+<!--<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
-                 <!-- for order in orders %}-->
                  <div class="list-group ">
                   <div  class="list-group-item list-group-item-action "  href="{% url 'Your order' %}?order_id={{order.id}}">
                      <a class="btn btn-outcolor" role="button">{{died.name}}  {{died.surname}}</a>
@@ -18,9 +17,6 @@
                          <a href="{% url 'Your order' %}" class="btn btn-outcolor float-right" role="button"><i class="fas fa-backspace"></i></a>
                     </div>
                 </div>
-                <!-- empty %}
-                Utworzenie zamówienia przebiegło pomyślnie
-                {% endfor -->
             </div>
             <div class="offset-1 col-6">
                 <div class="card">
@@ -66,8 +62,6 @@
                                                         <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
                                                         <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                                         </div>
-
-                                                <!--<form action="" autocomplete="off">-->
                                                     {% elif music.msc_type == "T" %}
                                                         <div class="form-check form-check-inline">
                                                         <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
@@ -90,7 +84,6 @@
                                                         <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                                     </div>
                                                 {% endif %}
-                                                <!--</form>-->
                                                 {% if formErrors.msc_type %}
                                                     <p style="color: red;">
                                                         To pole jest wymagane
@@ -135,19 +128,140 @@
         </div>
     </div>
 </div>
-<!-- else %}
-<div class="container-fluid" >
-    <div class="jumbotron box">
-        <div class="container">
-            <div class="row-sm-12 mt-4 mb-4">
-                <div class="col-sm-12">
-                    <h2>Nie posiadasz jeszcze żadnego zamówienia, proszę przejść w zakładkę "Złóż zamówienie"</h2>
+-->
+
+<div class="d-flex" id="wrapper">
+    <div class="bg-dark border-dark" id="sidebar-wrapper">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                         <a data-toggle=" show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style active bg-dark">Złóż zamówienie</a>
+                     </h5>
+                </div>
+                <div id="collapse1" class="panel-collapse show">
+                    <ul class="list-group ">
+                        <div  class="list-group-item list-group-item-action bg-dark"  href="{% url 'Your order' %}?order_id={{order.id}}">
+                            <a class="btn bg-dark " role="button">{{died.name}}  {{died.surname}}</a>
+                            <a href="{% url 'Your order' %}" class="btn bg-dark float-right" role="button"><i class="fas fa-backspace"></i></a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="offset-1 col-6">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Edytuj zamówienie </h4>
+                                <hr>
+                            </div>
+                      </div>
+                        <div class="row-md-6">
+                            <ul class="nav nav-tabs">
+                              <li class="nav-item">
+                                <a class="nav-link " href="{%url 'Edit died'%}?order_id={{order.id}}">Zmarły</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link " href="{%url 'Edit coffin'%}?order_id={{order.id}}">Trumna</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="{%url 'Edit flowers'%}?order_id={{order.id}}">Kwiaty</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link active" href="{%url 'Edit music'%}?order_id={{order.id}}">Oprawa muzyczna</a>
+                              </li>
+                            </ul>
+                            </br>
+
+                                   <form action="{% url 'Edit music'%}?order_id={{order.id}}" method="post">
+                                     {% csrf_token %}
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="id_msc_type">Wybór instrumentu</label>
+                                        </div>
+                                            <div class="col-8" id="id_msc_type">
+                                                {% if music.msc_type != None %}
+                                                    {% if music.msc_type == "O" %}
+                                                        <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O" checked>
+                                                        <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
+                                                        <label class="form-check-label" for="inlineRadio2">trąbka</label>
+                                                        </div>
+                                                    {% elif music.msc_type == "T" %}
+                                                        <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
+                                                        <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T" checked>
+                                                        <label class="form-check-label" for="inlineRadio2">trąbka</label>
+                                                        </div>
+                                                    {% endif %}
+                                                {% else %}
+
+                                                     <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O" required>
+                                                        <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T" required>
+                                                        <label class="form-check-label" for="inlineRadio2">trąbka</label>
+                                                    </div>
+                                                {% endif %}
+                                                {% if formErrors.msc_type %}
+                                                    <p style="color: red;">
+                                                        To pole jest wymagane
+                                                    </p>
+                                                {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="id_songs">Lista utworów</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <textarea type="text" name="songs" placeholder="Proszę podać parę tytułów wybranych utworów" class="form-control"
+                                                      id="id_songs" autofocus="" required>{{music.songs}}</textarea>
+                                            {% if formErrors.songs %}
+                                            <p style="color: red;">
+                                                To pole jest wymagane
+                                            </p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_costs">Cena:</label>
+                                    </div>
+                                    <div class="col-8" id="id_costs">
+                                      <span class="costs" for="costs">
+                                          {{music.price_M}} zł</span>
+                                    </div>
+                                </div>
+
+
+                            <div class="offset-4 col-8">
+                                        <input class="btn btn-outline-dark" type="submit" value="Zapisz"/>
+                            </div></form>
+
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endif -->
 
 {% else %}
 

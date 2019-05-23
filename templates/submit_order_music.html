@@ -5,7 +5,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
+<!--<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="container">
         <div class="row">
             <div class="col-md-3 ">
@@ -46,7 +46,6 @@
                                                     <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                                     </div>
 
-                                            <!--<form action="" autocomplete="off">-->
                                                 {% elif music.msc_type == "T" %}
                                                     <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
@@ -69,7 +68,6 @@
                                                     <label class="form-check-label" for="inlineRadio2">trąbka</label>
                                                 </div>
                                             {% endif %}
-                                            <!--</form>-->
                                             {% if formErrors.msc_type %}
                                                 <p style="color: red;">
                                                     To pole jest wymagane
@@ -92,24 +90,6 @@
                                         </div>
 
                                 </div>
-                                <!--<div class="form-group row">-->
-                                    <!--<div class="col-4">-->
-                                        <!--<label for="">Numer telefonu</label>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-8">-->
-                                      <!--<span class="custom-control-description"><b>127-222-222</b></span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-
-                                <!--<div class="form-group row">-->
-                                    <!--<div class="col-4">-->
-                                        <!--<label for="">Cena za oprawe muzyczna</label>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-8">-->
-                                      <!--<span class="custom-control-description"><b>22</b></span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-
                           <div class="offset-2 col-8">
                               <a href="{% url 'Submit order flowers' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
                               <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
@@ -122,9 +102,115 @@
             </div>
         </div>
     </div>
+</div>-->
+
+<div class="d-flex" id="wrapper">
+    <div class="bg-dark border-dark" id="sidebar-wrapper">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title">
+                         <a data-toggle=" show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style active bg-dark">Złóż zamówienie</a>
+                     </h5>
+                </div>
+                <div id="collapse1" class="panel-collapse show">
+                    <ul class="list-group">
+                        <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action bg-dark">Zmarły</a>
+                        <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action bg-dark">Trumna</a>
+                        <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action bg-dark">Kwiaty</a>
+                        <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action a_style active bg-dark">Oprawa muzyczna</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="offset-1 col-10">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                            <div class="col-md-12">
+                                <h4>Oprawa muzyczna</h4>
+                                <hr>
+                            </div>
+                      </div>
+
+                        <div class="row-md-6">
+                            <form action="{% url 'Submit order music' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="id_msc_type">Wybór instrumentu</label>
+                                    </div>
+                                        <div class="col-8" id="id_msc_type">
+                                            {% if music.msc_type != None %}
+                                                {% if music.msc_type == "O" %}
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T">
+                                                    <label class="form-check-label" for="inlineRadio2">trąbka</label>
+                                                    </div>
+
+                                                {% elif music.msc_type == "T" %}
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O">
+                                                    <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T" checked>
+                                                    <label class="form-check-label" for="inlineRadio2">trąbka</label>
+                                                    </div>
+                                                {% endif %}
+                                            {% else %}
+
+                                                 <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio1" value="O" required>
+                                                    <label class="form-check-label" for="inlineRadio1">organy</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="msc_type" id="inlineRadio2" value="T" required>
+                                                    <label class="form-check-label" for="inlineRadio2">trąbka</label>
+                                                </div>
+                                            {% endif %}
+                                            {% if formErrors.msc_type %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                    </div>
+                                </div>
+                                     <div class="form-group row">
+                                        <div class="col-4">
+                                            <label for="id_songs">Lista utworów</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <textarea type="text" name="songs" placeholder="Proszę podać parę tytułów wybranych utworów" class="form-control"
+                                                      id="id_songs" required autofocus="">{{music.songs}}</textarea>
+                                            {% if formErrors.songs %}
+                                                <p style="color: red;">
+                                                    To pole jest wymagane
+                                                </p>
+                                            {% endif %}
+                                        </div>
+
+                                </div>
+                          <div class="offset-2 col-8">
+                              <a href="{% url 'Submit order flowers' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
+                              <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
+                              <a href="{% url 'Summary submit order' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Złóż zamówienie</a>
+                          </div></form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
 </div>
-
-
 {% else %}
 
   <p>You are not logged in</p>

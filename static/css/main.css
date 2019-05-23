@@ -347,3 +347,32 @@ a:hover{
         padding-right: 10%;
     }
 }
+
+
+/*boczny panel*/
+#sidebar-wrapper {
+  min-height: 91.3vh;
+  margin-left: -20rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+
+#sidebar-wrapper .panel-group {
+  width: 20rem;
+}
+
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+}
+
+
+.bg-dark {
+    background-color: #191919!important;
+    color: whitesmoke;
+}

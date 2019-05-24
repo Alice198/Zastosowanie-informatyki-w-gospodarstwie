@@ -4,7 +4,7 @@ html,body{
     color: whitesmoke;
     margin: 0;
     padding: 0;
-    background-image: url("manu.jpg") ;
+    background-image: url("sunset.jpg") ;
     height: 100%;
     width: 100%;
     background-size: contain;
@@ -26,7 +26,7 @@ html,body{
     background-clip: border-box;
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-size: contain;
     background-size: cover;
@@ -44,7 +44,7 @@ html,body{
     background-clip: border-box;
     margin: 0;
     padding: 0;
-    height: 91.4%;
+    height: 91.4vh;
     width: 100%;
     background-size: contain;
     background-size: cover;
@@ -67,6 +67,19 @@ html,body{
     background-image: url("flowerMenu.jpg") !important;
 }
 
+#user {
+    background-image: url("nature.jpg") !important;
+}
+
+
+#submitOrder {
+    background-image: url("pennsylvania.jpg") !important;
+}
+
+
+#opinion {
+    background-image: url("opinion.jpg") !important;
+}
 /*menu*/
 main{
     height:100%;
@@ -432,4 +445,16 @@ a:hover{
 
 i{
     margin-right:5%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: whitesmoke;
+}
+
+.nav-link {
+    color:whitesmoke;
+}
+
+.nav-tabs .nav-link.active {
+    color:black;
 }

@@ -57,21 +57,22 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h5 class="panel-title">
-                         <a data-toggle="show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style active bg-dark">Opinie użytkownika</a>
+                         <a data-toggle="show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style bg-dark">Opinie użytkownika</a>
                      </h5>
                 </div>
                 <div id="collapse1" class="panel-collapse show">
                     <ul class="list-group">
-                        <a href="{% url 'Opinion' %}" class="drop-down list-group-item list-group-item-action active bg-dark">Dodaj opinie</a>
-                        <a href="{% url 'View opinions' %}" class="list-group-item list-group-item-action  bg-dark">Twoje opinie</a>
+                        <a href="{% url 'Opinion' %}" class="drop-down list-group-item list-group-item-action active bg-dark"><i class="fas fa-plus-circle"></i>Dodaj opinie</a>
+                        <a href="{% url 'View opinions' %}" class="list-group-item list-group-item-action  bg-dark"><i class="fas fa-file-alt"></i>Twoje opinie</a>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    <div class="allViewHeight d-flex align-items-center" id="opinion">
     <div class="container ">
         <div class="row">
-            <div class="offset-3 col-6">
+            <div class="offset-2 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -110,6 +111,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endif %}
 

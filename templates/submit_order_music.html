@@ -110,27 +110,28 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h5 class="panel-title">
-                         <a data-toggle=" show" href="#collapse1" class="drop-down list-group-item list-group-item-action a_style active bg-dark">Złóż zamówienie</a>
+                         <a data-toggle=" show" href="#collapse1" class="drop-down list-group-item list-group-item-action bg-dark">Złóż zamówienie</a>
                      </h5>
                 </div>
                 <div id="collapse1" class="panel-collapse show">
                     <ul class="list-group">
-                        <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action bg-dark">Zmarły</a>
-                        <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action bg-dark">Trumna</a>
-                        <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action bg-dark">Kwiaty</a>
-                        <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action a_style active bg-dark">Oprawa muzyczna</a>
+                        <a href="{% url 'Submit order' %}" class="list-group-item list-group-item-action bg-dark"><i class="fas fa-user-clock"></i>Zmarły</a>
+                        <a href="{% url 'Submit order coffin' %}" class="list-group-item list-group-item-action bg-dark"><i class="fas fa-square"></i>Trumna</a>
+                        <a href="{% url 'Submit order flowers' %}" class="list-group-item list-group-item-action bg-dark"><i><ion-icon size="small" name="flower"></ion-icon></i>Kwiaty</a>
+                        <a href="{% url 'Submit order music' %}" class="list-group-item list-group-item-action a_style active bg-dark"><i class="fas fa-music"></i>Oprawa muzyczna</a>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    <div class="allViewHeight d-flex align-items-center" id="submitOrder">
     <div class="container ">
         <div class="row">
-            <div class="offset-1 col-10">
+            <div class="offset-2 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <h4>Oprawa muzyczna</h4>
                                 <hr>
                             </div>
@@ -200,15 +201,17 @@
                                         </div>
 
                                 </div>
-                          <div class="offset-2 col-8">
+                          <div class="offset-2 col-11">
                               <a href="{% url 'Submit order flowers' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
-                              <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
+                              <input type="submit" value="Zapisz" role="submit" class="btn btn-outline-dark" />
                               <a href="{% url 'Summary submit order' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Złóż zamówienie</a>
-                          </div></form>
+                          </div>
+                            </form>
                         </div>
                     </div>
                 </div>
         </div>
+    </div>
     </div>
 </div>
 {% else %}

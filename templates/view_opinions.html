@@ -113,16 +113,15 @@
 
 {% else %}
 
-<div class="jumbotron d-flex align-items-center justify-content-center">
+<div class="allViewHeight d-flex align-items-center justify-content-center" id="opinionNotlogin">
     <div class="container">
         <div class="row">
-
             <div class="offset-3 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">
                             <div class="col-md-12">
-                                <h4>Opinie użytkowników wykonanej przez nas usługi</h4>
+                                <h4>Opinie użytkowników wykonanej usługi</h4>
                                 <hr>
                             </div>
                       </div>
@@ -132,11 +131,11 @@
                                 {% for opinion in opinions %}
                                <div class="form-group row">
                                     <div class="col-4">
-                                        <label for="id_opinion">Nick: {{opinion.user.username}}</label>
+                                        <label for="id_opinion">{{opinion.user.username}}</label>
                                     </div>
 
                                     <div class="col-8" id="id_opinion">
-                                        <span class="custom-control-description"><b> Utworzono: {{opinion.date_added|date:'Y-m-d H:i'}}</b></span>
+                                        <span class="custom-control-description">{{opinion.date_added|date:'Y-m-d H:i'}}</span>
                                         <div class="d-flex justify-content-center flex-row-reverse fa fa-star float-right">
                                             <!--<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star"></label>-->
                                             <!--<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star"></label>-->
@@ -147,7 +146,7 @@
                                             <label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>
                                         </div>
                                     </br>
-                                        <span class="custom-control-description"><b>Treść: {{opinion.description}}</b></span>
+                                        <span class="custom-control-description"><b>{{opinion.description}}</b></span>
 
                                     </div>
                                 </div>

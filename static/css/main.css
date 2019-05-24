@@ -4,7 +4,7 @@ html,body{
     color: whitesmoke;
     margin: 0;
     padding: 0;
-    background-image: url("candles.jpg") ;
+    background-image: url("manu.jpg") ;
     height: 100%;
     width: 100%;
     background-size: contain;
@@ -16,6 +16,56 @@ html,body{
 
 }
 
+/*background*/
+.allView {
+    background-color: transparent;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-origin: padding-box;
+    background-clip: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    top:0;
+}
+
+.allViewHeight {
+    background-color: transparent;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-origin: padding-box;
+    background-clip: border-box;
+    margin: 0;
+    padding: 0;
+    height: 91.4%;
+    width: 100%;
+    background-size: contain;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    top:0;
+}
+
+
+#registrationLogin {
+    background-image: url("cemeteryy.jpg") !important;
+
+}
+
+#opinionNotlogin {
+    background-image: url("rainbow.jpg") !important;
+}
+
+#menuLogin {
+    background-image: url("flowerMenu.jpg") !important;
+}
 
 /*menu*/
 main{
@@ -209,10 +259,9 @@ a:hover{
     color:#495057;
 }
 
-
-
-
-
+.btn-outline-dark {
+    color:white;
+}
 
 
 
@@ -375,4 +424,12 @@ a:hover{
 .bg-dark {
     background-color: #191919!important;
     color: whitesmoke;
+}
+
+.bg-dark:hover {
+    color:whitesmoke;
+}
+
+i{
+    margin-right:5%;
 }

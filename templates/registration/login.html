@@ -3,32 +3,49 @@
 {% block title %}Logowanie{% endblock %}
 
 {% block content %}
+<div class="allViewHeight d-flex align-items-center" id="registrationLogin">
+    <div class="container">
+        <div class="row">
+             <div class="offset-4 col-md-4">
+                <div class="card">
+                    <div class="card-body">
 
+                        <div class="row-md-6">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="offset-3 col-md-8">
+                                        <h4>Logowanie</h4>
+                                    </div>
+                                </div>
+                                 <form method="post">
+                                    {% csrf_token %}
+                                     <div class="form-group row">
+                                         <div class="col-12">
+                                             <label for="id_username"></label> <input type="text" name="username" placeholder="Login" autofocus="" id="id_username" class="form-control" required="">
+                                         </div>
+                                         <div class="col-12">
+                                             <label for="id_password"></label> <input type="password" name="password" id="id_password"  placeholder="Hasło" class="form-control" required="">
+                                        </div>
+                                        {%if form.errors%}
+                                        <h3 style="color:red; font-size:105%;"><b>Podałeś nieprawidłowe dane.</br>Zaloguj się ponownie.</b></h3>
+                                        {%endif%}
 
- <div class="container-fluid">
-   <div class="jumbotron box" id="login">
-       <div class="row ">
+                                        <div class="offset-3 col-6">
 
-            <div class="col-md-12">
-            <form method="post">
-                <h2>Logowanie</h2>
-                {% csrf_token %}
-                 <div class="input-group mb-3">
-                     <label for="id_username"></label> <input type="text" name="username" placeholder="Login" autofocus="" id="id_username" class="form-control" required="">
-                 </div>
-                 <div class="input-group mb-3">
-                     <label for="id_password"></label> <input type="password" name="password" id="id_password"  placeholder="Hasło" class="form-control" required="">
+                                            </br>
+                                            <button class="btn btn-outline-dark" type="submit">Zaloguj się</button>
+                                        </div>
+                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {%if form.errors%}
-                <h3 style="color:red; font-size:105%;"><b>Podałeś nieprawidłowe dane.</br>Zaloguj się ponownie.</b></h3>
-                {%endif%}
-                <button class="btn btn-outline-dark" type="submit">Zaloguj się</button>
-
-            </form>
-
         </div>
     </div>
-   </div>
- </div>
+</div>
+
+
+
 
 {% endblock %}

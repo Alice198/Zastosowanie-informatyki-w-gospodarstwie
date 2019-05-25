@@ -27,4 +27,5 @@ urlpatterns = [
     path('usun_zamowienie/', views.delete_order, name='Delete order'),
     path('dodaj_opinie/', views.add_opinion, name='Opinion'),
     path('opinie/', views.view_opinions, name='View opinions'),
+    path('kosztorys/', views.estimate, name='Estimate'),
 ]

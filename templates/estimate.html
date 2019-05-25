@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}Kosztorys{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="allView d-flex align-items-center" id="menuLogin">
+    <div class="container">
+        <div class="row">
+             <div class="offset-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Kosztorys</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row-md-6">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Trumna z drewna dębowego</label>
+                                    <div class="col-4">
+                                     <p>1300 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Trumna z drewna bukowego</label>
+                                    <div class="col-4">
+                                     <p>900 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Trumna z drewna sosny</label>
+                                    <div class="col-4">
+                                     <p>650 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Wielkość wiązanki - mała</label>
+                                    <div class="col-4">
+                                     <p>160 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Wielkość wiązanki - średnia</label>
+                                    <div class="col-4">
+                                     <p>450 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Wielkość wiązanki - duża</label>
+                                    <div class="col-4">
+                                     <p>600 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Organista/trąbka</label>
+                                    <div class="col-4">
+                                     <p>200 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Transport (koszt stały)</label>
+                                    <div class="col-4">
+                                     <p>380 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Przygotowanie ciała (koszt stały)</label>
+                                    <div class="col-4">
+                                     <p>600 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Służba pogrzebowa (koszt stały)</label>
+                                    <div class="col-4">
+                                     <p>580 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Wykopanie grobu (koszt stały)</label>
+                                    <div class="col-4">
+                                     <p>80 zł</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-8 col-form-label">Chłodnia (koszt stały)</label>
+                                    <div class="col-4">
+                                     <p>210 zł</p>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+{% endif %}
+
+{%endblock%}

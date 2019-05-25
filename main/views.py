@@ -700,3 +700,8 @@ def view_opinions(request):
 
 def submit_order_appearance():
     pass
+
+
+def estimate(request):
+    return render(request, 'estimate.html')
+

@@ -326,19 +326,7 @@
         </div>
     </div>
 </div>
-{% else %}
-<div class="container-fluid" >
-    <div class="jumbotron box">
-        <div class="container">
-            <div class="row-sm-12 mt-4 mb-4">
-                <div class="col-sm-12">
-                    <h2>Nie posiadasz jeszcze żadnego zamówienia, proszę przejść w zakładkę "Złóż zamówienie"</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{% endif %}
+endif %}
 -->
 
 <div class="d-flex" id="wrapper">
@@ -406,30 +394,30 @@
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="died" role="tabpanel" aria-labelledby="died-tab">
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Imię</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>{{ died.name }}</p>
                                               </span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Nazwisko</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>{{ died.surname }}</p>
                                               </span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Płeć</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>
                                                       {% if died.gender == "M" %}
@@ -444,40 +432,40 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Data urodzenia</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>{{ birthday }}</p>
                                               </span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Data śmierci</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>{{ death }}</p>
                                               </span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Transkrypcja</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>{{ died.transcription }}</p>
                                               </span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Makijaż</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>
                                                       {% if died.makeup == "Y" %}
@@ -494,10 +482,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-4">
+                                            <div class="col-6">
                                                 <label for="id_died">Ubranie</label>
                                             </div>
-                                            <div class="col-8">
+                                            <div class="col-6">
                                               <span class="died" id="id_died">
                                                   <p>{{ died.outfit }}</p>
                                               </span>
@@ -507,10 +495,10 @@
 
                                   <div class="tab-pane fade" id="coffin" role="tabpanel" aria-labelledby="profile-tab">
                                       <div class="form-group row">
-                                          <div class="col-4">
+                                          <div class="col-6">
                                               <label for="id_coffin">Rozmiar</label>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
                                               <span class="coffin" id="id_coffin">
                                                   <p>
                                                       {% if coffin.size == "A" %}
@@ -525,10 +513,10 @@
                                           </div>
                                       </div>
                                       <div class="form-group row">
-                                          <div class="col-4">
+                                          <div class="col-6">
                                               <label for="id_coffin">Rodzaj drewna</label>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
                                               <span class="coffin" id="id_coffin">
                                                   <p>
                                                       {% if coffin.wood == "O" %}
@@ -545,10 +533,10 @@
                                           </div>
                                       </div>
                                       <div class="form-group row">
-                                          <div class="col-4">
+                                          <div class="col-6">
                                               <label for="id_coffin">Opis</label>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
                                               <span class="coffin" id="id_coffin">
                                                   <p>{{ coffin.description }}</p>
                                               </span>
@@ -558,10 +546,10 @@
 
                                   <div class="tab-pane fade" id="flower" role="tabpanel" aria-labelledby="contact-tab">
                                       <div class="form-group row">
-                                          <div class="col-4">
+                                          <div class="col-6">
                                               <label for="flower">Wielkość wiązanek</label>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
                                               <span class="flowers" for="flower">
                                                   <p>
                                                       {% if flowers.size == "S" %}
@@ -578,10 +566,10 @@
                                             </div>
                                       </div>
                                       <div class="form-group row">
-                                          <div class="col-4">
+                                          <div class="col-6">
                                               <label for="flower">Kolor</label>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
                                               <span class="flowers" for="flower">
                                                   <p>
                                                       {% if flowers.color == "Wh" %}
@@ -600,20 +588,20 @@
                                             </div>
                                       </div>
                                       <div class="form-group row">
-                                          <div class="col-4">
+                                          <div class="col-6">
                                               <label for="flower">Ilość wiązanek</label>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
                                               <span class="flowers" for="flower">
                                                   <p>{{ flowers.count }}</p>
                                               </span>
                                             </div>
                                       </div>
                                       <div class="form-group row">
-                                          <div class="col-4">
+                                          <div class="col-6">
                                               <label for="flower">Opis</label>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
                                               <span class="flowers" for="flower">
                                                   <p>{{ flowers.description }}</p>
                                               </span>
@@ -624,10 +612,10 @@
 
                                 <div class="tab-pane fade" id="music" role="tabpanel" aria-labelledby="contact-tab">
                                     <div class="form-group row">
-                                        <div class="col-4">
+                                        <div class="col-6">
                                             <label for="music">Typ instrumentu</label>
                                         </div>
-                                        <div class="col-8">
+                                        <div class="col-6">
                                           <span class="music" for="music">
                                               <p>
                                                   {% if music.msc_type == "T" %}
@@ -642,25 +630,23 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-4">
+                                        <div class="col-6">
                                             <label for="music">Utwory</label>
                                         </div>
-                                        <div class="col-8">
+                                        <div class="col-6">
                                           <span class="music" for="music">
                                               <p>{{ music.songs }}</p>
                                           </span>
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <div class="col-4">
-                                        <label for="id_costs">Całkowita cena:</label>
-                                    </div>
-                                    <div class="col-8" id="id_costs">
-                                      <span class="costs" for="costs">
-                                          <li>{{costs}}</li></span>
+                                     <div class="form-group row">
+                                        <div class="col-6">
+                                            <label for="id_costs"><b>Całkowita cena pogrzebu</b></label>
+                                        </div>
+                                        <div class="col-6" id="id_costs">
+                                          <span class="costs" for="costs">
+                                              {{costs}}</span>
+                                        </div>
                                     </div>
                                 </div>
                                 </div>
@@ -675,8 +661,18 @@
 
 </div>
 {% else %}
-
-  <p>You are not logged in</p>
+<div class="container-fluid" >
+    <div class="jumbotron box">
+        <div class="container">
+            <div class="row-sm-12 mt-4 mb-4">
+                <div class="col-sm-12">
+                    <h2>Nie posiadasz jeszcze żadnego zamówienia, proszę przejść w zakładkę "Złóż zamówienie"</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 
 {% endif %}

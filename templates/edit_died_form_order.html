@@ -291,7 +291,7 @@
     <div class="allView d-flex align-items-center" id="editYourOrder">
     <div class="container ">
         <div class="row">
-            <div class="offset-1 col-6">
+            <div class="offset-2 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -300,8 +300,7 @@
                                 <hr>
                             </div>
                       </div>
-
-                        <div class="row-md-6">
+                        <div class="row-md-">
                             <ul class="nav nav-tabs">
                               <li class="nav-item">
                                 <a class="nav-link active" href="{%url 'Edit died'%}?order_id={{order.id}}">Zmarły</a>
@@ -310,16 +309,16 @@
                                 <a class="nav-link " href="{%url 'Edit coffin'%}?order_id={{order.id}}">Trumna</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="{%url 'Edit flowers'%}?order_id={{order.id}}">Kwiaty</a>
+                                <a class="nav-link " href="{%url 'Edit flowers'%}?order_id={{order.id}}">Kwiaty</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="{%url 'Edit music'%}?order_id={{order.id}}">Oprawa muzyczna</a>
+                                <a class="nav-link " href="{%url 'Edit music'%}?order_id={{order.id}}">Oprawa muzyczna</a>
                               </li>
                             </ul>
                             </br>
 
-                                <form action="{% url 'Edit died'%}?order_id={{order.id}}" method="post">
-                                             {% csrf_token %}
+                            <form action="{% url 'Edit died'%}?order_id={{order.id}}" method="post">
+                                {% csrf_token %}
                                         <div class="form-group row">
                                     <div class="col-4">
                                         <label for="id_name_death">Imie</label>

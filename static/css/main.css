@@ -53,6 +53,24 @@ html,body{
     top:0;
 }
 
+.allViewMax {
+    background-color: transparent;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-origin: padding-box;
+    background-clip: border-box;
+    margin: 0;
+    padding: 0;
+    min-height: 123vh;
+    width: 100%;
+    background-size: contain;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    top:0;
+}
+
 
 #registrationLogin {
     background-image: url("cemeteryy.jpg") !important;
@@ -84,6 +102,11 @@ html,body{
 #editYourOrder {
     background-image: url("EdityourOrder.jpg") !important;
 }
+
+#estimate {
+    background-image: url("estimate.jpg") !important;
+}
+
 /*menu*/
 main{
     height:100%;
@@ -108,8 +131,8 @@ main{
     transform: translate(-50%,-50%);
     margin-bottom:0;
     padding: 1rem 2rem;
-    background: linear-gradient(to bottom, #ff6600 0%, #ffff00 100%);
-    opacity:0.5;
+    background-color:black;
+    opacity:0.8;
     max-height:90%;
 
 }
@@ -122,7 +145,7 @@ main{
 
 
 .jumbotron{
-    background:transparent !important;
+    width: 100%;
 }
 
 .main{

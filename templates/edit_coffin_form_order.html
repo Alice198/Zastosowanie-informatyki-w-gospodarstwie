@@ -227,7 +227,7 @@
                          <a data-toggle=" show" href="#collapse1" class="drop-down list-group-item list-group-item-action bg-dark">Złóż zamówienie</a>
                      </h5>
                 </div>
-                <div id="collapse1" class="panel-collapse show">
+                <div id="collapse1" class="panel-collapse show" >
                     <ul class="list-group ">
                         <div  class="list-group-item list-group-item-action bg-dark"  href="{% url 'Your order' %}?order_id={{order.id}}">
                             <a class="btn bg-dark " role="button">{{died.name}}  {{died.surname}}</a>
@@ -238,10 +238,10 @@
             </div>
         </div>
     </div>
-    <div class="allViewHeight d-flex align-items-center" id="editYourOrder">
+    <div class="allViewHeight d-flex align-items-center" id="editYourOrder" >
     <div class="container ">
         <div class="row">
-            <div class="offset-1 col-6">
+            <div class="offset-2 col-6">
                 <div class="card">
                     <div class="card-body">
                       <div class="row">
@@ -415,7 +415,6 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                  </div>
 
                                 <div class="form-group row">
                                     <div class="col-4">

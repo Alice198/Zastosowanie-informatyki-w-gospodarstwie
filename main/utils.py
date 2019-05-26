@@ -10,11 +10,11 @@ MAKEUP_CHOICES = (
 )
 
 REVIEW_CHOICES = (
-    ('1', 'One star'),
-    ('2', 'Two stars'),
-    ('3', 'Three stars'),
-    ('4', 'Four stars'),
-    ('5', 'Five stars'),
+    (1, 'One star'),
+    (2, 'Two stars'),
+    (3, 'Three stars'),
+    (4, 'Four stars'),
+    (5, 'Five stars'),
 )
 
 TYPE_WOOD = (

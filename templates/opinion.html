@@ -7,7 +7,7 @@
 {% if user.is_authenticated %}
 <!--<div class="jumbotron d-flex align-items-center justify-content-center" xmlns="http://www.w3.org/1999/html">
     <div class="container">
-        <div class="row">
+            <div class="row">
 
             <div class="offset-3 col-6">
                 <div class="card">
@@ -96,7 +96,7 @@
                                             <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star"></label>
                                             <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"></label>
                                         </div>
-                                        <textarea type="text" name="description" placeholder="Dodaj swoją opinie" class="form-control" required="" id="id_opinion" autofocus=""></textarea>
+                                        <textarea type="text" name="description" placeholder="Dodaj swoją opinie" class="form-control" required="" id="id_opinion" autofocus="" maxlength="200"></textarea>
                                     </div>
                                 </div>
 

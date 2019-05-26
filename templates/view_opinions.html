@@ -92,8 +92,28 @@
                                     <div class="col-8" id="id_opinions">
                                         <span class="custom-control-description">{{opinion.date_added|date:'Y-m-d H:i'}}</span>
                                         <div class="d-flex justify-content-center flex-row-reverse fa fa-star float-right">
-                                            <label for="star1" title="1 star"></label><span class="float-right" id="star1" name="rating" value="1"><i class="fa fa-star star"></i></span>
+                                            {% if opinion.rating == 1 %}
+                                            <label for="star1" title="1 star"></label><span class="float-right" id="star1" name="rating" value="2"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 2 %}
                                             <label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>
+                                            <label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 3 %}
+                                            <label for="star3" title="3 star"></label><span class="float-right" id="star3" name="rating" value="3"><i class="fa fa-star star"></i></span>
+                                            <label for="star3" title="3 star"></label><span class="float-right" id="star3" name="rating" value="3"><i class="fa fa-star star"></i></span>
+                                            <label for="star3" title="3 star"></label><span class="float-right" id="star3" name="rating" value="3"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 4 %}
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span>
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span>
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 5 %}
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>                                             <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+
+                                            {% endif %}
                                         </div>
                                     </br>
                                         <span class="custom-control-description"><b>{{opinion.description}}</b></span>
@@ -139,30 +159,30 @@
                                     <div class="col-8" id="id_opinion">
                                         <span class="custom-control-description">{{opinion.date_added|date:'Y-m-d H:i'}}</span>
                                         <div class="d-flex justify-content-center flex-row-reverse fa fa-star float-right">
-                                            <!--%if opinion.rating=="1"%}
-                                                <label for="star1" title="1 star"></label><span class="float-right" value="1" id="star1" name="rating"><i class="fa fa-star star"></i></span>
-                                            %elif opinion.rating=="2"%}
-                                                <label for="star1" title="1 star"></label><span class="float-right" value="1" id="star1" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star2" title="2 star"></label><span class="float-right" value="2" id="star2" name="rating"><i class="fa fa-star star"></i></span>
-                                            %elif opinion.rating=="3"%}
-                                                <label for="star1" title="1 star"></label><span class="float-right" value="1" id="star1" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star2" title="2 star"></label><span class="float-right" value="2" id="star2" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star3" title="3 star"></label><span class="float-right" value="3" id="star3" name="rating"><i class="fa fa-star star"></i></span>
-                                            %elif opinion.rating=="4"%}
-                                                <label for="star1" title="1 star"></label><span class="float-right" value="1" id="star1" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star2" title="2 star"></label><span class="float-right" value="2" id="star2" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star3" title="3 star"></label><span class="float-right" value="3" id="star3" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star4" title="4 star"></label><span class="float-right" value="4" id="star4" name="rating"><i class="fa fa-star star"></i></span>
-                                            %elif opinion.rating=="5"%}
-                                                <label for="star1" title="1 star"></label><span class="float-right" value="1" id="star1" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star2" title="2 star"></label><span class="float-right" value="2" id="star2" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star3" title="3 star"></label><span class="float-right" value="3" id="star3" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star4" title="4 star"></label><span class="float-right" value="4" id="star4" name="rating"><i class="fa fa-star star"></i></span>
-                                                <label for="star5" title="5 star"></label><span class="float-right" value="5" id="star5" name="rating"><i class="fa fa-star star"></i></span>
-                                            %endif%}-->
+                                            {% if opinion.rating == 1 %}
+                                            <label for="star1" title="1 star"></label><span class="float-right" id="star1" name="rating" value="2"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 2 %}
+                                            <label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>
+                                            <label for="star2" title="2 star"></label><span class="float-right" id="star2" name="rating" value="2"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 3 %}
+                                            <label for="star3" title="3 star"></label><span class="float-right" id="star3" name="rating" value="3"><i class="fa fa-star star"></i></span>
+                                            <label for="star3" title="3 star"></label><span class="float-right" id="star3" name="rating" value="3"><i class="fa fa-star star"></i></span>
+                                            <label for="star3" title="3 star"></label><span class="float-right" id="star3" name="rating" value="3"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 4 %}
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span>
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span>
+                                            <label for="star4" title="4 star"></label><span class="float-right" id="star4" name="rating" value="4"><i class="fa fa-star star"></i></span>
+                                            {% elif opinion.rating == 5 %}
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            <label for="star5" title="5 star"></label><span class="float-right" id="star5" name="rating" value="5"><i class="fa fa-star star"></i></span>
+                                            {% endif %}
                                         </div>
                                     </br>
-                                        <span class="custom-control-description"><b>{{opinion.description}}</b></span>
+                                        <span class="custom-control-description"><b>{{opinion.description|slice:":200"}}</b></span>
 
                                     </div>
                                 </div>

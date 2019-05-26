@@ -692,9 +692,9 @@ def add_opinion(request):
 def view_opinions(request):
     if request.method == 'GET':
         if request.user.id:
-            opinions = Reviews.objects.filter(user=request.user.id)
+            opinions = Reviews.objects.filter(user=request.user.id).order_by('-date_added')
         else:
-            opinions = Reviews.objects.all().order_by('date_added')
+            opinions = Reviews.objects.all().order_by('-date_added')
         return render(request, 'view_opinions.html', context={'opinions': opinions})
 
 

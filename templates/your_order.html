@@ -399,7 +399,11 @@ endif %}
                                             </div>
                                             <div class="col-6">
                                               <span class="died" id="id_died">
-                                                  <p>{{ died.name }}</p>
+                                                  {% if died.name %}
+                                                    <p>{{ died.name }}</p>
+                                                  {%else %}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                         </div>
@@ -409,7 +413,11 @@ endif %}
                                             </div>
                                             <div class="col-6">
                                               <span class="died" id="id_died">
-                                                  <p>{{ died.surname }}</p>
+                                                  {% if died.surname %}
+                                                    <p>{{ died.surname }}</p>
+                                                  {%else %}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                         </div>
@@ -437,7 +445,11 @@ endif %}
                                             </div>
                                             <div class="col-6">
                                               <span class="died" id="id_died">
-                                                  <p>{{ birthday }}</p>
+                                                  {% if birthday %}
+                                                    <p>{{ birthday }}</p>
+                                                  {%else%}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                         </div>
@@ -447,7 +459,11 @@ endif %}
                                             </div>
                                             <div class="col-6">
                                               <span class="died" id="id_died">
-                                                  <p>{{ death }}</p>
+                                                  {% if death %}
+                                                    <p>{{ death }}</p>
+                                                  {%else%}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                         </div>
@@ -457,7 +473,11 @@ endif %}
                                             </div>
                                             <div class="col-6">
                                               <span class="died" id="id_died">
-                                                  <p>{{ died.transcription }}</p>
+                                                  {% if died.transcription %}
+                                                    <p>{{ died.transcription }}</p>
+                                                  {%else%}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                         </div>
@@ -487,7 +507,11 @@ endif %}
                                             </div>
                                             <div class="col-6">
                                               <span class="died" id="id_died">
-                                                  <p>{{ died.outfit }}</p>
+                                                  {% if died.outfit %}
+                                                    <p>{{ died.outfit }}</p>
+                                                  {%else%}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                         </div>
@@ -538,7 +562,11 @@ endif %}
                                           </div>
                                           <div class="col-6">
                                               <span class="coffin" id="id_coffin">
-                                                  <p>{{ coffin.description }}</p>
+                                                  {% if coffin.description %}
+                                                    <p>{{ coffin.description }}</p>
+                                                  {%else%}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                           </div>
                                       </div>
@@ -593,7 +621,11 @@ endif %}
                                           </div>
                                           <div class="col-6">
                                               <span class="flowers" for="flower">
-                                                  <p>{{ flowers.count }}</p>
+                                                  {% if flowers.count%}
+                                                    <p>{{ flowers.count }}</p>
+                                                  {%else%}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                       </div>
@@ -603,7 +635,11 @@ endif %}
                                           </div>
                                           <div class="col-6">
                                               <span class="flowers" for="flower">
-                                                  <p>{{ flowers.description }}</p>
+                                                  {% if flowers.description%}
+                                                    <p>{{ flowers.description }}</p>
+                                                  {%else%}
+                                                    <p>Brak danych</p>
+                                                  {%endif%}
                                               </span>
                                             </div>
                                       </div>
@@ -635,7 +671,11 @@ endif %}
                                         </div>
                                         <div class="col-6">
                                           <span class="music" for="music">
-                                              <p>{{ music.songs }}</p>
+                                              {% if music.songs%}
+                                                <p>{{ music.songs }}</p>
+                                              {%else%}
+                                                <p>Brak danych</p>
+                                              {%endif%}
                                           </span>
                                         </div>
                                     </div>
@@ -662,8 +702,8 @@ endif %}
 </div>
 {% else %}
 <div class="container-fluid" >
-    <div class="jumbotron box">
-        <div class="container">
+    <div class="jumbotron box" style="background-color:#ff1a1a">
+        <div class="container" >
             <div class="row-sm-12 mt-4 mb-4">
                 <div class="col-sm-12">
                     <h2>Nie posiadasz jeszcze żadnego zamówienia, proszę przejść w zakładkę "Złóż zamówienie"</h2>

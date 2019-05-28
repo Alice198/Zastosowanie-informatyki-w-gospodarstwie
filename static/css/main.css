@@ -465,3 +465,10 @@ input[type='radio']:checked:after {
     visibility: visible;
     border: 2px solid white;
 }
+
+
+.userSpan
+{
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+}

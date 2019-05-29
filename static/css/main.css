@@ -12,6 +12,7 @@ html,body{
     background-size: 100% 100%;
     background-attachment: fixed;
     top:0;
+    font-size:102%;
 
 }
 
@@ -25,7 +26,7 @@ html,body{
     background-clip: border-box;
     margin: 0;
     padding: 0;
-    min-height: 91.5vh;
+    min-height: 92.2vh;
     width: 100%;
     background-size: contain;
     background-size: cover;
@@ -70,6 +71,8 @@ html,body{
 #estimate {
     background-image: url("estimate.jpg") !important;
 }
+
+
 
 /*menu*/
 main{
@@ -332,76 +335,6 @@ a:hover{
   }
 }
 
-
-/*menu*/
-@media (max-width: 800px){
-
-    .menu {
-    background-color: #0d0d0d;
-    width: 100%;
-    height:90vh;
-        padding-top:10%;
-    padding-left:10%;
-    padding-right:10%;
-}
-}
-
-@media (max-width: 991px) {
-
-    .menu {
-        background-color: #0d0d0d;
-        width: 100%;
-        height: 85vh;
-        padding-top: 10%;
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-}
-
-
-@media (max-width: 1000px) {
-
-    .menu {
-        background-color: #0d0d0d;
-        width: 100%;
-        height: 85vh;
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-}
-
-
-@media (max-width: 1200px) {
-
-    .menu {
-        background-color: #0d0d0d;
-        width: 100%;
-        height: 80vh;
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-}
-
-
-/*boczny panel*/
-#sidebar-wrapper {
-  min-height: 91.4vh;
-  /*margin-left: -20rem;*/
-}
-
-
-#sidebar-wrapper .panel-group {
-  width: 20rem;
-}
-
-
-@media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
-}
-
-
 .bg-dark {
     background-color: #191919!important;
     color: whitesmoke;
@@ -412,7 +345,7 @@ a:hover{
 }
 
 i{
-    margin-right:5%;
+    margin-right:4%;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -445,7 +378,7 @@ input[type='radio']:after {
     top: -5px;
     left: -1px;
     position: relative;
-    background-color: #8a8f8a;
+    background-color: #bec1be;
     content: '';
     display: inline-block;
     visibility: visible;
@@ -471,4 +404,256 @@ input[type='radio']:checked:after {
 {
     padding-top: calc(.375rem + 1px);
     padding-bottom: calc(.375rem + 1px);
+}
+
+
+/*boczny panel*/
+#sidebar-wrapper {
+  min-height: 91.4vh;
+  /*margin-left: -20rem;*/
+}
+
+
+#sidebar-wrapper .panel-group {
+  width: 20rem;
+}
+
+
+/*@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+}*/
+
+
+/*menu*/
+@media (min-width: 768px) and (max-width: 991px){
+    body {
+        font-size:97%;
+    }
+    .menu {
+        background-color: #0d0d0d;
+        width: 100%;
+        height:128%;
+        padding-left:10%;
+        padding-right:5%;
+        padding-top: 16%;
+    }
+    .card-body {
+        width: 100%;
+    }
+    .card {
+        width: 150%;
+    }
+
+    .offset-4 {
+        margin-left:26%;
+    }
+
+    .offset-3 {
+        margin-left:13.5%;
+    }
+
+    .offset-2 {
+        margin-left:10%;
+    }
+
+    #sidebar-wrapper .panel-group {
+      width: 30vw;
+    }
+
+
+}
+
+@media (min-width: 992px) and (max-width: 1023px) {
+
+    body {
+        font-size:98%;
+    }
+    .menu {
+        background-color: #0d0d0d;
+        width: 100%;
+        height: 131%;
+        padding-top: 5%;
+        padding-left: 10%;
+        padding-right: 5%;
+    }
+
+    .card-body {
+        width: 100%;
+    }
+    .card {
+        width: 130%;
+    }
+
+    .offset-4 {
+        margin-left:28.8%;
+    }
+
+    .offset-3 {
+        margin-left:18.2%;
+    }
+
+    .offset-2 {
+        margin-left:10%;
+    }
+
+    #sidebar-wrapper .panel-group {
+      width: 30vw;
+    }
+
+}
+
+
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+
+    body {
+        font-size:99%;
+    }
+    .menu {
+        background-color: #0d0d0d;
+        width: 100%;
+        height: 131%;
+        padding-top: 5%;
+        padding-left: 10%;
+        padding-right: 5%;
+    }
+
+    .card-body {
+        width: 100%;
+    }
+    .card {
+        width: 130%;
+    }
+
+    .offset-4 {
+        margin-left:28.8%;
+    }
+
+    .offset-3 {
+        margin-left:18.2%;
+    }
+
+    .offset-2 {
+        margin-left:10%;
+    }
+
+    #sidebar-wrapper .panel-group {
+      width: 30vw;
+    }
+}
+
+
+
+@media (min-width: 1440px) and (max-width: 2559px){
+
+    body {
+        font-size: 115%;
+    }
+    .menu {
+        background-color: #0d0d0d;
+        width: 100%;
+        height: 103%;
+        padding-top: 5%;
+        padding-left: 10%;
+        padding-right: 5%;
+    }
+
+    .card-body {
+        width: 100%;
+    }
+    .card {
+        width: 115%;
+    }
+
+    .offset-4 {
+        margin-left:28.8%;
+    }
+
+    .offset-3 {
+        margin-left:21.7%;
+    }
+
+    .offset-2 {
+        margin-left:10%;
+    }
+
+    #sidebar-wrapper .panel-group {
+      width: 30vw;
+    }
+
+    .btn {
+        font-size: 105%;
+    }
+
+    input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -8px;
+    left: -1px;
+    position: relative;
+    background-color: #bec1be;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -8px;
+        left: -1px;
+        position: relative;
+        background-color: black;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+}
+
+
+
+@media (min-width: 2560px){
+
+    body {
+        font-size: 150%;
+    }
+    .menu {
+        background-color: #0d0d0d;
+        width: 100%;
+        height: 120vh;
+        padding-left: 10%;
+        padding-right: 5%;
+        font-size: 200%;
+
+    }
+
+
+    .card-body {
+        width: 45vw;
+    }
+    .card {
+        width: 45vw;
+    }
+    .offset-4 {
+        margin-left:22.5%;
+    }
+
+    .offset-3 {
+        margin-left:24.5%;
+    }
+
+    .offset-2 {
+        margin-left:10%;
+    }
+
+    #sidebar-wrapper .panel-group {
+      width: 32vw;
+    }
 }

@@ -26,7 +26,7 @@ html,body{
     background-clip: border-box;
     margin: 0;
     padding: 0;
-    min-height: 92.2vh;
+    min-height: 91.6vh;
     width: 100%;
     background-size: contain;
     background-size: cover;
@@ -155,11 +155,15 @@ opacity:0.9;
   background-color: #777;
 }
 .carousel-item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: 32rem;
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    top:0;
+    height: 32rem;
 }
 
 .carousel-caption {
@@ -427,14 +431,14 @@ input[type='radio']:checked:after {
 
 
 /*menu*/
-@media (min-width: 768px) and (max-width: 991px){
+@media (min-width: 768px) and (max-width: 899px){
     body {
         font-size:97%;
     }
     .menu {
         background-color: #0d0d0d;
         width: 100%;
-        height:128%;
+        height:140%;
         padding-left:10%;
         padding-right:5%;
         padding-top: 16%;
@@ -443,15 +447,15 @@ input[type='radio']:checked:after {
         width: 100%;
     }
     .card {
-        width: 150%;
+        width: 160%;
     }
 
     .offset-4 {
-        margin-left:26%;
+        margin-left:23.9%;
     }
 
     .offset-3 {
-        margin-left:13.5%;
+        margin-left:11.5%;
     }
 
     .offset-2 {
@@ -459,39 +463,45 @@ input[type='radio']:checked:after {
     }
 
     #sidebar-wrapper .panel-group {
-      width: 30vw;
+      width: 34vw;
     }
 
+    h1 {
+        font-size:180%
+    }
 
+    .carousel-caption {
+        top: 32%;
+    }
 }
 
-@media (min-width: 992px) and (max-width: 1023px) {
+
+@media (min-width: 900px) and (max-width: 1023px) {
 
     body {
-        font-size:98%;
+        font-size:97%;
     }
     .menu {
         background-color: #0d0d0d;
         width: 100%;
-        height: 131%;
-        padding-top: 5%;
-        padding-left: 10%;
-        padding-right: 5%;
+        height:122%;
+        padding-left:10%;
+        padding-right:5%;
+        padding-top: 3%;
     }
-
     .card-body {
         width: 100%;
     }
     .card {
-        width: 130%;
+        width: 120%;
     }
 
     .offset-4 {
-        margin-left:28.8%;
+        margin-left:29.8%;
     }
 
     .offset-3 {
-        margin-left:18.2%;
+        margin-left:20.5%;
     }
 
     .offset-2 {
@@ -502,6 +512,13 @@ input[type='radio']:checked:after {
       width: 30vw;
     }
 
+    h1 {
+        font-size:190%
+    }
+
+    .carousel-caption {
+        top: 33%;
+    }
 }
 
 
@@ -524,15 +541,15 @@ input[type='radio']:checked:after {
         width: 100%;
     }
     .card {
-        width: 130%;
+        width: 100%;
     }
 
     .offset-4 {
-        margin-left:28.8%;
+        margin-left:33%;
     }
 
     .offset-3 {
-        margin-left:18.2%;
+        margin-left:25.2%;
     }
 
     .offset-2 {
@@ -541,6 +558,14 @@ input[type='radio']:checked:after {
 
     #sidebar-wrapper .panel-group {
       width: 30vw;
+    }
+
+    h1 {
+        font-size:240%
+    }
+
+    .carousel-caption {
+        top: 35%;
     }
 }
 
@@ -590,29 +615,15 @@ input[type='radio']:checked:after {
     input[type='radio']:after {
     width: 15px;
     height: 15px;
-    border-radius: 15px;
     top: -8px;
     left: -1px;
-    position: relative;
-    background-color: #bec1be;
-    content: '';
-    display: inline-block;
-    visibility: visible;
-    border: 2px solid white;
     }
 
     input[type='radio']:checked:after {
         width: 15px;
         height: 15px;
-        border-radius: 15px;
         top: -8px;
         left: -1px;
-        position: relative;
-        background-color: black;
-        content: '';
-        display: inline-block;
-        visibility: visible;
-        border: 2px solid white;
     }
 
 }

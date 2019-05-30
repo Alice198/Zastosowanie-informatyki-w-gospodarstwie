@@ -6,7 +6,7 @@ def coffin_price(wood, size):
     elif wood == 'B':
         _price = 900
     elif wood == 'P':
-        _price == 650
+        _price = 650
     if size == 'A':
         _price *= 2
     return float("{0:.2f}".format(_price))

@@ -476,11 +476,15 @@
                                                   class="form-control"  id="id_description_flowers" autofocus="">{{flower.description}}</textarea>
                                     </div>
                                 </div>
-                          <div class="offset-3 col-8">
-                              <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
-                              <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
-                              <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
-                          </div></form>
+                          <div class="form-group col" >
+                              <div class="row justify-content-center">
+                                  <a href="{% url 'Submit order coffin' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Powrót</a>
+                                  <input type="submit" value="Zapisz" class="btn btn-outline-dark" />
+                                  <a href="{% url 'Submit order music' %}"  class="btn btn-outline-dark" role="button" aria-disabled="true">Dalej</a>
+
+                              </div>
+                          </div>
+                            </form>
                         </div>
 
                         </div>

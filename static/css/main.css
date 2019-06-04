@@ -26,7 +26,7 @@ html,body{
     background-clip: border-box;
     margin: 0;
     padding: 0;
-    min-height: 91.6vh;
+    min-height: 91.7vh;
     width: 100%;
     background-size: contain;
     background-size: cover;
@@ -36,6 +36,9 @@ html,body{
     padding:3% 0 3% 0;
 }
 
+.navbar {
+    min-height: 8.3vh;
+}
 
 #registrationLogin {
     background-image: url("cemeteryy.jpg") !important;
@@ -224,7 +227,7 @@ justify-content: center;
 
 /*slide*/
 .h2 {
-font-size:6vh;
+font-size:8vh;
 }
 
 /*button*/
@@ -301,9 +304,8 @@ a:hover{
 .menu {
     background-color: #0d0d0d;
     width: 100%;
-    height:75vh;
-    padding-left:10%;
-    padding-right:10%;
+    padding: 5% 10% 12% 10%;
+
 }
 
 
@@ -447,10 +449,6 @@ width:100%;
     .menu {
         background-color: #0d0d0d;
         width: 100%;
-        height:140%;
-        padding-left:10%;
-        padding-right:5%;
-        padding-top: 16%;
     }
     .card-body {
         width: 100%;
@@ -493,10 +491,7 @@ width:100%;
     .menu {
         background-color: #0d0d0d;
         width: 100%;
-        height:122%;
-        padding-left:10%;
-        padding-right:5%;
-        padding-top: 3%;
+
     }
     .card-body {
         width: 100%;
@@ -540,10 +535,6 @@ width:100%;
     .menu {
         background-color: #0d0d0d;
         width: 100%;
-        height: 131%;
-        padding-top: 5%;
-        padding-left: 10%;
-        padding-right: 5%;
     }
 
     .card-body {
@@ -580,7 +571,7 @@ width:100%;
 
 
 
-@media (min-width: 1440px) and (max-width: 2559px){
+@media (min-width: 1440px) and (max-width: 1919px){
 
     body {
         font-size: 115%;
@@ -588,10 +579,6 @@ width:100%;
     .menu {
         background-color: #0d0d0d;
         width: 100%;
-        height: 103%;
-        padding-top: 5%;
-        padding-left: 10%;
-        padding-right: 5%;
     }
 
     .card-body {
@@ -637,7 +624,93 @@ width:100%;
 
 }
 
+@media (min-width: 1920px) and (max-width: 2559px){
 
+    body {
+        font-size: 150%;
+    }
+    .menu {
+        background-color: #0d0d0d;
+        width: 100%;
+    }
+
+    .navbar-brand  {
+        font-size: 150%;
+    }
+
+    .panel-title
+    {
+        font-size: 140%;
+    }
+
+    .card-body {
+        width: 100%;
+    }
+    .card {
+        width: 140%;
+    }
+
+    .offset-4 {
+        margin-left:26.8%;
+    }
+
+    .offset-3 {
+        margin-left:15.7%;
+    }
+
+    .offset-2 {
+        margin-left:10%;
+    }
+
+    #sidebar-wrapper .panel-group {
+      width: 35vw;
+    }
+
+    .btn {
+        font-size: 110%;
+    }
+
+    input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    top: -12px;
+    left: -1px;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        top: -12px;
+        left: -1px;
+    }
+
+    .form-control {
+        font-size: 1.5rem;
+        height: calc(2.75rem + 2.5px);
+    }
+
+    h4  {
+        font-size: 120%;
+    }
+
+    h1 {
+        font-size: 170%;
+    }
+
+    .carousel-caption p {
+    margin-bottom: 1.25rem;
+    font-size: 1.45rem;
+    line-height: 1.4;
+}
+    .featurette-heading{
+        font-size: 250%;
+    }
+
+    .lead{
+        font-size: 150%;
+    }
+
+}
 
 @media (min-width: 2560px){
 
@@ -647,7 +720,7 @@ width:100%;
     .menu {
         background-color: #0d0d0d;
         width: 100%;
-        height: 120vh;
+
         padding-left: 10%;
         padding-right: 5%;
         font-size: 200%;
